@@ -45,6 +45,9 @@
         iframe{
             width: 100%;
             min-height:100vh;
+            position: relative;
+            top: -100px;
+            margin-bottom: -115px;
         }
 
    
@@ -64,12 +67,10 @@
             </a>
 
             <div class="nav-links" role="list">
-                <a href="../" class="nav-link active">Home</a>
-                <a href="./" class="nav-link ">Packages</a>
-                <a href="/categories/stationery" class="nav-link">Stationery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="/products" class="nav-link ">Products</a>
                 <a href="/gallery" class="nav-link ">Happy Customers</a>
-                <!-- <a href="/blog" class="nav-link ">Blog</a> -->
-                <a href="/contact" class="nav-link ">Contact</a>
+                <a href="/contact-us" class="nav-link ">Contact</a>
             </div>
 
             <div class="nav-actions">
@@ -86,7 +87,7 @@
                 </a>
 
                 <!-- Cart -->
-                <a href="../cart/" class="cart-btn" aria-label="View cart" title="Cart">
+                <a href="/cart" class="cart-btn" aria-label="View cart" title="Cart">
                     <i class="bi bi-bag"></i>
                     <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
                 </a>
@@ -103,10 +104,10 @@
     <div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Mobile menu">
         <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
         <a href="../" class="nav-link">Home</a>
-        <a href="./" class="nav-link">Packages</a>
-        <a href="/category/stationery" class="nav-link">Stationery</a>
+        <a href="/products/" class="nav-link">Products</a>
+        <a href="/stationery" class="nav-link">Stationery</a>
         <a href="/album" class="nav-link">Happy Customers</a>
-        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/contact-us" class="nav-link">Contact Us</a>
         <a href="https://wa.me/94761909344" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"
             style="margin-top:0.5rem;justify-content:center">
             <i class="bi bi-whatsapp"></i> Order on WhatsApp
@@ -152,23 +153,22 @@
                 <div class="footer-col">
                     <h4>Shop</h4>
                     <ul class="footer-links">
-                        <li><a href="category/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
-                        <li><a href="category/essentials">Other Essentials</a></li>
-                        <li><a href="/category/book-packages">Book Packages</a></li>
-                        <li><a href="category/stationery">Stationery Items</a></li>
-                        <li><a href="/category/toys-puzzles">Toys & Puzzles</a></li>
-                        <li><a href="/category/toys-puzzles">Kids & School Essentials</a></li>
+                        <li><a href="/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
+                        <li><a href="/essentials">Other Essentials</a></li>
+                        <li><a href="/book-packages">Book Packages</a></li>
+                        <li><a href="/stationery">Stationery Items</a></li>
+                        <li><a href="/toys&puzzles">Toys & Puzzles</a></li>
+                        <li><a href="/kids&school-essentials">Kids & School Essentials</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Pages</h4>
                     <ul class="footer-links">
-                        <li><a href="/./">Home</a></li>
+                        <li><a href="../">Home</a></li>
                         <li><a href="/products">All Products</a></li>
                         <li><a href="/album">Happy Customers</a></li>
-                        <!-- <li><a href="/blog">Akuru Kiyaweeme Charithraya</a></li> -->
-                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
                         <li><a href="/cart">My Cart</a></li>
                     </ul>
                 </div>
