@@ -34,13 +34,13 @@
     <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="alternate" hreflang="si" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="en" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="x-default" href="https://bookscornerlk.github.io/shop/">
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner","url":"https://bookscornerlk.github.io/shop","logo":"https://bookscornerlk.github.io/shop/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
-    <script>window.AK = { base: '', siteUrl: 'https://bookscornerlk.github.io/shop' };</script>
+    <script>window.BC = { base: '', siteUrl: 'https://bookscornerlk.github.io/shop' };</script>
 </head>
 
 <body>
@@ -268,7 +268,7 @@
             var endMsg = document.getElementById("infiniteScrollEnd");
             if (!grid || !trigger || !state.hasMore) return;
             var loading = false;
-            var base = (window.AK && window.AK.base) || "";
+            var base = (window.BC && window.BC.base) || "";
             function esc(s) { var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
             function buildCard(p) {
                 var badge = p.is_featured ? "<span class=\"product-card-badge featured\">⭐ Featured</span>" : (p.has_sale ? "<span class=\"product-card-badge\">Sale</span>" : "");
