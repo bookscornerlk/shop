@@ -1,4 +1,11 @@
 // Books Corner — Main JS
+document.addEventListener('click', function (e) {
+    if (e.target.closest('button, a')) {
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 
