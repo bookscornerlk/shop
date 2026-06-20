@@ -34,20 +34,20 @@
     <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="alternate" hreflang="si" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="en" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="x-default" href="https://bookscornerlk.github.io/shop/">
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner","url":"https://bookscornerlk.github.io/shop","logo":"https://bookscornerlk.github.io/shop/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
-    <script>window.AK = { base: '', siteUrl: 'https://bookscornerlk.github.io/shop' };</script>
+    <script>window.BC = { base: '', siteUrl: 'https://bookscornerlk.github.io/shop' };</script>
 </head>
 
 <body>
 
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-inner">
-            <a href="./" class="nav-logo" aria-label="Books Corner Home">
+            <a href="../" class="nav-logo" aria-label="Books Corner Home">
                 <img src="src/Untitled-1.png" alt="Books Corner Logo" onerror="this.style.display='none'"
                     style="display: none;">
                 <div class="nav-logo-text">
@@ -57,11 +57,10 @@
 
             <div class="nav-links" role="list">
                 <a href="../" class="nav-link active">Home</a>
-                <a href="./" class="nav-link ">Packages</a>
-                <a href="/categories/stationery" class="nav-link">Stationery</a>
-                <a href="/gallery" class="nav-link ">Happy Customers</a>
-                <a href="/blog" class="nav-link ">Blog</a>
-                <a href="/contact" class="nav-link ">Contact</a>
+                <a href="/shop/products" class="nav-link ">Packages</a>
+                <a href="/shop/stationery" class="nav-link">Stationery</a>
+                <a href="/shop/album" class="nav-link ">Happy Customers</a>
+                <a href="/shop/contact-us" class="nav-link ">Contact</a>
             </div>
 
             <div class="nav-actions">
@@ -78,7 +77,7 @@
                 </a>
 
                 <!-- Cart -->
-                <a href="../cart/" class="cart-btn" aria-label="View cart" title="Cart">
+                <a href="/shop/cart/" class="cart-btn" aria-label="View cart" title="Cart">
                     <i class="bi bi-bag"></i>
                     <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
                 </a>
@@ -95,11 +94,10 @@
     <div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Mobile menu">
         <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
         <a href="../" class="nav-link">Home</a>
-        <a href="./" class="nav-link">Packages</a>
-        <a href="/category/stationery" class="nav-link">Stationery</a>
-        <a href="/album" class="nav-link">Happy Customers</a>
-        <a href="/blog" class="nav-link">Akuru Kiyaweeme Charithraya</a>
-        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/shop/packages" class="nav-link">Packages</a>
+        <a href="/shop/stationery" class="nav-link">Stationery</a>
+        <a href="/shop/album" class="nav-link">Happy Customers</a>
+        <a href="/shop/contact-us" class="nav-link">Contact</a>
         <a href="https://wa.me/94761909344" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"
             style="margin-top:0.5rem;justify-content:center">
             <i class="bi bi-whatsapp"></i> Order on WhatsApp
@@ -123,24 +121,24 @@
                 <a href="./" class="cat-chip">
                     <i class="bi-grid"></i>
                     Home </a>
-                <a href="products" class="cat-chip">
+                <a href="/shop/products" class="cat-chip">
                     <i class="bi bi-grid-3x3-gap"></i> All
                 </a>
-                <a href="akuru-kiyaweeme-kattala" class="cat-chip">
+                <a href="/shop/akuru-kiyaweeme-kattala" class="cat-chip">
                     <i class="bi-box2-heart"></i>Akuru Kiyaweeme Kattala </a>
-                <a href="essentials" class="cat-chip">
+                <a href="/shop/essentials" class="cat-chip">
                     <i class="bi-chat-square-heart"></i>
                     Essentials </a>
-                <a href="book-packages" class="cat-chip active">
+                <a href="/shop/book-packages" class="cat-chip active">
                     <i class="bi-book"></i>
                     Book Packages </a>
-                <a href="stationery" class="cat-chip">
+                <a href="/shop/stationery" class="cat-chip">
                     <i class="bi-card-checklist"></i>
                     Stationery </a>
-                <a href="toys-puzzles" class="cat-chip">
+                <a href="/shop/toys&puzzles" class="cat-chip">
                     <i class="bi-puzzle"></i>
                     Toys & Puzzles </a>
-                <a href="kids" class="cat-chip">
+                <a href="/shop/kids&school-essentials" class="cat-chip">
                     <i class="bi bi-backpack"></i>
                     Kids & School Essentials </a>
 
@@ -204,24 +202,23 @@
                 <div class="footer-col">
                     <h4>Shop</h4>
                     <ul class="footer-links">
-                        <li><a href="category/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
-                        <li><a href="category/essentials">Other Essentials</a></li>
-                        <li><a href="/category/book-packages">Book Packages</a></li>
-                        <li><a href="category/stationery">Stationery Items</a></li>
-                        <li><a href="/category/toys-puzzles">Toys & Puzzles</a></li>
-                        <li><a href="/category/toys-puzzles">Kids & School Essentials</a></li>
+                        <li><a href="/shop/akuru-kiyaweeme-kattala">Akuru Kiyaweeme Kattala</a></li>
+                        <li><a href="/shop/essentials">Other Essentials</a></li>
+                        <li><a href="/shop/book-packages">Book Packages</a></li>
+                        <li><a href="/shop/stationery">Stationery Items</a></li>
+                        <li><a href="/shop/toys&puzzles">Toys & Puzzles</a></li>
+                        <li><a href="/shop/kids&school-essentials">Kids & School Essentials</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Pages</h4>
                     <ul class="footer-links">
-                        <li><a href="/./">Home</a></li>
-                        <li><a href="/products">All Products</a></li>
-                        <li><a href="/album">Happy Customers</a></li>
-                        <li><a href="/blog">Akuru Kiyaweeme Charithraya</a></li>
-                        <li><a href="/contact">Contact Us</a></li>
-                        <li><a href="/cart">My Cart</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="/shop/products">All Products</a></li>
+                        <li><a href="/shop/album">Happy Customers</a></li>
+                        <li><a href="/shop/contact-us">Contact Us</a></li>
+                        <li><a href="/shop/cart">My Cart</a></li>
                     </ul>
                 </div>
 
@@ -271,7 +268,7 @@
             var endMsg = document.getElementById("infiniteScrollEnd");
             if (!grid || !trigger || !state.hasMore) return;
             var loading = false;
-            var base = (window.AK && window.AK.base) || "";
+            var base = (window.BC && window.BC.base) || "";
             function esc(s) { var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
             function buildCard(p) {
                 var badge = p.is_featured ? "<span class=\"product-card-badge featured\">⭐ Featured</span>" : (p.has_sale ? "<span class=\"product-card-badge\">Sale</span>" : "");
