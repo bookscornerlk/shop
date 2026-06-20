@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="alternate" hreflang="si" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="en" href="https://bookscornerlk.github.io/shop/">
     <link rel="alternate" hreflang="x-default" href="https://bookscornerlk.github.io/shop/">
@@ -211,61 +211,6 @@
     <script src="../js/swiper-bundle.min.js"></script>
     <script src="../js/cart.js"></script>
     <script src="../js/main.js"></script>
-    <script>
-        (function () {
-            var state = { page: 1, hasMore: true, cat: "", q: "", sort: "sort_order" };
-            var grid = document.getElementById("productsGrid");
-            var trigger = document.getElementById("infiniteScrollTrigger");
-            var spinner = document.getElementById("infiniteScrollSpinner");
-            var endMsg = document.getElementById("infiniteScrollEnd");
-            if (!grid || !trigger || !state.hasMore) return;
-            var loading = false;
-            var base = (window.AK && window.AK.base) || "";
-            function esc(s) { var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
-            function buildCard(p) {
-                var badge = p.is_featured ? "<span class=\"product-card-badge featured\">⭐ Featured</span>" : (p.has_sale ? "<span class=\"product-card-badge\">Sale</span>" : "");
-                var orig = p.orig_fmt ? "<span class=\"price-original\">" + esc(p.orig_fmt) + "</span>" : "";
-                return "<a href=\"" + p.url + "\" class=\"product-card-img\">" + badge + "<img src=\"" + p.image_url + "\" alt=\"" + esc(p.name_en) + "\" loading=\"lazy\"></a>" +
-                    "<div class=\"product-card-body\">" +
-                    "<div class=\"product-card-cat\">" + esc(p.cat_name) + "</div>" +
-                    "<h3 class=\"product-card-name\" style=\"font-size:1rem\"><a href=\"" + p.url + "\">" + esc(p.name_en) + "</a></h3>" +
-                    "<p class=\"product-card-name-si si\">" + esc(p.name_si) + "</p>" +
-                    "<div class=\"product-card-price\"><span class=\"price-current\">" + esc(p.price_fmt) + "</span>" + orig + "</div>" +
-                    "<div class=\"product-card-actions\">" +
-                    "<button class=\"btn-add-cart\" data-add-cart data-id=\"" + p.id + "\" data-name-en=\"" + esc(p.name_en) + "\" data-name-si=\"" + esc(p.name_si) + "\" data-price=\"" + p.price + "\" data-image=\"" + p.image_url + "\" data-slug=\"" + p.slug + "\"><i class=\"bi bi-bag-plus\"></i> Add to Cart</button>" +
-                    "<a href=\"" + p.url + "\" class=\"btn btn-sm btn-outline-gold\">Details</a>" +
-                    "</div></div>";
-            }
-            function loadMore() {
-                if (loading || !state.hasMore) return;
-                loading = true;
-                spinner.style.display = "flex";
-                var p = "page=" + (state.page + 1);
-                if (state.cat) p += "&cat=" + encodeURIComponent(state.cat);
-                if (state.q) p += "&q=" + encodeURIComponent(state.q);
-                if (state.sort) p += "&sort=" + encodeURIComponent(state.sort);
-                fetch(base + "/api/products.php?" + p)
-                    .then(function (r) { return r.json(); })
-                    .then(function (data) {
-                        data.products.forEach(function (prod) {
-                            var el = document.createElement("article");
-                            el.className = "product-card ak-fade-in";
-                            el.innerHTML = buildCard(prod);
-                            grid.appendChild(el);
-                            el.addEventListener("animationend", function () { el.classList.remove("ak-fade-in"); }, { once: true });
-                        });
-                        state.page = data.next_page;
-                        state.hasMore = data.has_more;
-                        loading = false;
-                        spinner.style.display = "none";
-                        if (!state.hasMore) { observer.disconnect(); endMsg.style.display = "block"; }
-                    })
-                    .catch(function () { loading = false; spinner.style.display = "none"; });
-            }
-            var observer = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) loadMore(); }, { rootMargin: "300px" });
-            observer.observe(trigger);
-        })();
-    </script>
 
 </body>
 
