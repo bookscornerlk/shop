@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="si-LK">
 
 <head>
     <meta charset="UTF-8">
@@ -47,8 +47,8 @@
 
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-inner">
-            <a href="./" class="nav-logo" aria-label="Books Corner Home">
-                <img src="src/Untitled-1.png" alt="Books Corner Logo" onerror="this.style.display='none'"
+            <a href="../" class="nav-logo" aria-label="Books Corner Home">
+                <img src="../src/Untitled-1.png" alt="Books Corner Logo" onerror="this.style.display='none'"
                     style="display: none;">
                 <div class="nav-logo-text">
                     <img id="logo" src="../src/Untitled-1.png">
@@ -57,11 +57,11 @@
 
             <div class="nav-links" role="list">
                 <a href="../" class="nav-link active">Home</a>
-                <a href="./" class="nav-link ">Packages</a>
-                <a href="/categories/stationery" class="nav-link">Stationery</a>
-                <a href="/gallery" class="nav-link ">Happy Customers</a>
+                <a href="/shop/products" class="nav-link ">Products</a>
+                <a href="/shop/stationery" class="nav-link">Stationery</a>
+                <a href="/shop/album" class="nav-link ">Happy Customers</a>
                 <!-- <a href="/blog" class="nav-link ">Blog</a> -->
-                <a href="/contact" class="nav-link ">Contact</a>
+                <a href="/shop/contact-us" class="nav-link ">Contact</a>
             </div>
 
             <div class="nav-actions">
@@ -78,7 +78,7 @@
                 </a>
 
                 <!-- Cart -->
-                <a href="../cart/" class="cart-btn" aria-label="View cart" title="Cart">
+                <a href="" class="cart-btn" aria-label="View cart" title="Cart">
                     <i class="bi bi-bag"></i>
                     <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
                 </a>
@@ -95,11 +95,11 @@
     <div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Mobile menu">
         <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
         <a href="../" class="nav-link">Home</a>
-        <a href="./" class="nav-link">Packages</a>
-        <a href="/category/stationery" class="nav-link">Stationery</a>
-        <a href="/album" class="nav-link">Happy Customers</a>
+        <a href="/shop/products" class="nav-link">Products</a>
+        <a href="/shop/stationery" class="nav-link">Stationery</a>
+        <a href="/shop/album" class="nav-link">Happy Customers</a>
         <!-- <a href="/blog" class="nav-link">Akuru Kiyaweeme Charithraya</a> -->
-        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/contact-us" class="nav-link">Contact</a>
         <a href="https://wa.me/94761909344" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"
             style="margin-top:0.5rem;justify-content:center">
             <i class="bi bi-whatsapp"></i> Order on WhatsApp
@@ -111,7 +111,7 @@
 
         <div class="page-header">
             <div class="container">
-                <nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://akurukiyaweema.lk/">Home</a><span
+                <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span
                         class="breadcrumb-sep" aria-hidden="true">›</span><span>My Cart</span></nav>
                 <h1>My Cart</h1>
                 <p>Review your items and place your order via WhatsApp</p>
@@ -143,18 +143,18 @@
                         </div>
                         <div class="summary-row" id="summaryDeliveryRow">
                             <span>Delivery</span>
-                            <span id="summaryDelivery">Rs. 450</span>
+                            <span id="summaryDelivery">Rs. 350</span>
                         </div>
                         <div class="summary-total">
                             <span>Total</span>
                             <span id="summaryTotal">Rs. 0</span>
                         </div>
                         <div style="margin-top:var(--s5);display:flex;flex-direction:column;gap:var(--s3)">
-                            <button id="checkoutWhatsapp" data-wa="94703829557"
+                            <button id="checkoutWhatsapp" data-wa="94761909344"
                                 class="btn btn-whatsapp btn-lg btn-block">
                                 <i class="bi bi-whatsapp"></i> Order via WhatsApp
                             </button>
-                            <a href="https://akurukiyaweema.lk/products" class="btn btn-outline-gold btn-block">
+                            <a href="/shop/products" class="btn btn-outline-gold btn-block">
                                 <i class="bi bi-arrow-left"></i> Continue Shopping
                             </a>
                         </div>
@@ -169,11 +169,11 @@
             </div>
         </section>
 
-        <script>window.AK_DELIVERY = 450;</script>
+        <script>window.AK_DELIVERY = 350;</script>
     </main>
 
     <!-- FLOATING WHATSAPP -->
-    <a href="https://wa.me/94703829557" id="floatWhatsapp" data-wa="94703829557" target="_blank" rel="noopener"
+    <a href="https://wa.me/94761909344" id="floatWhatsapp" data-wa="94761909344" target="_blank" rel="noopener"
         class="whatsapp-float" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
@@ -207,12 +207,12 @@
                 <div class="footer-col">
                     <h4>Shop</h4>
                     <ul class="footer-links">
-                        <li><a href="/shop/category/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
-                        <li><a href="/shop/category/essentials">Other Essentials</a></li>
-                        <li><a href="/shop/category/book-packages">Book Packages</a></li>
-                        <li><a href="/shop/category/stationery">Stationery Items</a></li>
-                        <li><a href="/shop/category/toys&puzzles">Toys & Puzzles</a></li>
-                        <li><a href="/shop/category/kids&school-essentials">Kids & School Essentials</a></li>
+                        <li><a href="/shop/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
+                        <li><a href="/shop/essentials">Other Essentials</a></li>
+                        <li><a href="/shop/book-packages">Book Packages</a></li>
+                        <li><a href="/shop/stationery">Stationery Items</a></li>
+                        <li><a href="/shop/toys&puzzles">Toys & Puzzles</a></li>
+                        <li><a href="/shop/kids&school-essentials">Kids & School Essentials</a></li>
                     </ul>
                 </div>
 
@@ -222,7 +222,7 @@
                         <li><a href="../">Home</a></li>
                         <li><a href="/shop/products">All Products</a></li>
                         <li><a href="/shop/album">Happy Customers</a></li>
-                        <li><a href="/shop/contact">Contact Us</a></li>
+                        <li><a href="/shop/contact-us">Contact Us</a></li>
                         <li><a href="/shop/cart">My Cart</a></li>
                     </ul>
                 </div>
@@ -237,10 +237,9 @@
                     </div>
                     <div class="footer-contact-item">
                         <i class="bi bi-envelope"></i>
-                        <a href="/cdn-cgi/l/email-protection#583a3737332b3b372a363d2a3433183f35393134763b3735"
+                        <a href="mailto:bookscornerlk@gmail.com"
                             style="color:rgba(255,255,255,0.6)">
-                            <span class="__cf_email__"
-                                data-cfemail="583a3737332b3b372a363d2a3433183f35393134763b3735">[email&#160;protected]</span>
+                            <span class="__cf_email__">bookscornerlk@gmail.com</span>
                         </a>
                     </div>
 
