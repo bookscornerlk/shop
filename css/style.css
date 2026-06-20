@@ -418,7 +418,7 @@ h4 {
 .hero {
     min-height: 100vh;
     padding-top: var(--nav-height);
-    background: linear-gradient(var(--gradient-angle), #a57ca3 0%, #5f4a1d 40%, #001238 100%);
+    background: linear-gradient(var(--gradient-angle), #033200 0%, #5f4a1d 40%, #001238 100%);
     display: flex;
     align-items: center;
     position: relative;
