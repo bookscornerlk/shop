@@ -268,7 +268,7 @@
             var endMsg = document.getElementById("infiniteScrollEnd");
             if (!grid || !trigger || !state.hasMore) return;
             var loading = false;
-            var base = (window.AK && window.AK.base) || "";
+            var base = (window.BC && window.BC.base) || "";
             function esc(s) { var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
             function buildCard(p) {
                 var badge = p.is_featured ? "<span class=\"product-card-badge featured\">⭐ Featured</span>" : (p.has_sale ? "<span class=\"product-card-badge\">Sale</span>" : "");
