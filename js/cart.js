@@ -179,11 +179,32 @@ function renderCart() {
 
         // Add Rs.100 extra delivery for product ID 1
         const hasSpecialItem = cart.some(item => item.id === 5);
+        // Update summary
+        if (summary) {
+            const subtotal = CartManager.total();
 
-        if (hasSpecialItem) {
-            delivery = 450;
-              summary.querySelector('#summaryDelivery').textContent =
-    `Rs. ${delivery.toLocaleString()}`;
+            let delivery = 350; // default delivery
+
+            const hasSpecialItem = cart.some(item => item.id === 5);
+
+            if (hasSpecialItem) {
+                delivery = 450;
+            }
+
+            const grandTotal = subtotal + delivery;
+            const itemCount = CartManager.count();
+
+            summary.querySelector('#summaryCount').textContent =
+                `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
+
+            summary.querySelector('#summarySubtotal').textContent =
+                `Rs. ${subtotal.toLocaleString()}`;
+
+            summary.querySelector('#summaryDelivery').textContent =
+                `Rs. ${delivery.toLocaleString()}`;
+
+            summary.querySelector('#summaryTotal').textContent =
+                `Rs. ${grandTotal.toLocaleString()}`;
         }
         const grandTotal = subtotal + delivery;
         const itemCount = CartManager.count();
@@ -228,8 +249,8 @@ document.addEventListener('click', e => {
     const hasSpecialItem = CartManager.get().some(item => item.id === 5);
 
     if (hasSpecialItem) {
-         delivery = 450;
-      
+        delivery = 450;
+
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (url) {
