@@ -1,4 +1,4 @@
-// 1. Badu wala list eka (Data Array)
+// 1. Products List (Data Array)
 const webProducts = [
     {
         id: "1",
@@ -564,7 +564,7 @@ function displayProducts() {
                     <div class="product-card-body">
                         <div class="product-card-cat">${prod.category}</div>
                         <h3 class="product-card-name">
-                            <a href="/products/${prod.slug}">${prod.nameEn}</a>
+                            <p>${prod.nameEn}</p>
                         </h3>
                         <p class="product-card-name-si si">${prod.nameSi}</p>
                         <div class="product-card-price">
