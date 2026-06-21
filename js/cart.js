@@ -206,15 +206,7 @@ function renderCart() {
             summary.querySelector('#summaryTotal').textContent =
                 `Rs. ${grandTotal.toLocaleString()}`;
         }
-        const grandTotal = subtotal + delivery;
-        const itemCount = CartManager.count();
-        summary.querySelector('#summaryCount').textContent = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
-        summary.querySelector('#summarySubtotal').textContent = `Rs. ${subtotal.toLocaleString()}`;
-        summary.querySelector('#summaryTotal').textContent = `Rs. ${grandTotal.toLocaleString()}`;
-        const delivRow = summary.querySelector('#summaryDeliveryRow');
-        if (delivRow) {
-            delivRow.style.display = delivery > 0 ? '' : 'none';
-        }
+       
     }
 }
 
