@@ -72,24 +72,24 @@ const webProducts = [
         image: "/shop/images/products/a-akura.png",
         slug: "wodern-letter"
     },
-    // {
-    //     id: "10",
-    //     nameEn: "The Wooden Letter 'A' of Perfection",
-    //     nameSi: "පරිපූර්ණත්වය සංකේතවත් 'A' අකුර",
-    //     category: "Essentials",
-    //     price: 2100,
-    //     image: "/shop/images/products/a-akura.png",
-    //     slug: "wodern-letter"
-    // },
-    // {
-    //     id: "11",
-    //     nameEn: "The Wooden Letter 'A' of Perfection",
-    //     nameSi: "පරිපූර්ණත්වය සංකේතවත් 'A' අකුර",
-    //     category: "Essentials",
-    //     price: 2100,
-    //     image: "/shop/images/products/a-akura.png",
-    //     slug: "wodern-letter"
-    // },
+    {
+         id: "10",
+         nameEn: "A5 size framed picture of lord Ganesha",
+         nameSi: "ගණදෙවියන්ගේ රාමු කරන ලද රූපය",
+         category: "Essentials",
+         price: 375,
+         image: "/shop/images/products/ganadewi.png",
+         slug: "ganadewi-framed-a5"
+     },
+    {
+         id: "11",
+         nameEn: "A5 size framed picture of lord Saraswathi",
+         nameSi: "සරස්වතී මෑණියන්ගේ රාමු කරන ලද රූපය",
+         category: "Essentials",
+         price: 375,
+         image: "/shop/images/products/saraswathi.png",
+         slug: "saraswathi-framed-a5"
+     },
     // {
     //     id: "12",
     //     nameEn: "The Wooden Letter 'A' of Perfection",
