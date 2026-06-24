@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://bookscornerlk.github.io/shop/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/products/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/stationery/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/album/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/contact-us/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/cart/</loc>
+  <lastmod>2026-06-24T16:12:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/tracking/</loc>
+  <lastmod>2026-06-24T16:12:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/akuru-kiyaweeme-kattala/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/essentials/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/book-packages/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/toys&amp;puzzles/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://bookscornerlk.github.io/shop/kids&amp;school-essentials/</loc>
+  <lastmod>2026-06-24T16:12:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+</urlset>
