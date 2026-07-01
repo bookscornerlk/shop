@@ -87,7 +87,7 @@ const CartManager = (() => {
 
         let msg = `*🛒 New Order - Books Corner*\n\n`;
         msg += `📦 *Order ID:* ${orderId}\n`;
-        msg += `📅 *Order Date:* ${orderDate}\n`;
+        msg += `📅 *Order Date:* ${orderDate}\n\n`;
         msg += `*Order Details:*\n\n${lines}\n\n----------------------------\n`;
 
         if (deliveryCharge > 0) {
