@@ -49,24 +49,16 @@ const CartManager = (() => {
         return get().reduce((sum, i) => sum + i.qty * i.price, 0);
     }
 
-    function generateOrderId() {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let id = "BC-";
-
-    for (let i = 0; i < 8; i++) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-
-    return id;
-    }
-
     function buildWhatsAppMessage(waNumber, deliveryCharge) {
+        function generateOrderId() {
+            return "BC-" + crypto.randomUUID().split("-")[0].toUpperCase();
+        }
+
         const cart = get();
         if (!cart.length) return null;
         deliveryCharge = parseFloat(deliveryCharge) || 0;
-        const cart = get();
-        if (!cart.length) return null;
-        deliveryCharge = parseFloat(deliveryCharge) || 0;
+
+        const orderId = generateOrderId();
 
         const lines = cart.map((item, idx) =>
             `${idx + 1}. *${item.name_en}*\n   Qty: ${item.qty} x Rs.${item.price.toLocaleString()} = Rs.${(item.qty * item.price).toLocaleString()}`
@@ -75,10 +67,29 @@ const CartManager = (() => {
         const subtotal = total();
         const grandTotal = subtotal + deliveryCharge;
 
-        let msg = `*🛒 New Order - Books Corner*\n`;
-        msg += `*📦 Order ID:* ${orderId}\n`;
-        msg += `*📅 Order Date:* ${new Date().toLocaleString("en-LK")}\n\n`;
-        msg += `*📃 Order Details:*\n\n${lines}\n\n----------------------------\n`;
+        const now = new Date();
+
+        const date = now.toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        const time = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true
+        });
+
+        const orderDate = `${date} ${time}`;
+
+        let msg = `*🛒 New Order - Books Corner*\n\n`;
+        msg += `📦 *Order ID:* ${orderId}\n`;
+        msg += `📅 *Order Date:* ${orderDate}\n`;
+        msg += `*Order Details:*\n\n${lines}\n\n----------------------------\n`;
+
         if (deliveryCharge > 0) {
             msg += `Subtotal: Rs. ${subtotal.toLocaleString()}\nDelivery: Rs. ${deliveryCharge.toLocaleString()}\n`;
         }
@@ -151,7 +162,7 @@ function renderCart() {
     const rows = cart.map(item => `
         <tr>
             <td>
-                <img src="${item.image || 'assets/images/placeholder.jpg'}" alt="${escHtml(item.name_en)}" class="cart-item-img">
+                <img src="${item.image || '/shop/images/favicon.png'}" alt="${escHtml(item.name_en)}" class="cart-item-img">
             </td>
             <td>
                 <div class="cart-item-name">${escHtml(item.name_en)}</div>
@@ -223,7 +234,7 @@ function renderCart() {
             summary.querySelector('#summaryTotal').textContent =
                 `Rs. ${grandTotal.toLocaleString()}`;
         }
-       
+
     }
 }
 
