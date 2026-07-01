@@ -49,7 +49,21 @@ const CartManager = (() => {
         return get().reduce((sum, i) => sum + i.qty * i.price, 0);
     }
 
+    function generateOrderId() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let id = "BC-";
+
+    for (let i = 0; i < 8; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return id;
+    }
+
     function buildWhatsAppMessage(waNumber, deliveryCharge) {
+        const cart = get();
+        if (!cart.length) return null;
+        deliveryCharge = parseFloat(deliveryCharge) || 0;
         const cart = get();
         if (!cart.length) return null;
         deliveryCharge = parseFloat(deliveryCharge) || 0;
@@ -61,7 +75,10 @@ const CartManager = (() => {
         const subtotal = total();
         const grandTotal = subtotal + deliveryCharge;
 
-        let msg = `*New Order - Akuru Kiyaweema*\n\n*Order Details:*\n\n${lines}\n\n----------------------------\n`;
+        let msg = `*🛒 New Order - Books Corner*\n`;
+        msg += `*📦 Order ID:* ${orderId}\n`;
+        msg += `*📅 Order Date:* ${new Date().toLocaleString("en-LK")}\n\n`;
+        msg += `*📃 Order Details:*\n\n${lines}\n\n----------------------------\n`;
         if (deliveryCharge > 0) {
             msg += `Subtotal: Rs. ${subtotal.toLocaleString()}\nDelivery: Rs. ${deliveryCharge.toLocaleString()}\n`;
         }
