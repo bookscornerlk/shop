@@ -524,6 +524,78 @@ const webProducts = [
         image: "/shop/images/packages/preschool7.png",
         slug: "preschool-7books"
     },
+    {
+        id: "60",
+        nameEn: "Wall Chart for Kids Sinhala",
+        nameSi: "අඩි 2 x 2.5 සිංහල බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-sinhala.png",
+        slug: "sinhala-wallchart"
+    },
+    {
+        id: "61",
+        nameEn: "Wall Chart for Kids English",
+        nameSi: "අඩි 2 x 2.5 ඉංග්‍රීසි බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-english.png",
+        slug: "english-wallchart"
+    },
+    {
+        id: "62",
+        nameEn: "Wall Chart for Kids Animals",
+        nameSi: "අඩි 2 x 2.5 සත්තු බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-animals.png",
+        slug: "animals-wallchart"
+    },
+    {
+        id: "63",
+        nameEn: "Wall Chart for Kids Birds",
+        nameSi: "අඩි 2 x 2.5 කුරුල්ලො බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-birds.png",
+        slug: "birds-wallchart"
+    },
+    {
+        id: "64",
+        nameEn: "Wall Chart for Kids Fruits",
+        nameSi: "අඩි 2 x 2.5 පළතුරු බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-fruits.png",
+        slug: "fruits-wallchart"
+    },
+    {
+        id: "65",
+        nameEn: "Wall Chart for Kids Vehicles",
+        nameSi: "අඩි 2 x 2.5 වාහන බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-vehicles.png",
+        slug: "vehicles-wallchart"
+    },
+    {
+        id: "66",
+        nameEn: "Wall Chart for Kids Vegetables",
+        nameSi: "අඩි 2 x 2.5 එළවළු බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-vegitables.png",
+        slug: "vegetables-wallchart"
+    },
+    {
+        id: "67",
+        nameEn: "Wall Chart for Kids Good Habits",
+        nameSi: "අඩි 2 x 2.5 හොඳ පුරුදු බැනර්",
+        category: "Kids & School Essentials"",
+        price: 196,
+        image: "/shop/images/products/WallChart-goodHabits.png",
+        slug: "good-habits-wallchart"
+    },
 ];
 
 function displayProducts() {
