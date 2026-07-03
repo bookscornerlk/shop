@@ -2166,24 +2166,48 @@ h4 {
     bottom: var(--s8);
     right: var(--s6);
     z-index: 900;
-    background: #008b23;
-    color: #fff;
+
     width: 58px;
     height: 58px;
-    border-radius: var(--r-full);
+    border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    box-shadow: 0 4px 20px rgba(0, 255, 94, 0.5);
-    transition: transform var(--t-fast), box-shadow var(--t-fast);
+
+    background: linear-gradient(180deg, #0d893b 0%, #02521f 100%);
+    color: #fff;
     text-decoration: none;
+    font-size: 1.6rem;
+
+    /* Tiny 3D effect */
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.2),
+        0 3px 0 rgba(18,140,65,.35),
+        0 8px 18px rgba(0,0,0,.15);
+
+    transition: all .15s cubic-bezier(.2,.8,.2,1);
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.12);
-    box-shadow: 0 6px 28px rgb(0, 255, 94);
+    transform: translateY(-1px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.25),
+        0 4px 0 rgba(18,140,65,.4),
+        0 10px 22px rgba(0,0,0,.18);
+
     color: #fff;
+}
+
+.whatsapp-float:active {
+    /* Sink into the page */
+    transform: translateY(3px);
+
+    box-shadow:
+        inset 0 3px 6px rgba(0,0,0,.12),
+        0 1px 0 rgba(18,140,65,.25),
+        0 3px 8px rgba(0,0,0,.12);
 }
 
 .whatsapp-float::before {
@@ -2191,7 +2215,7 @@ h4 {
     position: absolute;
     inset: -4px;
     border-radius: var(--r-full);
-    border: 2px solid rgba(37, 211, 102, 0.3);
+    border: 2px solid rgb(16, 128, 3);
     animation: wa-pulse 2s ease-in-out infinite;
 }
 
