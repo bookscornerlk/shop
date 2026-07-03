@@ -526,7 +526,7 @@ const webProducts = [
     },
     {
         id: "60",
-        nameEn: "Wall Chart for Kids Sinhala",
+        nameEn: "Sinhala Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 සිංහල බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -535,7 +535,7 @@ const webProducts = [
     },
     {
         id: "61",
-        nameEn: "Wall Chart for Kids English",
+        nameEn: "English Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 ඉංග්‍රීසි බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -544,7 +544,16 @@ const webProducts = [
     },
     {
         id: "62",
-        nameEn: "Wall Chart for Kids Animals",
+        nameEn: "Tamil Wall Chart for Kids",
+        nameSi: "අඩි 2 x 2.5 ඉංග්‍රීසි බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-tamil.png",
+        slug: "tamil-wallchart"
+    },
+    {
+        id: "63",
+        nameEn: "Animals Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 සත්තු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -552,8 +561,8 @@ const webProducts = [
         slug: "animals-wallchart"
     },
     {
-        id: "63",
-        nameEn: "Wall Chart for Kids Birds",
+        id: "64",
+        nameEn: "Birds Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 කුරුල්ලො බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -561,8 +570,8 @@ const webProducts = [
         slug: "birds-wallchart"
     },
     {
-        id: "64",
-        nameEn: "Wall Chart for Kids Fruits",
+        id: "65",
+        nameEn: "Fruits Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 පළතුරු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -570,17 +579,8 @@ const webProducts = [
         slug: "fruits-wallchart"
     },
     {
-        id: "65",
-        nameEn: "Wall Chart for Kids Vehicles",
-        nameSi: "අඩි 2 x 2.5 වාහන බැනර්",
-        category: "Kids & School Essentials",
-        price: 196,
-        image: "/shop/images/products/WallChart-vehicles.png",
-        slug: "vehicles-wallchart"
-    },
-    {
         id: "66",
-        nameEn: "Wall Chart for Kids Vegetables",
+        nameEn: "Vegetables Wall Chart for Kids",
         nameSi: "අඩි 2 x 2.5 එළවළු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
@@ -589,12 +589,57 @@ const webProducts = [
     },
     {
         id: "67",
-        nameEn: "Wall Chart for Kids Good Habits",
+        nameEn: "Vehicles Wall Chart for Kids",
+        nameSi: "අඩි 2 x 2.5 වාහන බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-vehicles.png",
+        slug: "vehicles-wallchart"
+    },
+    {
+        id: "68",
+        nameEn: "Good Habits Wall Chart for Kids ",
         nameSi: "අඩි 2 x 2.5 හොඳ පුරුදු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
-        image: "/shop/images/products/WallChart-goodHabits.png",
+        image: "/shop/images/products/WallChart-goodhabits.png",
         slug: "good-habits-wallchart"
+    },
+    {
+        id: "69",
+        nameEn: "1 - 20 Numbers Wall Chart for Kids ",
+        nameSi: "අඩි 2 x 2.5, 1-20 සංඛ්‍යා බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-20.png",
+        slug: "20n-wallchart"
+    },
+    {
+        id: "70",
+        nameEn: "1 - 100 Numbers Wall Chart for Kids ",
+        nameSi: "අඩි 2 x 2.5, 1-100 සංඛ්‍යා බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-100.png",
+        slug: "100n-wallchart"
+    },
+    {
+        id: "71",
+        nameEn: "Body Parts Wall Chart for Kids ",
+        nameSi: "අඩි 2 x 2.5, ශරීරයේ කොටස් බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-bodyparts.png",
+        slug: "body-parts-wallchart"
+    },
+    {
+        id: "72",
+        nameEn: "Shapes & Solids Wall Chart for Kids ",
+        nameSi: "අඩි 2 x 2.5, හැඩතල සහ ඝනවස්තු බැනර්",
+        category: "Kids & School Essentials",
+        price: 196,
+        image: "/shop/images/products/WallChart-shapes.png",
+        slug: "shapes-wallchart"
     },
 ];
 
