@@ -1,24 +1,9 @@
 // Books Corner — Main JS
-const waButton = document.getElementById("floatWhatsapp");
-
-waButton.addEventListener("click", () => {
-    waButton.classList.add("vibrate");
-
-    // Mobile haptic feedback (supported browsers)
-    if (navigator.vibrate) {
-        navigator.vibrate(15);
-    }
-
-    setTimeout(() => {
-        waButton.classList.remove("vibrate");
-    }, 180);
-});
-
 
 document.addEventListener('click', function (e) {
-    if (e.target.closest('button, a')) {
+    if (e.target.closest('button, a, #floatWhatsapp')) {
         if (navigator.vibrate) {
-            navigator.vibrate(50);
+            navigator.vibrate(40);
         }
     }
 });
