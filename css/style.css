@@ -550,109 +550,8 @@ h4 {
     }
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: -35%;
-    z-index: 0;
-    pointer-events: none;
-
-    background:
-        radial-gradient(circle at 18% 25%, rgba(255, 248, 220, .55) 0%, transparent 28%),
-        /* Cream */
-        radial-gradient(circle at 80% 20%, rgba(255, 236, 170, .45) 0%, transparent 25%),
-        /* Soft Yellow */
-        radial-gradient(circle at 75% 75%, rgba(255, 223, 120, .35) 0%, transparent 30%),
-        /* Warm Gold */
-        radial-gradient(circle at 30% 80%, rgba(255, 250, 235, .45) 0%, transparent 25%);
-    /* Ivory */
-
-    filter: blur(90px);
-    animation:
-        blobFloat 24s ease-in-out infinite alternate,
-        blobRotate 60s linear infinite;
-}
-
-@keyframes blobFloat {
-    0% {
-        transform: translate(-8%, -6%) scale(1);
-    }
-
-    25% {
-        transform: translate(8%, -12%) scale(1.12);
-    }
-
-    50% {
-        transform: translate(12%, 8%) scale(.95);
-    }
-
-    75% {
-        transform: translate(-10%, 12%) scale(1.08);
-    }
-
-    100% {
-        transform: translate(-12%, -8%) scale(1);
-    }
-}
-
-@keyframes blobRotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    mix-blend-mode: screen;
-    animation: blob 18s ease-in-out infinite alternate;
-}
-
-.blob1 {
-    width: 500px;
-    height: 500px;
-    background: #0e0b0a;
-    top: -120px;
-    left: -120px;
-}
-
-.blob2 {
-    width: 420px;
-    height: 420px;
-    background: #271c038c;
-    right: -80px;
-    top: 120px;
-    animation-duration: 24s;
-}
-
-.blob3 {
-    width: 600px;
-    height: 600px;
-    background: #c04a87;
-    bottom: -220px;
-    left: 40%;
-    animation-duration: 30s;
-}
-
-@keyframes blob {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(120px, -80px) scale(1.2);
-    }
-
-    100% {
-        transform: translate(-100px, 120px) scale(.9);
-    }
-}
 
 .hero::before {
     content: '';
@@ -748,7 +647,7 @@ h4 {
 }
 
 .hero-title-en {
-    font-family: var(--font-display);
+    font-family: "Playfair Display", serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.15;
