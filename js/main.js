@@ -89,11 +89,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let previousCartCount = 0;
+
 // ── Cart Badge ────────────────────────────────────────────
 function updateCartBadge() {
     const badge = document.getElementById('cartBadge');
+    const cartBtn = document.querySelector('.cart-btn');
+
     if (!badge) return;
+
     const count = CartManager.count();
+
     badge.textContent = count;
     badge.classList.toggle('show', count > 0);
+
+    // Animate only when the count increases
+    if (cartBtn && count > previousCartCount) {
+        cartBtn.classList.remove('cart-attention');
+
+        // Restart animation
+        void cartBtn.offsetWidth;
+
+        cartBtn.classList.add('cart-attention');
+    }
+
+    previousCartCount = count;
 }
+
+
+const cartBtn = document.querySelector('.cart-btn');
+
+cartBtn.classList.remove('cart-attention');
+void cartBtn.offsetWidth; // Restart animation
+cartBtn.classList.add('cart-attention');
+
+document.addEventListener("click", (e) => {
+    const el = e.target.closest("button, .btn, a");
+    if (!el) return;
+
+    el.classList.remove("click-pop");
+    void el.offsetWidth; // Restart animation
+    el.classList.add("click-pop");
+});
