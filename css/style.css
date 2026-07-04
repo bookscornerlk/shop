@@ -170,6 +170,7 @@ button {
 
 .section-sm {
     padding: var(--s12) 0;
+   
 }
 
 /* =====================================================
@@ -1665,12 +1666,15 @@ h4 {
     border: 1px solid var(--cream-border);
     border-radius: var(--r-lg);
     overflow: hidden;
+     box-shadow: 0 4px 24px rgba(201, 168, 76, 0.30);
+     background: linear-gradient(45deg, #e74d3c0d, #f1c40f22);
 }
 
 .cart-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    
 }
 
 .cart-table th {
@@ -1748,6 +1752,8 @@ h4 {
     font-family: var(--font-body);
 }
 
+
+
 .cart-remove {
     background: none;
     border: none;
@@ -1771,6 +1777,8 @@ h4 {
     padding: var(--s6);
     position: sticky;
     top: calc(var(--nav-height) + var(--s4));
+     box-shadow: 0 4px 24px rgba(201, 168, 76, 0.30);
+     background: linear-gradient(45deg, #e74d3c0d, #f1c40f22);
 }
 
 .order-summary h3 {
@@ -2591,6 +2599,50 @@ h4 {
 /* =====================================================
    RESPONSIVE
    ===================================================== */
+@media (max-width: 1403px) {
+
+    .nav-links{
+        display: none;
+    }
+
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-page-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: calc(var(--nav-height) + var(--s12)) 0 var(--s12);
+    }
+
+    .section {
+        padding: var(--s12) 0;
+    }
+}
+
 @media (max-width: 1024px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -3220,3 +3272,13 @@ h4 {
         right: 0.5rem;
     }
 }
+
+
+#categoryBtn:hover {
+    transform: scale(1.05);
+}
+
+#categoryBtn:active {
+    transform: scale(0.96);
+}
+
