@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Mobile nav drawer ────────────────────────────────
     const hamburger = document.getElementById('navHamburger');
-    const drawer    = document.getElementById('navDrawer');
-    const closeBtn  = document.getElementById('navCloseBtn');
+    const drawer = document.getElementById('navDrawer');
+    const closeBtn = document.getElementById('navCloseBtn');
     if (hamburger && drawer) {
         hamburger.addEventListener('click', () => {
             const open = drawer.classList.toggle('open');
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
 
     // ── Search autocomplete ──────────────────────────────
-    const searchInput   = document.getElementById('searchInput');
+    const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     if (searchInput && searchResults) {
         let timer;
@@ -127,7 +127,19 @@ document.addEventListener("click", (e) => {
     const el = e.target.closest("button, .btn, a");
     if (!el) return;
 
+    // Don't animate the category button
+    if (el.id === "categoryBtn") return;
+
     el.classList.remove("click-pop");
-    void el.offsetWidth; // Restart animation
+    void el.offsetWidth;
     el.classList.add("click-pop");
+
+
+    el.addEventListener("animationend", () => {
+        el.classList.remove("click-pop");
+    }, { once: true });
+
+
 });
+
+
