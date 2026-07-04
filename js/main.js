@@ -1,24 +1,25 @@
 // Books Corner — Main JS
 
 // Global listener for everything else
-// Keep the global click listener for normal buttons/links
-document.addEventListener('click', function (e) {
-    if (e.target.closest('button, a:not(#floatWhatsapp)')) {
-        if (navigator.vibrate) {
-            navigator.vibrate(40);
-        }
-    }
-});
-
-// Use 'pointerdown' specifically for the WhatsApp button to beat the app-switch delay
 const whatsappBtn = document.getElementById('floatWhatsapp');
+
 if (whatsappBtn) {
-    whatsappBtn.addEventListener('pointerdown', function () {
+    whatsappBtn.addEventListener('click', function (e) {
+        // 1. Stop the browser from instantly opening the link and killing the script
+        e.preventDefault(); 
+        
+        // 2. Trigger the vibration
         if (navigator.vibrate) {
-            navigator.vibrate(40);
+            navigator.vibrate(45);
         }
+        
+        // 3. Wait 50 milliseconds for the vibration to physically fire, then open the link
+        setTimeout(() => {
+            window.open(whatsappBtn.href, '_blank', 'noopener');
+        }, 50);
     });
 }
+
 
 
 
