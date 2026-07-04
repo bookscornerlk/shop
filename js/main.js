@@ -1,12 +1,20 @@
 // Books Corner — Main JS
 
+// Global listener for everything else
 document.addEventListener('click', function (e) {
-    if (e.target.closest('button, a, #floatWhatsapp')) {
-        if (navigator.vibrate) {
-            navigator.vibrate(40);
-        }
+    if (e.target.closest('button, a')) {
+        if (navigator.vibrate) navigator.vibrate(40);
     }
 });
+
+// Direct listener dedicated specifically to your WhatsApp button
+const whatsappBtn = document.getElementById('floatWhatsapp');
+if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', function () {
+        if (navigator.vibrate) navigator.vibrate(40);
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
