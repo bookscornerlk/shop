@@ -155,12 +155,12 @@ const webProducts = [
     },
     {
         id: "19",
-        nameEn: "All in One Set for Kids (Premium) ",
-        nameSi: "ප්‍රිමියම් පැකේජය",
+        nameEn: "Kids' Shirt and Sarong for Akuru Kiyaweema",
+        nameSi: "හුරුබුහුටි සරම හා කමිසය (මුද්‍රිත) ",
         category: "Kids & School Essentials",
-        price: 4490,
-        image: "/shop/images/products/bagpremium.jpg",
-        slug: "bag-aio-premium"
+        price: 3090,
+        image: "/shop/images/products/boys-andum-printed.jpg",
+        slug: "kids-shirt-sarong"
     },
     {
         id: "20",
@@ -640,6 +640,15 @@ const webProducts = [
         price: 196,
         image: "/shop/images/products/WallChart-shapes.png",
         slug: "shapes-wallchart"
+    },
+    {
+        id: "73",
+        nameEn: "All in One Set for Kids (Premium) ",
+        nameSi: "ප්‍රිමියම් පැකේජය",
+        category: "Kids & School Essentials",
+        price: 4490,
+        image: "/shop/images/products/bagpremium.jpg",
+        slug: "bag-aio-premium"
     },
 ];
 
