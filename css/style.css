@@ -298,12 +298,17 @@ h4 {
 
 .nav-link {
     padding: var(--s2) var(--s3);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: #664703;
+    color: #614504;
     border-radius: var(--r-md);
     transition: color var(--t-fast), background var(--t-fast);
     text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid #4f37038b;
+    border-radius: 0;
+    width: 90%;
+    margin: 1px 10px 1px 10px;
 }
 
 .nav-link:hover {
