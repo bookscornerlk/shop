@@ -33,24 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         onScroll();
     }
 
-    // ── Mobile nav drawer ────────────────────────────────
-    const hamburger = document.getElementById('navHamburger');
-    const drawer = document.getElementById('navDrawer');
-    const closeBtn = document.getElementById('navCloseBtn');
-    if (hamburger && drawer) {
-        hamburger.addEventListener('click', () => {
-            const open = drawer.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', open);
-        });
-        closeBtn?.addEventListener('click', () => {
-            drawer.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', false);
-        });
-        document.addEventListener('click', e => {
-            if (!navbar.contains(e.target) && !drawer.contains(e.target)) drawer.classList.remove('open');
-        });
-    }
-
+    
     // ── Scroll reveal ────────────────────────────────────
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -117,11 +100,13 @@ function updateCartBadge() {
 }
 
 
-const cartBtn = document.querySelector('.cart-btn');
+const cartBtn = document.querySelector(".cart-btn");
 
-cartBtn.classList.remove('cart-attention');
-void cartBtn.offsetWidth; // Restart animation
-cartBtn.classList.add('cart-attention');
+if (cartBtn) {
+    cartBtn.classList.remove("cart-attention");
+    void cartBtn.offsetWidth;
+    cartBtn.classList.add("cart-attention");
+}
 
 document.addEventListener("click", (e) => {
     const el = e.target.closest("button, .btn, a");
@@ -141,3 +126,56 @@ document.addEventListener("click", (e) => {
 
 
 });
+
+const hamburger = document.getElementById("navHamburger");
+const drawer = document.getElementById("navDrawer");
+const closeBtn = document.getElementById("navCloseBtn");
+const backdrop = document.getElementById("drawerBackdrop");
+
+if (hamburger && drawer && backdrop) {
+
+    function openDrawer() {
+        drawer.classList.add("open");
+        backdrop.classList.add("show");
+        hamburger.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove("open");
+        backdrop.classList.remove("show");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+    }
+
+    hamburger.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        if (drawer.classList.contains("open")) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    });
+
+    closeBtn?.addEventListener("click", closeDrawer);
+    backdrop.addEventListener("click", closeDrawer);
+
+    document.addEventListener("click", (e) => {
+        if (
+            drawer.classList.contains("open") &&
+            !drawer.contains(e.target) &&
+            !hamburger.contains(e.target)
+        ) {
+            closeDrawer();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDrawer();
+    });
+
+    drawer.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeDrawer);
+    });
+}
