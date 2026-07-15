@@ -90,15 +90,15 @@ const webProducts = [
          image: "/shop/images/products/saraswathi.png",
          slug: "saraswathi-framed-a5"
      },
-    // {
-    //     id: "12",
-    //     nameEn: "The Wooden Letter 'A' of Perfection",
-    //     nameSi: "පරිපූර්ණත්වය සංකේතවත් 'A' අකුර",
-    //     category: "Essentials",
-    //     price: 2100,
-    //     image: "//shop/images/products/a-akura.png",
-    //     slug: "wodern-letter"
-    // },
+    {
+         id: "12",
+         nameEn: "The Super Package",
+         nameSi: "අකුරු කියවීමේ කට්ටලය",
+         category: "Akuru Kiyaweeme Kattala",
+         price: 7990,
+         image: "/shop/images/akuru-kiyaweema/7990-Super.png",
+         slug: "the-super-package"
+    },
     {
         id: "13",
         nameEn: "Magic Books - 4 with 10 Pens",
