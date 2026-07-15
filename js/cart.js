@@ -206,19 +206,16 @@ function renderCart() {
         let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
         // Add Rs.100 extra delivery for product ID 1
-        const hasSpecialItem = cart.some(item => item.id === 5);
-        // Add Rs.100 extra delivery for product ID 1
-        const hasSpecialItem2 = cart.some(item => item.id === 12);
-        // Update summary
+        // 1. Correct the syntax to check for both 5 and 12 properly
+const hasSpecialItem = cart.some(item => [5, 12].includes(item.id));
+const hasSpecialItem2 = cart.some(item => item.id === 102);
+
         if (summary) {
             const subtotal = CartManager.total();
 
             let delivery = 350; // default delivery
 
-            // 1. Correct the syntax to check for both 5 and 12 properly
-const hasSpecialItem = cart.some(item => [5, 12].includes(item.id));
-const hasSpecialItem2 = cart.some(item => item.id === 102);
-
+            
 // 2. Apply your conditional logic
 if (hasSpecialItem) {
     delivery = 450;
