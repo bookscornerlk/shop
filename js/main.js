@@ -127,24 +127,32 @@ document.addEventListener("click", (e) => {
 
 });
 
+// Create backdrop if it doesn't exist
+let backdrop = document.getElementById("drawerBackdrop");
+
+if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.id = "drawerBackdrop";
+    backdrop.className = "drawer-backdrop";
+    document.body.appendChild(backdrop);
+}
+
+// Now get the other elements
 const hamburger = document.getElementById("navHamburger");
 const drawer = document.getElementById("navDrawer");
 const closeBtn = document.getElementById("navCloseBtn");
-const backdrop = document.getElementById("drawerBackdrop");
 
-if (hamburger && drawer && backdrop) {
+if (hamburger && drawer) {
 
     function openDrawer() {
         drawer.classList.add("open");
         backdrop.classList.add("show");
-        hamburger.setAttribute("aria-expanded", "true");
         document.body.style.overflow = "hidden";
     }
 
     function closeDrawer() {
         drawer.classList.remove("open");
         backdrop.classList.remove("show");
-        hamburger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
     }
 
@@ -160,22 +168,4 @@ if (hamburger && drawer && backdrop) {
 
     closeBtn?.addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
-
-    document.addEventListener("click", (e) => {
-        if (
-            drawer.classList.contains("open") &&
-            !drawer.contains(e.target) &&
-            !hamburger.contains(e.target)
-        ) {
-            closeDrawer();
-        }
-    });
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeDrawer();
-    });
-
-    drawer.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", closeDrawer);
-    });
 }
