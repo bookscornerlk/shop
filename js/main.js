@@ -140,7 +140,6 @@ if (!backdrop) {
 // Now get the other elements
 const hamburger = document.getElementById("navHamburger");
 const drawer = document.getElementById("navDrawer");
-const closeBtn = document.getElementById("navCloseBtn");
 
 if (hamburger && drawer) {
 
@@ -148,12 +147,14 @@ if (hamburger && drawer) {
         drawer.classList.add("open");
         backdrop.classList.add("show");
         document.body.style.overflow = "hidden";
+        navigator.vibrate(45);
     }
 
     function closeDrawer() {
         drawer.classList.remove("open");
         backdrop.classList.remove("show");
         document.body.style.overflow = "";
+        navigator.vibrate(45);
     }
 
     hamburger.addEventListener("click", (e) => {
@@ -161,11 +162,12 @@ if (hamburger && drawer) {
 
         if (drawer.classList.contains("open")) {
             closeDrawer();
+            navigator.vibrate(45);
         } else {
             openDrawer();
+            navigator.vibrate(45);
         }
     });
 
-    closeBtn?.addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
 }
