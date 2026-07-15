@@ -215,8 +215,8 @@ function renderCart() {
 
             let delivery = 350; // default delivery
 
-            const hasSpecialItem = cart.some(item => item.id === 5);
-            const hasSpecialItem2 = cart.some(item => item.id === 12);
+            const hasSpecialItem = cart.some(item => item.id === 5,12);
+            const hasSpecialItem2 = cart.some(item => item.id === 102);
 
             if (hasSpecialItem) {
                 delivery = 450;
