@@ -3403,3 +3403,7 @@ h4 {
     pointer-events: auto;
 
 }
+
+#navCloseBtn {
+    display: none;
+}
