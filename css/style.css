@@ -17,7 +17,7 @@
     --burgundy-light: #A84D65;
     --burgundy-subtle: rgba(123, 45, 66, 0.10);
 
-    --cream: #FBF5E6;
+    --cream: #ffe8af;
     --cream-dark: #F0E6CC;
     --cream-border: #E8D5B0;
 
@@ -297,18 +297,14 @@ h4 {
 }
 
 .nav-link {
+    font-family: "Outfit", sans-serif;
     padding: var(--s2) var(--s3);
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: 500;
-    color: #614504;
+    color: #664703;
     border-radius: var(--r-md);
     transition: color var(--t-fast), background var(--t-fast);
     text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid #4f37038b;
-    border-radius: 0;
-    width: 90%;
-    margin: 1px 10px 1px 10px;
 }
 
 .nav-link:hover {
@@ -327,7 +323,6 @@ h4 {
     gap: var(--s3);
     margin-left: var(--s4);
 }
-
 /* Cart icon */
 .cart-btn {
     position: relative;
@@ -508,19 +503,6 @@ h4 {
 
 }
 
-.nav-link,
-.nav-drawer .btn {
-
-    opacity: 0;
-
-    transform:
-        translateY(14px);
-
-    transition:
-        opacity .45s ease,
-        transform .45s cubic-bezier(.22, 1, .36, 1);
-
-}
 
 .nav-drawer.open .nav-link:nth-child(2) {
     transition-delay: .05s;
@@ -2635,9 +2617,63 @@ h4 {
    RESPONSIVE
    ===================================================== */
 @media (max-width: 1403px) {
+    .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--s1);
+    margin-left: auto;
+}
+
+.nav-link {
+    padding: var(--s2) var(--s3);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #614504;
+    border-radius: var(--r-md);
+    transition: color var(--t-fast), background var(--t-fast);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid #4f37038b;
+    border-radius: 0;
+    width: 90%;
+    margin: 1px 10px 1px 10px;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: var(--gold-subtle);
+}
+
+.nav-link.active {
+    color: var(--gold-dark);
+    font-weight: 600;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s3);
+    margin-left: var(--s4);
+}
+
+
 
     .nav-links {
         display: none;
+    }
+
+    .nav-link,
+    .nav-drawer .btn {
+
+        opacity: 0;
+
+        transform:
+            translateY(14px);
+
+        transition:
+            opacity .45s ease,
+            transform .45s cubic-bezier(.22, 1, .36, 1);
+
     }
 
     .nav-hamburger {
@@ -3371,19 +3407,6 @@ h4 {
 
 }
 
-.nav-link,
-.nav-drawer .btn {
-    font-family: "Outfit", sans-serif;
-    opacity: 0;
-
-    transform:
-        translateY(14px);
-
-    transition:
-        opacity .45s ease,
-        transform .45s cubic-bezier(.22, 1, .36, 1);
-
-}
 
 .drawer-backdrop {
 
