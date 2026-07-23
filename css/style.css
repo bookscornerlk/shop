@@ -488,7 +488,7 @@ h4 {
     color: var(--text-primary);
 }
 
-/* Mobile nav drawer */
+
 
 
 .nav-drawer.open {
@@ -2455,7 +2455,7 @@ h4 {
    PAGE HEADER
    ===================================================== */
 .page-header {
-    background: linear-gradient(135deg, #724403 0%, #000633 100%);
+    background: linear-gradient(135deg, #644001 0%, #454545 100%);
     padding: var(--s16) 0;
 }
 
@@ -2628,12 +2628,12 @@ h4 {
     padding: var(--s2) var(--s3);
     font-size: 1.1rem;
     font-weight: 500;
-    color: #614504;
+    color: #453204;
     border-radius: var(--r-md);
     transition: color var(--t-fast), background var(--t-fast);
     text-decoration: none;
     font-weight: 600;
-    border-bottom: 1px solid #4f37038b;
+    border-bottom: 1px solid #6848048b;
     border-radius: 0;
     width: 90%;
     margin: 1px 10px 1px 10px;
@@ -3367,11 +3367,11 @@ h4 {
 
     padding: 1rem;
 
-    background: linear-gradient(270deg, #f0f5f8d2 20%, #e2c46fc7 80%);
+    background: linear-gradient(135deg, #f0f5f8ba 20%, #c3a961c3 80%);
     backdrop-filter: blur(30px) saturate(180%);
     -webkit-backdrop-filter: blur(30px) saturate(180%);
 
-    border-bottom: 1px solid rgba(255, 255, 255, .35);
+    border: 1px solid var(--gold);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, .08);
@@ -3413,7 +3413,7 @@ h4 {
     position: fixed;
     inset: 0;
 
-    background: rgba(0, 0, 0, .12);
+    background: rgba(0, 0, 0, 0.19);
 
     backdrop-filter: blur(8px);
 
