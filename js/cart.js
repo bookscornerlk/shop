@@ -206,23 +206,23 @@ function renderCart() {
         let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
         // Add Rs.100 extra delivery for product ID 1
-        // 1. Correct the syntax to check for both 5 and 12 properly
-const hasSpecialItem = cart.some(item => [5, 12].includes(item.id));
-const hasSpecialItem2 = cart.some(item => item.id === 102);
-
+        const hasSpecialItem = cart.some(item => item.id === 5);
+        // Add Rs.100 extra delivery for product ID 1
+        const hasSpecialItem2 = cart.some(item => item.id === 12);
+        // Update summary
         if (summary) {
             const subtotal = CartManager.total();
 
             let delivery = 350; // default delivery
 
-            
-// 2. Apply your conditional logic
-if (hasSpecialItem) {
-    delivery = 450;
-} else if (hasSpecialItem2) {
-    delivery = 550;
-}
+            const hasSpecialItem = cart.some(item => item.id === 5);
+            const hasSpecialItem2 = cart.some(item => item.id === 12);
 
+            if (hasSpecialItem) {
+                delivery = 450;
+            } else if (hasSpecialItem2) {
+                delivery = 550;
+            }
 
             const grandTotal = subtotal + delivery;
             const itemCount = CartManager.count();
@@ -254,17 +254,14 @@ document.addEventListener('click', e => {
     const waNumber = btn.dataset.wa || '94761909344';
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
-    // 1. Correct the syntax to check for both 5 and 12 properly
-const hasSpecialItem = cart.some(item => [5, 12].includes(item.id));
-const hasSpecialItem2 = cart.some(item => item.id === 102);
+    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+    const hasSpecialItem2 = CartManager.get().some(item => item.id === 0);
 
-// 2. Apply your conditional logic
-if (hasSpecialItem) {
-    delivery = 450;
-} else if (hasSpecialItem2) {
-    delivery = 550;
-}
-
+    if (hasSpecialItem) {
+        delivery = 450;
+    } else if (hasSpecialItem2) {
+        delivery = 550;
+    }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
     window.open(url, '_blank');
@@ -278,6 +275,7 @@ document.addEventListener('click', e => {
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
     const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+    const hasSpecialItem2 = CartManager.get().some(item => item.id === 0);
 
     if (hasSpecialItem) {
         delivery = 450;
