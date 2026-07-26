@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── Cart Page Render ──────────────────────────────────────
 function renderCart() {
-    // Cart එක Update වන විට, WhatsApp Link එක කෙළින්ම <a> tag එකේ href එකට set කිරීම:
+    const cart = CartManager.get();
     const checkoutBtn = document.getElementById('checkoutWhatsapp');
     if (checkoutBtn) {
         const waNumber = checkoutBtn.dataset.wa || '94761909344';
@@ -153,7 +153,7 @@ function renderCart() {
     const summary = document.getElementById('cartSummary');
     if (!container) return;
 
-    const cart = CartManager.get();
+
 
     if (!cart.length) {
         container.innerHTML = `
