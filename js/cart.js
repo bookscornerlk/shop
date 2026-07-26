@@ -140,15 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Cart Page Render ──────────────────────────────────────
 function renderCart() {
     const cart = CartManager.get();
-    const checkoutBtn = document.getElementById('checkoutWhatsapp');
-    if (checkoutBtn) {
-        const waNumber = checkoutBtn.dataset.wa || '94761909344';
-        let delivery = 350;
-        const hasSpecialItem = cart.some(item => item.id === 5);
-        if (hasSpecialItem) delivery = 450;
-
-        const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
-    }
+    
     const container = document.getElementById('cartItems');
     const summary = document.getElementById('cartSummary');
     if (!container) return;
