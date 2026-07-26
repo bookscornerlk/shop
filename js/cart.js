@@ -261,7 +261,10 @@ document.addEventListener('click', e => {
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
+    console.log(url);
+    alert(url);
     window.location.href = url;
+
 });
 
 // WhatsApp nav + float buttons — send cart if items exist, otherwise plain chat
