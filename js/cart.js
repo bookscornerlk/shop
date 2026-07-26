@@ -1,8 +1,12 @@
 // Books Corner — Cart Manager
 // localStorage key: bc_cart
+// version 23e
 
 const CartManager = (() => {
     const KEY = 'bc_cart';
+    const DEFAULT_DELIVERY = 350;
+    const SPECIAL_DELIVERY = 450;
+    const SPECIAL_ITEM_ID = 5;
 
     function get() {
         try { return JSON.parse(localStorage.getItem(KEY)) || []; }
@@ -49,15 +53,22 @@ const CartManager = (() => {
         return get().reduce((sum, i) => sum + i.qty * i.price, 0);
     }
 
-    function buildWhatsAppMessage(waNumber, deliveryCharge) {
+    function getDeliveryCharge() {
+        const cart = get();
+        if (!cart.length) return 0;
+        const hasSpecialItem = cart.some(item => item.id === SPECIAL_ITEM_ID);
+        return hasSpecialItem ? SPECIAL_DELIVERY : DEFAULT_DELIVERY;
+    }
+
+    function buildWhatsAppMessage(waNumber) {
         function generateOrderId() {
             return "BC-" + crypto.randomUUID().split("-")[0].toUpperCase();
         }
 
         const cart = get();
         if (!cart.length) return null;
-        deliveryCharge = parseFloat(deliveryCharge) || 0;
-
+        
+        const deliveryCharge = getDeliveryCharge();
         const orderId = generateOrderId();
 
         const lines = cart.map((item, idx) =>
@@ -98,7 +109,10 @@ const CartManager = (() => {
         return `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
     }
 
-    return { get, add, remove, update, clear, count, total, buildWhatsAppMessage };
+    return { 
+        get, add, remove, update, clear, count, total, 
+        getDeliveryCharge, buildWhatsAppMessage 
+    };
 })();
 
 // ── Add-to-cart buttons (product cards) ──────────────────
@@ -117,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slug: btn.dataset.slug || ''
         };
         CartManager.add(product);
-        updateCartBadge();
+        if (typeof updateCartBadge === 'function') updateCartBadge();
         showCartToast(product.name_en);
 
         // Feedback animation
@@ -133,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for updates to re-render cart page
     document.addEventListener('cartUpdated', () => {
         if (document.getElementById('cartItems')) renderCart();
-        updateCartBadge();
+        if (typeof updateCartBadge === 'function') updateCartBadge();
     });
 });
 
@@ -200,41 +214,24 @@ function renderCart() {
             <tbody>${rows}</tbody>
         </table>`;
 
-    // Update summary
+    // Single clean summary calculation block
     if (summary) {
         const subtotal = CartManager.total();
-        let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+        const delivery = CartManager.getDeliveryCharge();
+        const grandTotal = subtotal + delivery;
+        const itemCount = CartManager.count();
 
-        // Add Rs.100 extra delivery for product ID 1
-        const hasSpecialItem = cart.some(item => item.id === 5);
-        // Update summary
-        if (summary) {
-            const subtotal = CartManager.total();
+        summary.querySelector('#summaryCount').textContent =
+            `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
 
-            let delivery = 350; // default delivery
+        summary.querySelector('#summarySubtotal').textContent =
+            `Rs. ${subtotal.toLocaleString()}`;
 
-            const hasSpecialItem = cart.some(item => item.id === 5);
+        summary.querySelector('#summaryDelivery').textContent =
+            `Rs. ${delivery.toLocaleString()}`;
 
-            if (hasSpecialItem) {
-                delivery = 450;
-            }
-
-            const grandTotal = subtotal + delivery;
-            const itemCount = CartManager.count();
-
-            summary.querySelector('#summaryCount').textContent =
-                `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
-
-            summary.querySelector('#summarySubtotal').textContent =
-                `Rs. ${subtotal.toLocaleString()}`;
-
-            summary.querySelector('#summaryDelivery').textContent =
-                `Rs. ${delivery.toLocaleString()}`;
-
-            summary.querySelector('#summaryTotal').textContent =
-                `Rs. ${grandTotal.toLocaleString()}`;
-        }
-
+        summary.querySelector('#summaryTotal').textContent =
+            `Rs. ${grandTotal.toLocaleString()}`;
     }
 }
 
@@ -247,17 +244,9 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('#checkoutWhatsapp');
     if (!btn) return;
     const waNumber = btn.dataset.wa || '94761909344';
-    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
-
-    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
-
-    if (hasSpecialItem) {
-        delivery = 450;
-    }
-    const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
+    const url = CartManager.buildWhatsAppMessage(waNumber);
     if (!url) { alert('Your cart is empty.'); return; }
     window.location.href = url;
-
 });
 
 // WhatsApp nav + float buttons — send cart if items exist, otherwise plain chat
@@ -265,20 +254,12 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('#navWhatsapp, #floatWhatsapp');
     if (!btn) return;
     const waNumber = btn.dataset.wa || '94761909344';
-    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
-
-    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
-
-
-    if (hasSpecialItem) {
-        delivery = 450;
-    }
-    const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
+    const url = CartManager.buildWhatsAppMessage(waNumber);
     if (url) {
         e.preventDefault();
         window.location.href = url;
     }
-    // else: let the default href open (plain WhatsApp chat)
+    // else: lets default href open (plain WhatsApp chat)
 });
 
 // ── Cart remove with fade animation ──────────────────
