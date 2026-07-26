@@ -207,8 +207,6 @@ function renderCart() {
 
         // Add Rs.100 extra delivery for product ID 1
         const hasSpecialItem = cart.some(item => item.id === 5);
-        // Add Rs.100 extra delivery for product ID 1
-        const hasSpecialItem2 = cart.some(item => item.id === 12);
         // Update summary
         if (summary) {
             const subtotal = CartManager.total();
@@ -216,12 +214,9 @@ function renderCart() {
             let delivery = 350; // default delivery
 
             const hasSpecialItem = cart.some(item => item.id === 5);
-            const hasSpecialItem2 = cart.some(item => item.id === 12);
 
             if (hasSpecialItem) {
                 delivery = 450;
-            } else if (hasSpecialItem2) {
-                delivery = 550;
             }
 
             const grandTotal = subtotal + delivery;
@@ -261,8 +256,6 @@ document.addEventListener('click', e => {
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
-    console.log(url);
-    alert(url);
     window.location.href = url;
 
 });
