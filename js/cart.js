@@ -255,12 +255,9 @@ document.addEventListener('click', e => {
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
     const hasSpecialItem = CartManager.get().some(item => item.id === 5);
-    const hasSpecialItem2 = CartManager.get().some(item => item.id === 0);
 
     if (hasSpecialItem) {
         delivery = 450;
-    } else if (hasSpecialItem2) {
-        delivery = 550;
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
@@ -275,12 +272,10 @@ document.addEventListener('click', e => {
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
     const hasSpecialItem = CartManager.get().some(item => item.id === 5);
-    const hasSpecialItem2 = CartManager.get().some(item => item.id === 0);
+
 
     if (hasSpecialItem) {
         delivery = 450;
-    } else if (hasSpecialItem2) {
-        delivery = 550;
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (url) {
