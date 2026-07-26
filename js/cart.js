@@ -261,7 +261,7 @@ document.addEventListener('click', e => {
     }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
-    window.open(url, '_blank');
+    window.location.href = url;
 });
 
 // WhatsApp nav + float buttons — send cart if items exist, otherwise plain chat
@@ -280,7 +280,7 @@ document.addEventListener('click', e => {
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (url) {
         e.preventDefault();
-        window.open(url, '_blank');
+        window.location.href = url;
     }
     // else: let the default href open (plain WhatsApp chat)
 });
