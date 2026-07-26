@@ -1,8 +1,8 @@
-// Akuru Kiyaweema — Cart Manager
-// localStorage key: ak_cart
+// Books Corner — Cart Manager
+// localStorage key: bc_cart
 
 const CartManager = (() => {
-    const KEY = 'ak_cart';
+    const KEY = 'bc_cart';
 
     function get() {
         try { return JSON.parse(localStorage.getItem(KEY)) || []; }
@@ -16,7 +16,7 @@ const CartManager = (() => {
 
     function add(product) {
         const cart = get();
-        const idx  = cart.findIndex(i => i.id === product.id);
+        const idx = cart.findIndex(i => i.id === product.id);
         if (idx >= 0) {
             cart[idx].qty += 1;
         } else {
@@ -32,7 +32,7 @@ const CartManager = (() => {
     function update(id, qty) {
         qty = Math.max(1, parseInt(qty) || 1);
         const cart = get();
-        const idx  = cart.findIndex(i => i.id === id);
+        const idx = cart.findIndex(i => i.id === id);
         if (idx >= 0) { cart[idx].qty = qty; save(cart); }
     }
 
@@ -50,18 +50,46 @@ const CartManager = (() => {
     }
 
     function buildWhatsAppMessage(waNumber, deliveryCharge) {
+        function generateOrderId() {
+            return "BC-" + crypto.randomUUID().split("-")[0].toUpperCase();
+        }
+
         const cart = get();
         if (!cart.length) return null;
         deliveryCharge = parseFloat(deliveryCharge) || 0;
+
+        const orderId = generateOrderId();
 
         const lines = cart.map((item, idx) =>
             `${idx + 1}. *${item.name_en}*\n   Qty: ${item.qty} x Rs.${item.price.toLocaleString()} = Rs.${(item.qty * item.price).toLocaleString()}`
         ).join('\n\n');
 
-        const subtotal   = total();
+        const subtotal = total();
         const grandTotal = subtotal + deliveryCharge;
 
-        let msg = `*New Order - Akuru Kiyaweema*\n\n*Order Details:*\n\n${lines}\n\n----------------------------\n`;
+        const now = new Date();
+
+        const date = now.toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        const time = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true
+        });
+
+        const orderDate = `${date} ${time}`;
+
+        let msg = `*🛒 New Order - Books Corner*\n\n`;
+        msg += `📦 *Order ID:* ${orderId}\n`;
+        msg += `📅 *Order Date:* ${orderDate}\n\n`;
+        msg += `*Order Details:*\n\n${lines}\n\n----------------------------\n`;
+
         if (deliveryCharge > 0) {
             msg += `Subtotal: Rs. ${subtotal.toLocaleString()}\nDelivery: Rs. ${deliveryCharge.toLocaleString()}\n`;
         }
@@ -81,12 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!btn) return;
         e.preventDefault();
         const product = {
-            id:       parseInt(btn.dataset.id),
-            name_en:  btn.dataset.nameEn,
-            name_si:  btn.dataset.nameSi,
-            price:    parseFloat(btn.dataset.price),
-            image:    btn.dataset.image || '',
-            slug:     btn.dataset.slug  || ''
+            id: parseInt(btn.dataset.id),
+            name_en: btn.dataset.nameEn,
+            name_si: btn.dataset.nameSi,
+            price: parseFloat(btn.dataset.price),
+            image: btn.dataset.image || '',
+            slug: btn.dataset.slug || ''
         };
         CartManager.add(product);
         updateCartBadge();
@@ -112,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Cart Page Render ──────────────────────────────────────
 function renderCart() {
     const container = document.getElementById('cartItems');
-    const summary   = document.getElementById('cartSummary');
+    const summary = document.getElementById('cartSummary');
     if (!container) return;
 
     const cart = CartManager.get();
@@ -134,7 +162,7 @@ function renderCart() {
     const rows = cart.map(item => `
         <tr>
             <td>
-                <img src="${item.image || 'assets/images/placeholder.jpg'}" alt="${escHtml(item.name_en)}" class="cart-item-img">
+                <img src="${item.image || '/shop/images/favicon.png'}" alt="${escHtml(item.name_en)}" class="cart-item-img">
             </td>
             <td>
                 <div class="cart-item-name">${escHtml(item.name_en)}</div>
@@ -174,45 +202,81 @@ function renderCart() {
 
     // Update summary
     if (summary) {
-        const subtotal   = CartManager.total();
-        const delivery   = (typeof window.AK_DELIVERY !== 'undefined') ? window.AK_DELIVERY : 0;
-        const grandTotal = subtotal + delivery;
-        const itemCount  = CartManager.count();
-        summary.querySelector('#summaryCount').textContent    = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
-        summary.querySelector('#summarySubtotal').textContent = `Rs. ${subtotal.toLocaleString()}`;
-        summary.querySelector('#summaryTotal').textContent    = `Rs. ${grandTotal.toLocaleString()}`;
-        const delivRow = summary.querySelector('#summaryDeliveryRow');
-        if (delivRow) {
-            delivRow.style.display = delivery > 0 ? '' : 'none';
+        const subtotal = CartManager.total();
+        let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+
+        // Add Rs.100 extra delivery for product ID 1
+        const hasSpecialItem = cart.some(item => item.id === 5);
+        // Update summary
+        if (summary) {
+            const subtotal = CartManager.total();
+
+            let delivery = 350; // default delivery
+
+            const hasSpecialItem = cart.some(item => item.id === 5);
+
+            if (hasSpecialItem) {
+                delivery = 450;
+            }
+
+            const grandTotal = subtotal + delivery;
+            const itemCount = CartManager.count();
+
+            summary.querySelector('#summaryCount').textContent =
+                `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
+
+            summary.querySelector('#summarySubtotal').textContent =
+                `Rs. ${subtotal.toLocaleString()}`;
+
+            summary.querySelector('#summaryDelivery').textContent =
+                `Rs. ${delivery.toLocaleString()}`;
+
+            summary.querySelector('#summaryTotal').textContent =
+                `Rs. ${grandTotal.toLocaleString()}`;
         }
+
     }
 }
 
 function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 // WhatsApp checkout button (cart page)
 document.addEventListener('click', e => {
     const btn = e.target.closest('#checkoutWhatsapp');
     if (!btn) return;
-    const waNumber = btn.dataset.wa || '94771234567';
-    const delivery = (typeof window.AK_DELIVERY !== 'undefined') ? window.AK_DELIVERY : 0;
+    const waNumber = btn.dataset.wa || '94761909344';
+    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+
+    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+
+    if (hasSpecialItem) {
+        delivery = 450;
+    }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
-    window.open(url, '_blank');
+    window.location.href = url;
+
 });
 
 // WhatsApp nav + float buttons — send cart if items exist, otherwise plain chat
 document.addEventListener('click', e => {
     const btn = e.target.closest('#navWhatsapp, #floatWhatsapp');
     if (!btn) return;
-    const waNumber = btn.dataset.wa || '94771234567';
-    const delivery = (typeof window.AK_DELIVERY !== 'undefined') ? window.AK_DELIVERY : 0;
+    const waNumber = btn.dataset.wa || '94761909344';
+    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+
+    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+
+
+    if (hasSpecialItem) {
+        delivery = 450;
+    }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (url) {
         e.preventDefault();
-        window.open(url, '_blank');
+        window.location.href = url;
     }
     // else: let the default href open (plain WhatsApp chat)
 });
@@ -221,12 +285,12 @@ document.addEventListener('click', e => {
 document.addEventListener('click', e => {
     const btn = e.target.closest('[data-remove-id]');
     if (!btn) return;
-    const id  = parseInt(btn.dataset.removeId);
+    const id = parseInt(btn.dataset.removeId);
     const row = btn.closest('tr');
     if (row) {
         row.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-        row.style.opacity    = '0';
-        row.style.transform  = 'translateX(16px)';
+        row.style.opacity = '0';
+        row.style.transform = 'translateX(16px)';
         setTimeout(() => CartManager.remove(id), 290);
     } else {
         CartManager.remove(id);
