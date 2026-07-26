@@ -321,3 +321,5 @@ function pulseStepper(btn) {
     input.classList.add('pulse');
     setTimeout(() => input.classList.remove('pulse'), 220);
 }
+
+console.log("CART:", CartManager.get());
