@@ -90,6 +90,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: all 0.3s ease-in-out
 }
 
 html {
@@ -2616,7 +2617,7 @@ h4 {
 /* =====================================================
    RESPONSIVE
    ===================================================== */
-@media (max-width: 1403px) {
+@media (max-width: 1033px) {
     .nav-links {
     display: flex;
     align-items: center;
