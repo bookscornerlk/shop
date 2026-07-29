@@ -1237,10 +1237,11 @@ h4 {
     font-family: var(--font-display);
 }
 
-.price-original {
+.price-old {
     font-size: 0.82rem;
     color: var(--text-muted);
     text-decoration: line-through;
+    font-family: 'Outfit', sans-serif;
 }
 
 .discount-label {
