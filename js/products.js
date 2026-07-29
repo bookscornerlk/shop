@@ -6,6 +6,7 @@ const webProducts = [
         nameSi: "අකුරු කියවීමේ කට්ටලය",
         category: "Akuru Kiyaweeme Kattala",
         price: 1640,
+        oldPrice: 4060,
         image: "/images/akuru-kiyaweema/1990-Classic.png",
         slug: "the-classic-package"
     },
@@ -15,6 +16,7 @@ const webProducts = [
         nameSi: "අකුරු කියවීමේ කට්ටලය",
         category: "Akuru Kiyaweeme Kattala",
         price: 3000,
+        oldPrice: 7240,
         image: "/images/akuru-kiyaweema/3000-Premium.png",
         slug: "the-premium-package"
     },
@@ -24,6 +26,7 @@ const webProducts = [
         nameSi: "අකුරු කියවීමේ කට්ටලය",
         category: "Akuru Kiyaweeme Kattala",
         price: 3840,
+        oldPrice: 6500,
         image: "/images/akuru-kiyaweema/3840-Signature.png",
         slug: "the-signature-package"
     },
@@ -33,6 +36,7 @@ const webProducts = [
         nameSi: "අකුරු කියවීමේ කට්ටලය",
         category: "Akuru Kiyaweeme Kattala",
         price: 4640,
+        oldPrice: 7420,
         image: "/images/akuru-kiyaweema/4640-Elite.png",
         slug: "the-elite-package"
     },
@@ -42,6 +46,7 @@ const webProducts = [
         nameSi: "අකුරු කියවීමේ කට්ටලය",
         category: "Akuru Kiyaweeme Kattala",
         price: 4990,
+        oldPrice: 9400,
         image: "/images/akuru-kiyaweema/4990-ElitePlus.png",
         slug: "the-eliteplus-package"
     },
@@ -51,53 +56,59 @@ const webProducts = [
         nameSi: "සෞභාග්‍යය සංකේතවත් කිරීමේ සියපත",
         category: "Essentials",
         price: 1390,
+        oldPrice: 2000,
         image: "/images/products/siyapatha.png",
         slug: "saubhagyaye-siyapatha"
     },
     {
         id: "8",
         nameEn: "The Wooden Letter 'අ' of Perfection",
-        nameSi: "පරිපූර්ණත්වය සංකේතවත් 'අ' අකුර",
+        nameSi: "පරිපූර්ණත්වය සංකේතවත් කිරීමේ 'අ' අකුර",
         category: "Essentials",
         price: 2000,
+        oldPrice: 2500,
         image: "/images/products/akura.jpg",
         slug: "wodern-letter"
     },
     {
         id: "9",
         nameEn: "The Wooden Letter 'A' of Perfection",
-        nameSi: "පරිපූර්ණත්වය සංකේතවත් 'A' අකුර",
+        nameSi: "පරිපූර්ණත්වය සංකේතවත් කිරීමේ 'A' අකුර",
         category: "Essentials",
         price: 2100,
+        oldPrice: 2600,
         image: "/images/products/a-akura.png",
         slug: "wodern-letter"
     },
     {
-         id: "10",
-         nameEn: "A5 size framed picture of lord Ganesha",
-         nameSi: "ගණදෙවියන්ගේ රාමු කරන ලද රූපය",
-         category: "Essentials",
-         price: 375,
-         image: "/images/products/ganadewi.png",
-         slug: "ganadewi-framed-a5"
-     },
+        id: "10",
+        nameEn: "A5 size framed picture of lord Ganesha",
+        nameSi: "ගණදෙවියන්ගේ රාමු කරන ලද රූපය",
+        category: "Essentials",
+        price: 375,
+        oldPrice: 600,
+        image: "/images/products/ganadewi.png",
+        slug: "ganadewi-framed-a5"
+    },
     {
-         id: "11",
-         nameEn: "A5 size framed picture of lord Saraswathi",
-         nameSi: "සරස්වතී මෑණියන්ගේ රාමු කරන ලද රූපය",
-         category: "Essentials",
-         price: 375,
-         image: "/images/products/saraswathi.png",
-         slug: "saraswathi-framed-a5"
-     },
+        id: "11",
+        nameEn: "A5 size framed picture of lord Saraswathi",
+        nameSi: "සරස්වතී මෑණියන්ගේ රාමු කරන ලද රූපය",
+        category: "Essentials",
+        price: 375,
+        oldPrice: 600,
+        image: "/images/products/saraswathi.png",
+        slug: "saraswathi-framed-a5"
+    },
     {
-         id: "12",
-         nameEn: "The Super Package",
-         nameSi: "අකුරු කියවීමේ කට්ටලය",
-         category: "Akuru Kiyaweeme Kattala",
-         price: 7990,
-         image: "/images/akuru-kiyaweema/7990-Super.png",
-         slug: "the-super-package"
+        id: "12",
+        nameEn: "The Super Package",
+        nameSi: "අකුරු කියවීමේ කට්ටලය",
+        category: "Akuru Kiyaweeme Kattala",
+        price: 7990,
+        oldPrice: 13550,
+        image: "/images/akuru-kiyaweema/7990-Super.png",
+        slug: "the-super-package"
     },
     {
         id: "13",
@@ -105,6 +116,7 @@ const webProducts = [
         nameSi: "ගණිත, ඉංග්‍රීසි, ඉලක්කම් සහ අත හුරුව ",
         category: "Book Packages",
         price: 790,
+        oldPrice: 990,
         image: "/images/products/magicbooks.jpg",
         slug: "magic-books"
     },
@@ -114,6 +126,7 @@ const webProducts = [
         nameSi: "Magic-Water with Pen",
         category: "Book Packages",
         price: 190,
+        oldPrice: 300,
         image: "/images/products/magicwater.jpg",
         slug: "word-searching-and-dot-to-dot-puzzles-card-pack"
     },
@@ -123,6 +136,7 @@ const webProducts = [
         nameSi: "ලිප්ස්ටික් මකනය",
         category: "Stationery",
         price: 80,
+        oldPrice: 100,
         image: "/images/products/lipstick-eraser.jpg",
         slug: "lipstick-eraser"
     },
@@ -132,6 +146,7 @@ const webProducts = [
         nameSi: "පාට පැන්සල් 12",
         category: "Stationery",
         price: 380,
+        oldPrice: 410,
         image: "/images/products/doms-color-pencil.jpg",
         slug: "doms-12colour-pencils"
     },
@@ -141,6 +156,7 @@ const webProducts = [
         nameSi: "ඉංග්‍රීසි හෝඩිය",
         category: "Stationery",
         price: 280,
+        oldPrice: 420,
         image: "/images/products/alphabet-set.jpg",
         slug: "english-alphabet-set"
     },
@@ -150,6 +166,7 @@ const webProducts = [
         nameSi: "ගණිත රාමුව",
         category: "Toys & Puzzles",
         price: 340,
+        oldPrice: 600,
         image: "/images/products/abacus.jpeg",
         slug: "abacus-for-kids"
     },
@@ -158,7 +175,8 @@ const webProducts = [
         nameEn: "Kids' Shirt and Sarong for Akuru Kiyaweema",
         nameSi: "හුරුබුහුටි සරම හා කමිසය (මුද්‍රිත) ",
         category: "Kids & School Essentials",
-        price: 3090,
+        price: 2990,
+        oldPrice: 3200,
         image: "/images/products/boys-andum-printed.jpg",
         slug: "kids-shirt-sarong"
     },
@@ -168,6 +186,7 @@ const webProducts = [
         nameSi: "All in One පැකේජය",
         category: "Kids & School Essentials",
         price: 2000,
+        oldPrice: 4500,
         image: "/images/products/bag-basic.png",
         slug: "bag-aio-basic"
     },
@@ -177,6 +196,7 @@ const webProducts = [
         nameSi: "වතුර බෝතලය",
         category: "Kids & School Essentials",
         price: 1090,
+        oldPrice: 1500,
         image: "/images/products/bottle.jpg",
         slug: "kuromi-water-bottle"
     },
@@ -186,6 +206,7 @@ const webProducts = [
         nameSi: "හුරුබුහුටි කොණ්ඩ කටු, වුල් බෑන්ඩ් ",
         category: "Kids & School Essentials",
         price: 300,
+        oldPrice: 310,
         image: "/images/products/woolbands.jpg",
         slug: "hair-clip"
     },
@@ -195,6 +216,7 @@ const webProducts = [
         nameSi: "වෝටර් කලර් සෙට්",
         category: "Stationery",
         price: 290,
+        oldPrice: 350,
         image: "/images/products/artist-palete.jpg",
         slug: "vneeds-artist-palette"
     },
@@ -204,6 +226,7 @@ const webProducts = [
         nameSi: "ඉංග්‍රීසි හෝඩිය පසල් සෙට්",
         category: "Toys & Puzzles",
         price: 290,
+        oldPrice: 350,
         image: "/images/products/abc-puzzle.jpg",
         slug: "abc-puzzle"
     },
@@ -213,6 +236,7 @@ const webProducts = [
         nameSi: "බිල්ඩින් බ්ලොක්ස්",
         category: "Toys & Puzzles",
         price: 370,
+        oldPrice: 430,
         image: "/images/products/building_blocks-large.webp",
         slug: "building-blocks-large"
     },
@@ -222,6 +246,7 @@ const webProducts = [
         nameSi: "ඉංග්‍රීසි හෝඩිය",
         category: "Toys & Puzzles",
         price: 450,
+        oldPrice: 650,
         image: "/images/products/wood-Alphabet.jpg",
         slug: "wooden-alphabet"
     },
@@ -231,6 +256,7 @@ const webProducts = [
         nameSi: "1-10 ගණිත හුරුව සහ හැඩතල",
         category: "Toys & Puzzles",
         price: 450,
+        oldPrice: 650,
         image: "/images/products/wood1-10.avif",
         slug: "wooden-1-10"
     },
@@ -240,6 +266,7 @@ const webProducts = [
         nameSi: "1-20 ගණිත හුරුව",
         category: "Toys & Puzzles",
         price: 450,
+        oldPrice: 650,
         image: "/images/products/wood1-20.jpg",
         slug: "wooden-1-20"
     },
@@ -249,6 +276,7 @@ const webProducts = [
         nameSi: "1-20 ගණිත හුරුව",
         category: "Toys & Puzzles",
         price: 450,
+        oldPrice: 650,
         image: "/images/products/wood1-20.jpg",
         slug: "wooden-1-20"
     },
@@ -258,6 +286,7 @@ const webProducts = [
         nameSi: "LCD ටැබ්",
         category: "Toys & Puzzles",
         price: 690,
+        oldPrice: 800,
         image: "/images/products/writing-tablet.jpg",
         slug: "lcd-writing-tablet"
     },
@@ -267,6 +296,7 @@ const webProducts = [
         nameSi: "LCD ටැබ්",
         category: "Stationery",
         price: 690,
+        oldPrice: 800,
         image: "/images/products/writing-tablet.jpg",
         slug: "lcd-writing-tablet"
     },
@@ -276,6 +306,7 @@ const webProducts = [
         nameSi: "හුරුබුහුටි පසල් සෙට් 7",
         category: "Toys & Puzzles",
         price: 1240,
+        oldPrice: 2450,
         image: "/images/products/puzzele7set.jpg",
         slug: "seven-puzzle-set"
     },
@@ -284,7 +315,8 @@ const webProducts = [
         nameEn: "Hot Wheels Clone Capibala",
         nameSi: "හුරුබුහුටි සෙල්ලම් කාර්",
         category: "Toys & Puzzles",
-        price: 150,
+        price: 130,
+        oldPrice: 200,
         image: "/images/products/hotwheels-clone.jpg",
         slug: "hotwheels-capybala"
     },
@@ -294,6 +326,7 @@ const webProducts = [
         nameSi: "පාට පැන්සල් 12",
         category: "Stationery",
         price: 320,
+        oldPrice: 430,
         image: "/images/products/veeds-colorpencil.jpg",
         slug: "vneeds-twelve-colour-pencils"
     },
@@ -303,6 +336,7 @@ const webProducts = [
         nameSi: "සිංහල හෝඩිය",
         category: "Stationery",
         price: 280,
+        oldPrice: 340,
         image: "/images/products/sinhala-alphabet.png",
         slug: "sinhala-alphabet-set"
     },
@@ -312,6 +346,7 @@ const webProducts = [
         nameSi: "දෙමළ හෝඩිය",
         category: "Stationery",
         price: 310,
+        oldPrice: 340,
         image: "/images/products/tamil-alphabet.png",
         slug: "tamil-alphabet-set"
     },
@@ -321,6 +356,7 @@ const webProducts = [
         nameSi: "ඉලක්කම්",
         category: "Stationery",
         price: 280,
+        oldPrice: 340,
         image: "/images/products/numbers-set.png",
         slug: "numbers-set"
     },
@@ -330,6 +366,7 @@ const webProducts = [
         nameSi: "බිල්ඩින් බ්ලොක්ස්",
         category: "Toys & Puzzles",
         price: 310,
+        oldPrice: 500,
         image: "/images/products/building-blocks-medium.png",
         slug: "building-blocks-medium"
     },
@@ -339,6 +376,7 @@ const webProducts = [
         nameSi: "ක්ලේ වර්ණ 8",
         category: "Stationery",
         price: 180,
+        oldPrice: 250,
         image: "/images/products/clay.jpg",
         slug: "clay-set"
     },
@@ -348,6 +386,7 @@ const webProducts = [
         nameSi: "ඔරලෝසුව",
         category: "Stationery",
         price: 200,
+        oldPrice: 320,
         image: "/images/products/clock.png",
         slug: "clock"
     },
@@ -357,6 +396,7 @@ const webProducts = [
         nameSi: "බලු පැටියා පසල් සෙට්",
         category: "Toys & Puzzles",
         price: 190,
+        oldPrice: 250,
         image: "/images/products/dog-puzzle.png",
         slug: "puppy-puzzle"
     },
@@ -366,6 +406,7 @@ const webProducts = [
         nameSi: "කුකුළා පසල් සෙට්",
         category: "Toys & Puzzles",
         price: 190,
+        oldPrice: 250,
         image: "/images/products/rooster-puzzle.jpg",
         slug: "puppy-puzzle"
     },
@@ -375,6 +416,7 @@ const webProducts = [
         nameSi: "පලතුරු හැඩැති මකන 4",
         category: "Stationery",
         price: 180,
+        oldPrice: 240,
         image: "/images/products/fruit-eraser.png",
         slug: "clay-set"
     },
@@ -384,6 +426,7 @@ const webProducts = [
         nameSi: "රින් ටොස් ගේම්",
         category: "Toys & Puzzles",
         price: 230,
+        oldPrice: 300,
         image: "/images/products/ringtoss-car.png",
         slug: "ringtoss-car"
     },
@@ -393,6 +436,7 @@ const webProducts = [
         nameSi: "රින් ටොස් ගේම්",
         category: "Toys & Puzzles",
         price: 230,
+        oldPrice: 300,
         image: "/images/products/ringtoss-unicorn.png",
         slug: "ringtoss-unicorn"
     },
@@ -402,6 +446,7 @@ const webProducts = [
         nameSi: "ඝන වස්තු",
         category: "Stationery",
         price: 330,
+        oldPrice: 500,
         image: "/images/products/solids.png",
         slug: "plastic-solids"
     },
@@ -411,6 +456,7 @@ const webProducts = [
         nameSi: "පාට 12 පැස්ටල්",
         category: "Stationery",
         price: 190,
+        oldPrice: 320,
         image: "/images/products/vneeds-trywax-12.jpg",
         slug: "vneeds-trywax-twelve"
     },
@@ -420,6 +466,7 @@ const webProducts = [
         nameSi: "ප්ලැටිග්නම් පාට 12",
         category: "Stationery",
         price: 480,
+        oldPrice: 590,
         image: "/images/products/watercolour-pens.png",
         slug: "water-colour-pens"
     },
@@ -429,6 +476,7 @@ const webProducts = [
         nameSi: "වැලි පීල්ල නිල් පාට",
         category: "Essentials",
         price: 790,
+        oldPrice: 1000,
         image: "/images/products/welipillablue.jpg",
         slug: "sandtray-blue"
     },
@@ -438,6 +486,7 @@ const webProducts = [
         nameSi: "වැලි පීල්ල රෝස පාට",
         category: "Essentials",
         price: 790,
+        oldPrice: 1000,
         image: "/images/products/welipillared.jpg",
         slug: "sandtray-blue"
     },
@@ -447,6 +496,7 @@ const webProducts = [
         nameSi: "තුඩ මාරු කරන පැන්සල",
         category: "Stationery",
         price: 100,
+        oldPrice: 150,
         image: "/images/products/whisle-pencil1.jpg",
         slug: "nonsharpening-pencil"
     },
@@ -456,6 +506,7 @@ const webProducts = [
         nameSi: "බැනර් 5 පැකේජය",
         category: "Book Packages",
         price: 840,
+        oldPrice: 1125,
         image: "/images/packages/banner-package.png",
         slug: "wallchart-tk5"
     },
@@ -465,6 +516,7 @@ const webProducts = [
         nameSi: "වෝල් චාට් 10 පැකේජය",
         category: "Book Packages",
         price: 990,
+        oldPrice: 990,
         image: "/images/packages/10wallchart.png",
         slug: "wallchart-susara10"
     },
@@ -474,6 +526,7 @@ const webProducts = [
         nameSi: "කතා පොත් 15",
         category: "Book Packages",
         price: 1030,
+        oldPrice: 2250,
         image: "/images/packages/hadaKata.png",
         slug: "a5-kathapoth15"
     },
@@ -483,6 +536,7 @@ const webProducts = [
         nameSi: "කතා පොත් 7",
         category: "Book Packages",
         price: 990,
+        oldPrice: 2100,
         image: "/images/packages/lokuKATA.png",
         slug: "a4-kathapoth7"
     },
@@ -493,6 +547,7 @@ const webProducts = [
         nameSi: "කතා පොත් 20",
         category: "Book Packages",
         price: 1280,
+        oldPrice: 2425,
         image: "/images/packages/kata20.jpg",
         slug: "a5-kathapoth20"
     },
@@ -503,6 +558,7 @@ const webProducts = [
         nameSi: "කතා පොත් 30",
         category: "Book Packages",
         price: 1350,
+        oldPrice: 3425,
         image: "/images/packages/kata30.jpg",
         slug: "a5-kathapoth30"
     },
@@ -512,6 +568,7 @@ const webProducts = [
         nameSi: "පින්තුර පොත් 6",
         category: "Book Packages",
         price: 1190,
+        oldPrice: 2700,
         image: "/images/packages/picturebook.png",
         slug: "a4-picturebook6"
     },
@@ -521,6 +578,7 @@ const webProducts = [
         nameSi: "පෙරපාසල් පොත් 7ක වැඩපොත් කට්ටලය",
         category: "Book Packages",
         price: 1350,
+        oldPrice: 3200,
         image: "/images/packages/preschool7.png",
         slug: "preschool-7books"
     },
@@ -530,6 +588,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 සිංහල බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-sinhala.png",
         slug: "sinhala-wallchart"
     },
@@ -539,6 +598,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 ඉංග්‍රීසි බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-english.png",
         slug: "english-wallchart"
     },
@@ -548,6 +608,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 ඉංග්‍රීසි බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-tamil.png",
         slug: "tamil-wallchart"
     },
@@ -557,6 +618,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 සත්තු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-animals.png",
         slug: "animals-wallchart"
     },
@@ -566,6 +628,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 කුරුල්ලො බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-birds.png",
         slug: "birds-wallchart"
     },
@@ -575,6 +638,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 පළතුරු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-fruits.png",
         slug: "fruits-wallchart"
     },
@@ -584,6 +648,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 එළවළු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-vegitables.png",
         slug: "vegetables-wallchart"
     },
@@ -593,6 +658,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 වාහන බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-vehicles.png",
         slug: "vehicles-wallchart"
     },
@@ -602,6 +668,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5 හොඳ පුරුදු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-goodhabits.png",
         slug: "good-habits-wallchart"
     },
@@ -611,6 +678,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5, 1-20 සංඛ්‍යා බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-20.png",
         slug: "20n-wallchart"
     },
@@ -620,6 +688,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5, 1-100 සංඛ්‍යා බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-100.png",
         slug: "100n-wallchart"
     },
@@ -629,6 +698,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5, ශරීරයේ කොටස් බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-bodyparts.png",
         slug: "body-parts-wallchart"
     },
@@ -638,6 +708,7 @@ const webProducts = [
         nameSi: "අඩි 2 x 2.5, හැඩතල සහ ඝනවස්තු බැනර්",
         category: "Kids & School Essentials",
         price: 196,
+        oldPrice: 225,
         image: "/images/products/WallChart-shapes.png",
         slug: "shapes-wallchart"
     },
@@ -647,6 +718,7 @@ const webProducts = [
         nameSi: "ප්‍රිමියම් පැකේජය",
         category: "Kids & School Essentials",
         price: 4490,
+        oldPrice: 7000,
         image: "/images/products/bagpremium.jpg",
         slug: "bag-aio-premium"
     },
@@ -682,37 +754,62 @@ function displayProducts() {
 
         // D. HTML cards render kireema
         filteredProducts.forEach(prod => {
-            const cardHTML = `
-                <article class="product-card">
-                    <!-- <a href="/products/${prod.slug}" class="product-card-img" aria-label="${prod.nameEn}"></a> -->
-                        <img src="${root}${prod.image}" alt="${prod.nameEn} - ${prod.nameSi}" loading="lazy">
-              
-                    <div class="product-card-body">
-                        <div class="product-card-cat">${prod.category}</div>
-                        <h3 class="product-card-name">
-                            <p>${prod.nameEn}</p>
-                        </h3>
-                        <p class="product-card-name-si si">${prod.nameSi}</p>
-                        <div class="product-card-price">
-                            <span class="price-current">Rs. ${prod.price.toLocaleString()}</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button class="btn-add-cart" data-add-cart="" 
-                                data-id="${prod.id}"
-                                data-name-en="${prod.nameEn}"
-                                data-name-si="${prod.nameSi}" 
-                                data-price="${prod.price}"
-                                data-image="${root}${prod.image}"
-                                data-slug="${prod.slug}">
-                                <i class="bi bi-bag-plus"></i> Add to Cart
-                            </button>
-                             <!-- <a href="/products/${prod.slug}" class="btn btn-sm btn-outline-gold">More Details</a> -->
-                        </div>
-                    </div>
-                </article>
-            `;
-            gridContainer.innerHTML += cardHTML;
-        });
+
+    const oldPrice = prod.oldPrice || prod.price;
+    const discount = Math.round(((oldPrice - prod.price) / oldPrice) * 100);
+
+    const cardHTML = `
+        <article class="product-card">
+
+            ${oldPrice > prod.price ? `
+                <span class="discount-label">
+                    ${discount}% OFF
+                </span>
+            ` : ""}
+
+            <!-- <a href="/products/${prod.slug}" class="product-card-img" aria-label="${prod.nameEn}"></a> -->
+            <img src="${root}${prod.image}" alt="${prod.nameEn} - ${prod.nameSi}" loading="lazy">
+
+            <div class="product-card-body">
+                <div class="product-card-cat">${prod.category}</div>
+
+                <h3 class="product-card-name">
+                    <p>${prod.nameEn}</p>
+                </h3>
+
+                <p class="product-card-name-si si">${prod.nameSi}</p>
+
+                <div class="product-card-price">
+                    <span class="price-current">
+                        Rs. ${prod.price.toLocaleString()}
+                    </span>
+
+                    ${oldPrice > prod.price ? `
+                        <span class="price-old" >
+                            <del> Rs. ${oldPrice.toLocaleString()}</del>
+                        </span>
+                    ` : ""}
+                </div>
+
+                <div class="product-card-actions">
+                    <button class="btn-add-cart"
+                        data-add-cart
+                        data-id="${prod.id}"
+                        data-name-en="${prod.nameEn}"
+                        data-name-si="${prod.nameSi}"
+                        data-price="${prod.price}"
+                        data-image="${root}${prod.image}"
+                        data-slug="${prod.slug}">
+
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </article>
+    `;
+
+    gridContainer.innerHTML += cardHTML;
+});
     }
 }
 
