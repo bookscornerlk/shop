@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Cart Page Render ──────────────────────────────────────
 function renderCart() {
     const cart = CartManager.get();
-    
+
     const container = document.getElementById('cartItems');
     const summary = document.getElementById('cartSummary');
     if (!container) return;
@@ -208,14 +208,16 @@ function renderCart() {
         let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
         // Add Rs.100 extra delivery for product ID 1
-        const hasSpecialItem = cart.some(item => item.id === 5);
+        const specialIds = [5, 12, 74];
+        const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
         // Update summary
         if (summary) {
             const subtotal = CartManager.total();
 
             let delivery = 350; // default delivery
 
-            const hasSpecialItem = cart.some(item => item.id === 5);
+            const specialIds = [5, 12, 74];
+            const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
 
             if (hasSpecialItem) {
                 delivery = 450;
@@ -251,7 +253,8 @@ document.addEventListener('click', e => {
     const waNumber = btn.dataset.wa || '94761909344';
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
-    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+    const specialIds = [5, 12, 74];
+    const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
 
     if (hasSpecialItem) {
         delivery = 450;
@@ -269,7 +272,8 @@ document.addEventListener('click', e => {
     const waNumber = btn.dataset.wa || '94761909344';
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
-    const hasSpecialItem = CartManager.get().some(item => item.id === 5);
+    const specialIds = [5, 12, 74];
+    const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
 
 
     if (hasSpecialItem) {
@@ -321,5 +325,3 @@ function pulseStepper(btn) {
     input.classList.add('pulse');
     setTimeout(() => input.classList.remove('pulse'), 220);
 }
-
-console.log("CART:", CartManager.get());
