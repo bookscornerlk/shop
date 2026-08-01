@@ -254,7 +254,7 @@ document.addEventListener('click', e => {
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
     const specialIds = [5, 12, 74];
-    const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
+    const hasSpecialItem = specialIds.some(item => specialIds.includes(item.id));
 
     if (hasSpecialItem) {
         delivery = 450;
@@ -273,7 +273,7 @@ document.addEventListener('click', e => {
     let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
 
     const specialIds = [5, 12, 74];
-    const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
+    const hasSpecialItem = specialIds.some(item => specialIds.includes(item.id));
 
 
     if (hasSpecialItem) {
