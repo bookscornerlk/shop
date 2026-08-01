@@ -103,8 +103,8 @@ const webProducts = [
     {
         id: "12",
         nameEn: "The Super Package",
-        nameSi: "අකුරු කියවීමේ කට්ටලය",
-        category: "Choose color via WhatsApp",
+        nameSi: "Choose color via WhatsApp",
+        category: "Akuru Kiyaweeme Kattala",
         price: 7990,
         oldPrice: 13550,
         image: "/images/akuru-kiyaweema/7990-Super.png",
