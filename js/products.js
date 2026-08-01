@@ -104,7 +104,7 @@ const webProducts = [
         id: "12",
         nameEn: "The Super Package",
         nameSi: "අකුරු කියවීමේ කට්ටලය",
-        category: "Akuru Kiyaweeme Kattala",
+        category: "Choose color via WhatsApp",
         price: 7990,
         oldPrice: 13550,
         image: "/images/akuru-kiyaweema/7990-Super.png",
@@ -722,6 +722,16 @@ const webProducts = [
         image: "/images/products/bagpremium.jpg",
         slug: "bag-aio-premium"
     },
+    {
+        id: "74",
+        nameEn: "The Supreme Package",
+        nameSi: "අකුරු කියවීමේ කට්ටලය (White-Suite)",
+        category: "Akuru Kiyaweeme Kattala",
+        price: 5990,
+        oldPrice: 11050,
+        image: "/images/akuru-kiyaweema/5990-Supreme.png",
+        slug: "the-supreme-package"
+    },
 ];
 
 function displayProducts() {
@@ -755,10 +765,10 @@ function displayProducts() {
         // D. HTML cards render kireema
         filteredProducts.forEach(prod => {
 
-    const oldPrice = prod.oldPrice || prod.price;
-    const discount = Math.round(((oldPrice - prod.price) / oldPrice) * 100);
+            const oldPrice = prod.oldPrice || prod.price;
+            const discount = Math.round(((oldPrice - prod.price) / oldPrice) * 100);
 
-    const cardHTML = `
+            const cardHTML = `
         <article class="product-card">
 
             ${oldPrice > prod.price ? `
@@ -808,8 +818,8 @@ function displayProducts() {
         </article>
     `;
 
-    gridContainer.innerHTML += cardHTML;
-});
+            gridContainer.innerHTML += cardHTML;
+        });
     }
 }
 
