@@ -172,7 +172,7 @@ const webProducts = [
     },
     {
         id: "19",
-        nameEn: "Kids' Shirt and Sarong for Akuru Kiyaweema",
+        nameEn: "Kids' Shirt and Sarong for Akuru Kiyaweema (Choose Colour via Whatsapp)",
         nameSi: "හුරුබුහුටි සරම හා කමිසය (මුද්‍රිත) ",
         category: "Kids & School Essentials",
         price: 2990,
@@ -182,24 +182,24 @@ const webProducts = [
     },
     {
         id: "20",
-        nameEn: "All in One Set for Kids (Basic) ",
-        nameSi: "All in One පැකේජය",
+        nameEn: "Kids' Shirt and Sarong White Colour",
+        nameSi: "හුරුබුහුටි සරම හා කමිසය (ජාතික ඇඳුම) ",
         category: "Kids & School Essentials",
-        price: 2000,
-        oldPrice: 4500,
-        image: "/images/products/bag-basic.png",
-        slug: "bag-aio-basic"
+        price: 1990,
+        oldPrice: 2900,
+        image: "/images/products/national-kit-white.jpg",
+        slug: "kids-national-kit"
     },
     {
         id: "21",
-        nameEn: "Bottle for Kids (Kuromi & Cinnamarol)",
-        nameSi: "වතුර බෝතලය",
+        nameEn: "Lama Saree",
+        nameSi: "ළමා සාරිය",
         category: "Kids & School Essentials",
-        price: 1090,
-        oldPrice: 1500,
-        image: "/images/products/bottle.jpg",
-        slug: "kuromi-water-bottle"
-    },
+        price: 1990,
+        oldPrice: 2900,
+        image: "/images/products/lama-sariya-white.jpg",
+        slug: "kids-lama-saree"
+    },    
     {
         id: "22",
         nameEn: "Kids Hair Clips & Wool Band Set",
@@ -732,6 +732,26 @@ const webProducts = [
         image: "/images/akuru-kiyaweema/5990-Supreme.png",
         slug: "the-supreme-package"
     },
+    {
+        id: "75",
+        nameEn: "All in One Set for Kids (Basic) ",
+        nameSi: "All in One පැකේජය",
+        category: "Kids & School Essentials",
+        price: 2000,
+        oldPrice: 4500,
+        image: "/images/products/bag-basic.png",
+        slug: "bag-aio-basic"
+    },
+    {
+        id: "76",
+        nameEn: "Bottle for Kids (Kuromi & Cinnamarol)",
+        nameSi: "වතුර බෝතලය",
+        category: "Kids & School Essentials",
+        price: 1090,
+        oldPrice: 1500,
+        image: "/images/products/bottle.jpg",
+        slug: "kuromi-water-bottle"
+    }
 ];
 
 function displayProducts() {
