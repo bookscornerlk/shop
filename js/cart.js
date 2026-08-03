@@ -58,6 +58,8 @@ const CartManager = (() => {
         if (!cart.length) return null;
         deliveryCharge = parseFloat(deliveryCharge) || 0;
 
+
+
         const orderId = generateOrderId();
 
         const lines = cart.map((item, idx) =>
@@ -137,6 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// ── Delivery Charge ────────────────────────────────
+function getDeliveryCharge() {
+    const cart = CartManager.get();
+
+    const specialIds = [5, 12, 74];
+
+    return cart.some(item => specialIds.includes(item.id))
+        ? 450
+        : 350;
+}
+
 // ── Cart Page Render ──────────────────────────────────────
 function renderCart() {
     const cart = CartManager.get();
@@ -204,41 +217,24 @@ function renderCart() {
 
     // Update summary
     if (summary) {
+
         const subtotal = CartManager.total();
-        let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+        const delivery = getDeliveryCharge();
 
-        // Add Rs.100 extra delivery for product ID 1
-        const specialIds = [5, 12, 74];
-        const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
-        // Update summary
-        if (summary) {
-            const subtotal = CartManager.total();
+        const grandTotal = subtotal + delivery;
+        const itemCount = CartManager.count();
 
-            let delivery = 350; // default delivery
+        summary.querySelector('#summaryCount').textContent =
+            `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
 
-            const specialIds = [5, 12, 74];
-            const hasSpecialItem = cart.some(item => specialIds.includes(item.id));
+        summary.querySelector('#summarySubtotal').textContent =
+            `Rs. ${subtotal.toLocaleString()}`;
 
-            if (hasSpecialItem) {
-                delivery = 450;
-            }
+        summary.querySelector('#summaryDelivery').textContent =
+            `Rs. ${delivery.toLocaleString()}`;
 
-            const grandTotal = subtotal + delivery;
-            const itemCount = CartManager.count();
-
-            summary.querySelector('#summaryCount').textContent =
-                `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
-
-            summary.querySelector('#summarySubtotal').textContent =
-                `Rs. ${subtotal.toLocaleString()}`;
-
-            summary.querySelector('#summaryDelivery').textContent =
-                `Rs. ${delivery.toLocaleString()}`;
-
-            summary.querySelector('#summaryTotal').textContent =
-                `Rs. ${grandTotal.toLocaleString()}`;
-        }
-
+        summary.querySelector('#summaryTotal').textContent =
+            `Rs. ${grandTotal.toLocaleString()}`;
     }
 }
 
@@ -251,14 +247,8 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('#checkoutWhatsapp');
     if (!btn) return;
     const waNumber = btn.dataset.wa || '94761909344';
-    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
+    const delivery = getDeliveryCharge();
 
-    const specialIds = [5, 12, 74];
-    const hasSpecialItem = specialIds.some(item => specialIds.includes(item.id));
-
-    if (hasSpecialItem) {
-        delivery = 450;
-    }
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (!url) { alert('Your cart is empty.'); return; }
     window.location.href = url;
@@ -270,15 +260,7 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('#navWhatsapp, #floatWhatsapp');
     if (!btn) return;
     const waNumber = btn.dataset.wa || '94761909344';
-    let delivery = (typeof window.BC_DELIVERY !== 'undefined') ? window.BC_DELIVERY : 0;
-
-    const specialIds = [5, 12, 74];
-    const hasSpecialItem = specialIds.some(item => specialIds.includes(item.id));
-
-
-    if (hasSpecialItem) {
-        delivery = 450;
-    }
+    const delivery = getDeliveryCharge();
     const url = CartManager.buildWhatsAppMessage(waNumber, delivery);
     if (url) {
         e.preventDefault();
