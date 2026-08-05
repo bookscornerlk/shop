@@ -166,7 +166,7 @@ function renderCart() {
                 <i class="bi bi-cart-x"></i>
                 <h3>Your cart is empty</h3>
                 <p>Browse our ceremony packages and stationery to add items to your order.</p>
-                <a href="products" class="btn btn-gold">Browse Products</a>
+                <a href="https://bookscorner.lk/products/" class="btn btn-gold">Browse Products</a>
             </div>`;
         if (summary) summary.style.display = 'none';
         return;
