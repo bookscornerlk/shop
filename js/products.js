@@ -68,7 +68,7 @@ const webProducts = [
         price: 2000,
         oldPrice: 2500,
         image: "/images/products/akura.jpg",
-        slug: "wodern-letter"
+        slug: "wodern-letter-sinhala-a"
     },
     {
         id: "9",
@@ -78,7 +78,7 @@ const webProducts = [
         price: 2100,
         oldPrice: 2600,
         image: "/images/products/a-akura.png",
-        slug: "wodern-letter"
+        slug: "wodern-letter-a"
     },
     {
         id: "10",
@@ -199,7 +199,7 @@ const webProducts = [
         oldPrice: 2900,
         image: "/images/products/lama-sariya-white.jpg",
         slug: "kids-lama-saree"
-    },    
+    },
     {
         id: "22",
         nameEn: "Kids Hair Clips & Wool Band Set",
@@ -785,62 +785,74 @@ function displayProducts() {
         // D. HTML cards render kireema
         filteredProducts.forEach(prod => {
 
+            if (window.location.pathname.includes("/product/")) {
+                const currentSlug = new URLSearchParams(window.location.search).get("slug");
+                if (prod.slug === currentSlug) return;
+            }
+
             const oldPrice = prod.oldPrice || prod.price;
             const discount = Math.round(((oldPrice - prod.price) / oldPrice) * 100);
 
             const cardHTML = `
-        <article class="product-card">
+<article class="product-card">
+
+    ${oldPrice > prod.price ? `
+        <span class="discount-label">
+            ${discount}% OFF
+        </span>
+    ` : ""}
+
+    <!-- Image එක Click කළ විට Single Product Page එකට යාම -->
+    <a href="/product/index.html?slug=${prod.slug}">
+        <img src="${root}${prod.image}" alt="${prod.nameEn} - ${prod.nameSi}" loading="lazy">
+    </a>
+
+    <div class="product-card-body">
+        <div class="product-card-cat">${prod.category}</div>
+
+        <!-- Title එක Click කළ විටද Single Product Page එකට යාම -->
+        <h3 class="product-card-name">
+            <a href="${root}index.html?slug=${prod.slug}" style="text-decoration:none; color:inherit;">
+                <p>${prod.nameEn}</p>
+            </a>
+        </h3>
+
+        <p class="product-card-name-si si">${prod.nameSi}</p>
+
+        <div class="product-card-price">
+            <span class="price-current">
+                Rs. ${prod.price.toLocaleString()}
+            </span>
 
             ${oldPrice > prod.price ? `
-                <span class="discount-label">
-                    ${discount}% OFF
+                <span class="price-old">
+                    <del> Rs. ${oldPrice.toLocaleString()}</del>
                 </span>
             ` : ""}
+        </div>
 
-            <!-- <a href="/products/${prod.slug}" class="product-card-img" aria-label="${prod.nameEn}"></a> -->
-            <img src="${root}${prod.image}" alt="${prod.nameEn} - ${prod.nameSi}" loading="lazy">
+        <div class="product-card-actions">
+            <button class="btn-add-cart"
+                data-add-cart
+                data-id="${prod.id}"
+                data-name-en="${prod.nameEn}"
+                data-name-si="${prod.nameSi}"
+                data-price="${prod.price}"
+                data-image="${root}${prod.image}"
+                data-slug="${prod.slug}">
 
-            <div class="product-card-body">
-                <div class="product-card-cat">${prod.category}</div>
+                <i class="bi bi-bag-plus"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+</article>
+`;
 
-                <h3 class="product-card-name">
-                    <p>${prod.nameEn}</p>
-                </h3>
-
-                <p class="product-card-name-si si">${prod.nameSi}</p>
-
-                <div class="product-card-price">
-                    <span class="price-current">
-                        Rs. ${prod.price.toLocaleString()}
-                    </span>
-
-                    ${oldPrice > prod.price ? `
-                        <span class="price-old" >
-                            <del> Rs. ${oldPrice.toLocaleString()}</del>
-                        </span>
-                    ` : ""}
-                </div>
-
-                <div class="product-card-actions">
-                    <button class="btn-add-cart"
-                        data-add-cart
-                        data-id="${prod.id}"
-                        data-name-en="${prod.nameEn}"
-                        data-name-si="${prod.nameSi}"
-                        data-price="${prod.price}"
-                        data-image="${root}${prod.image}"
-                        data-slug="${prod.slug}">
-
-                        <i class="bi bi-bag-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-        </article>
-    `;
 
             gridContainer.innerHTML += cardHTML;
         });
     }
+
 }
 
 document.addEventListener('DOMContentLoaded', displayProducts);
