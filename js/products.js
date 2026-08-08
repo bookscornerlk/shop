@@ -128,7 +128,7 @@ const webProducts = [
         price: 190,
         oldPrice: 300,
         image: "/images/products/magicwater.jpg",
-        slug: "word-searching-and-dot-to-dot-puzzles-card-pack"
+        slug: "magic-water-with-pen"
     },
     {
         id: "15",
@@ -271,30 +271,10 @@ const webProducts = [
         slug: "wooden-1-20"
     },
     {
-        id: "29",
-        nameEn: "Wooden Math Set 1-20 with Shapes",
-        nameSi: "1-20 ගණිත හුරුව",
-        category: "Toys & Puzzles",
-        price: 450,
-        oldPrice: 650,
-        image: "/images/products/wood1-20.jpg",
-        slug: "wooden-1-20"
-    },
-    {
         id: "30",
         nameEn: "LCD Writing Tablet for Kids",
         nameSi: "LCD ටැබ්",
         category: "Toys & Puzzles",
-        price: 690,
-        oldPrice: 800,
-        image: "/images/products/writing-tablet.jpg",
-        slug: "lcd-writing-tablet"
-    },
-    {
-        id: "31",
-        nameEn: "LCD Writing Tablet for Kids",
-        nameSi: "LCD ටැබ්",
-        category: "Stationery",
         price: 690,
         oldPrice: 800,
         image: "/images/products/writing-tablet.jpg",
@@ -408,7 +388,7 @@ const webProducts = [
         price: 190,
         oldPrice: 250,
         image: "/images/products/rooster-puzzle.jpg",
-        slug: "puppy-puzzle"
+        slug: "rooster-puzzle"
     },
     {
         id: "43",
@@ -418,7 +398,7 @@ const webProducts = [
         price: 180,
         oldPrice: 240,
         image: "/images/products/fruit-eraser.png",
-        slug: "clay-set"
+        slug: "fruit-erasers-pack"
     },
     {
         id: "44",
@@ -488,7 +468,7 @@ const webProducts = [
         price: 790,
         oldPrice: 1000,
         image: "/images/products/welipillared.jpg",
-        slug: "sandtray-blue"
+        slug: "sandtray-pink"
     },
     {
         id: "51",
@@ -540,7 +520,6 @@ const webProducts = [
         image: "/images/packages/lokuKATA.png",
         slug: "a4-kathapoth7"
     },
-
     {
         id: "56",
         nameEn: "A5 Size 20 Story Books for Kids",
@@ -551,7 +530,6 @@ const webProducts = [
         image: "/images/packages/kata20.jpg",
         slug: "a5-kathapoth20"
     },
-
     {
         id: "57",
         nameEn: "A5 Size 30 Story Books for Kids",
@@ -754,7 +732,7 @@ const webProducts = [
     }
 ];
 
-function displayProducts() {
+function displayProducts(customProductsList = null) {
     const gridContainer = document.getElementById('productsGridContainer');
 
     if (gridContainer) {
@@ -763,56 +741,55 @@ function displayProducts() {
         const limit = parseInt(gridContainer.getAttribute('data-limit')) || null;
         const targetIdsString = gridContainer.getAttribute('data-ids');
 
-        gridContainer.innerHTML = "";
-        let filteredProducts = [...webProducts];
+        // Allow passing a custom product list (e.g. Related Products) or fallback to global list
+        let filteredProducts = Array.isArray(customProductsList) ? [...customProductsList] : [...webProducts];
 
-        // A. HTML eke prathama washayenma SPECIFIC IDs thiyenawanam ewa thoragannawa
-        if (targetIdsString) {
+        // A. Filter by specific IDs if provided
+        if (!customProductsList && targetIdsString) {
             const targetIds = targetIdsString.split(',').map(id => id.trim());
             filteredProducts = filteredProducts.filter(prod => targetIds.includes(prod.id.toString()));
             filteredProducts.sort((a, b) => targetIds.indexOf(a.id.toString()) - targetIds.indexOf(b.id.toString()));
         }
-        // B. IDs nathnam category eka anuwa filter karagannawa
-        else if (targetCategory) {
+        // B. Filter by Category if no custom array or IDs specified
+        else if (!customProductsList && targetCategory) {
             filteredProducts = filteredProducts.filter(prod => prod.category === targetCategory);
         }
 
-        // C. Home page ekata badu 6k seema kireema (Limit)
+        // C. Apply display limit
         if (limit) {
             filteredProducts = filteredProducts.slice(0, limit);
         }
 
-        // D. HTML cards render kireema
-        filteredProducts.forEach(prod => {
-
-            if (window.location.pathname.includes("/product/")) {
-                const currentSlug = new URLSearchParams(window.location.search).get("slug");
-                if (prod.slug === currentSlug) return;
+        // D. Build HTML Cards Array
+        const cardsHTML = filteredProducts.map(prod => {
+            // Exclude current product if viewing a single product page via query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentSlug = urlParams.get("slug");
+            if (currentSlug && prod.slug === currentSlug) {
+                return "";
             }
 
             const oldPrice = prod.oldPrice || prod.price;
             const discount = Math.round(((oldPrice - prod.price) / oldPrice) * 100);
+            const productUrl = `${root}/product/index.html?slug=${prod.slug}`;
 
-            const cardHTML = `
+            return `
 <article class="product-card">
-
     ${oldPrice > prod.price ? `
         <span class="discount-label">
             ${discount}% OFF
         </span>
     ` : ""}
 
-    <!-- Image එක Click කළ විට Single Product Page එකට යාම -->
-    <a href="/product/index.html?slug=${prod.slug}">
+    <a href="${productUrl}">
         <img src="${root}${prod.image}" alt="${prod.nameEn} - ${prod.nameSi}" loading="lazy">
     </a>
 
     <div class="product-card-body">
         <div class="product-card-cat">${prod.category}</div>
 
-        <!-- Title එක Click කළ විටද Single Product Page එකට යාම -->
         <h3 class="product-card-name">
-            <a href="${root}index.html?slug=${prod.slug}" style="text-decoration:none; color:inherit;">
+            <a href="${productUrl}" style="text-decoration:none; color:inherit;">
                 <p>${prod.nameEn}</p>
             </a>
         </h3>
@@ -840,19 +817,25 @@ function displayProducts() {
                 data-price="${prod.price}"
                 data-image="${root}${prod.image}"
                 data-slug="${prod.slug}">
-
                 <i class="bi bi-bag-plus"></i> Add to Cart
             </button>
         </div>
     </div>
 </article>
 `;
-
-
-            gridContainer.innerHTML += cardHTML;
         });
-    }
 
+        // Batch update innerHTML once to optimize performance
+        gridContainer.innerHTML = cardsHTML.join("");
+    }
 }
 
-document.addEventListener('DOMContentLoaded', displayProducts);
+// Render UI in Browser automatically on pages with #productsGridContainer
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Only run automatic display if it's not a single product detail view
+        if (!document.getElementById('single-product-wrapper')) {
+            displayProducts();
+        }
+    });
+}
