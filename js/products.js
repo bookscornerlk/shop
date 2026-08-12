@@ -522,23 +522,23 @@ const webProducts = [
     },
     {
         id: "56",
-        nameEn: "A5 Size 20 Story Books for Kids",
+        nameEn: "6×6 inches Size 20 Story Books for Kids",
         nameSi: "කතා පොත් 20",
         category: "Book Packages",
         price: 1280,
         oldPrice: 2425,
         image: "/images/packages/kata20.jpg",
-        slug: "a5-kathapoth20"
+        slug: "6x6-kathapoth20"
     },
     {
         id: "57",
-        nameEn: "A5 Size 30 Story Books for Kids",
+        nameEn: "6×6 inches 30 Story Books for Kids",
         nameSi: "කතා පොත් 30",
         category: "Book Packages",
-        price: 1350,
+        price: 1490,
         oldPrice: 3425,
         image: "/images/packages/kata30.jpg",
-        slug: "a5-kathapoth30"
+        slug: "6x6-kathapoth30"
     },
     {
         id: "58",
