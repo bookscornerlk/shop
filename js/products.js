@@ -729,7 +729,27 @@ const webProducts = [
         oldPrice: 1500,
         image: "/images/products/bottle.jpg",
         slug: "kuromi-water-bottle"
-    }
+    },
+     {
+        id: "77",
+        nameEn: "Lion 12 Colour Pencils",
+        nameSi: "පාට පැන්සල් 12",
+        category: "Stationery",
+        price: 300,
+        oldPrice: 400,
+        image: "/images/products/lion-12colour-pencils.png",
+        slug: "lion-12colour-pencils"
+    },
+     {
+        id: "78",
+        nameEn: "Vneeds Pastel Set | 12 colours",
+        nameSi: "පාට 12",
+        category: "Stationery",
+        price: 290,
+        oldPrice: 400,
+        image: "/images/products/oil-pastel-12colours.png",
+        slug: "vneeds-oil-pastel-12colours"
+    },
 ];
 
 function displayProducts(customProductsList = null) {
