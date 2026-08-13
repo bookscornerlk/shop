@@ -742,7 +742,7 @@ const webProducts = [
     },
      {
         id: "78",
-        nameEn: "Vneeds Pastel Set | 12 colours",
+        nameEn: "Vneeds Oil Pastel Set | 12 colours",
         nameSi: "පාට 12",
         category: "Stationery",
         price: 290,
