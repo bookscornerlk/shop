@@ -410,7 +410,9 @@
         <header class="admin-header">
 
             <div class="admin-title">
-                <h1>📦 Products</h1>
+                
+                    <img id="logo" src="../src/Untitled-1.png" style="width: 200px;">
+            
                 <p>Books Corner Admin Portal</p>
             </div>
 
@@ -610,27 +612,41 @@
 
 
                 <div class="form-group">
-                    <label>
-                        Product Image *
-                    </label>
+                    <label>Product Image *</label>
 
-                    <input type="file" id="imageFile" accept="image/*">
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <button type="button" id="imageUploadModeBtn">
+                            Upload Image
+                        </button>
 
-                    <!-- Existing image URL is stored here -->
+                        <button type="button" id="imageUrlModeBtn">
+                            Use Image URL
+                        </button>
+                    </div>
+
+                    <!-- Upload -->
+                    <div id="imageUploadBox">
+                        <input type="file" id="imageFile" accept="image/*">
+                    </div>
+
+                    <!-- URL -->
+                    <div id="imageUrlBox" style="display:none;">
+                        <input type="url" id="imageUrlInput" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <!-- Existing image URL stored here -->
                     <input type="hidden" id="image">
 
                     <div class="image-preview" id="imagePreview">
-
                         <img id="previewImage" src="" alt="Product Preview">
 
                         <button type="button" id="removeImageBtn" class="remove-image-btn">
                             Remove Image
                         </button>
-
                     </div>
 
                     <small class="upload-hint">
-                        JPG, PNG, WEBP • Recommended: 1000×1000px
+                        Upload JPG, PNG, WEBP or paste an image URL.
                     </small>
                 </div>
 
@@ -721,9 +737,23 @@
 
             const imageFile =
                 document.getElementById("imageFile");
-
             const image =
                 document.getElementById("image");
+
+            const imageUrlInput =
+                document.getElementById("imageUrlInput");
+
+            const imageUploadBox =
+                document.getElementById("imageUploadBox");
+
+            const imageUrlBox =
+                document.getElementById("imageUrlBox");
+
+            const imageUploadModeBtn =
+                document.getElementById("imageUploadModeBtn");
+
+            const imageUrlModeBtn =
+                document.getElementById("imageUrlModeBtn");
 
             const removeImageBtn =
                 document.getElementById("removeImageBtn");
@@ -1113,6 +1143,45 @@
             /* =========================================
                IMAGE PREVIEW
             ========================================= */
+            imageUploadModeBtn.addEventListener("click", () => {
+                imageUploadBox.style.display = "block";
+                imageUrlBox.style.display = "none";
+
+                imageUrlInput.value = "";
+            });
+
+
+            imageUrlModeBtn.addEventListener("click", () => {
+                imageUploadBox.style.display = "none";
+                imageUrlBox.style.display = "block";
+
+                imageFile.value = "";
+            });
+
+            imageUrlInput.addEventListener("input", () => {
+
+                const url = imageUrlInput.value.trim();
+
+                if (!url) {
+                    imagePreview.classList.remove("show");
+                    return;
+                }
+
+                previewImage.src = url;
+
+                previewImage.onload = () => {
+                    imagePreview.classList.add("show");
+                };
+
+                previewImage.onerror = () => {
+                    imagePreview.classList.remove("show");
+
+                    showToast(
+                        "Invalid image URL.",
+                        "error"
+                    );
+                };
+            });
 
             imageFile.addEventListener("change", () => {
 
@@ -1204,10 +1273,18 @@
                     productId.value.trim();
 
 
-                let imageURL = image.value.trim();
+                let imageURL = "";
 
                 const selectedFile =
                     imageFile.files[0];
+
+                const enteredURL =
+                    imageUrlInput.value.trim();
+
+
+                // ===============================
+                // IMAGE UPLOAD
+                // ===============================
 
                 if (selectedFile) {
 
@@ -1230,11 +1307,35 @@
                         );
 
                         saveProductBtn.classList.remove("saving");
+
                         saveProductBtn.textContent =
                             "Save Product";
 
                         return;
                     }
+
+                }
+
+
+                // ===============================
+                // IMAGE URL
+                // ===============================
+
+                else if (enteredURL) {
+
+                    imageURL = enteredURL;
+
+                }
+
+
+                // ===============================
+                // EXISTING IMAGE (EDIT)
+                // ===============================
+
+                else if (image.value.trim()) {
+
+                    imageURL = image.value.trim();
+
                 }
                 const productData = {
                     name_en:
