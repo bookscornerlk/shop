@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Books Corner Admin</title>
 
-    <link rel="icon" type="image/png" href="https://bookscorner.lk/admin/icon.png">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/png" href="https://bookscorner.lk/admin/icon.png">
 
     <style>
         body {
@@ -411,9 +411,9 @@
         <header class="admin-header">
 
             <div class="admin-title">
-                
-                    <img id="logo" src="../src/Untitled-1.png" style="width: 200px;">
-            
+
+                <img id="logo" src="../src/Untitled-1.png" style="width: 200px;">
+
                 <p>Books Corner Admin Portal</p>
             </div>
 
@@ -1083,6 +1083,14 @@
             document
                 .getElementById("addProductBtn")
                 .addEventListener("click", () => {
+                    image.value = "";
+                    imageUrlInput.value = "";
+                    imageFile.value = "";
+
+                    imagePreview.classList.remove("show");
+
+                    imageUploadBox.style.display = "block";
+                    imageUrlBox.style.display = "none";
 
                     productForm.reset();
 
@@ -1481,150 +1489,56 @@
 
             window.editProduct = async function (id) {
 
-                const product =
-                    products.find(
-                        p => String(p.id) === String(id)
-                    );
-
+                const product = products.find(
+                    p => String(p.id) === String(id)
+                );
 
                 if (!product) {
-
-                    showToast(
-                        "Product not found.",
-                        "error"
-                    );
-
+                    showToast("Product not found.", "error");
                     return;
-
                 }
 
+                productId.value = product.id || "";
 
-                productId.value =
-                    product.id || "";
+                nameEn.value = product.name_en || "";
+                nameSi.value = product.name_si || "";
+                category.value = product.category || "";
+                slug.value = product.slug || "";
 
-                nameEn.value =
-                    product.name_en || "";
+                price.value = product.price ?? "";
+                oldPrice.value = product.old_price ?? "";
 
-                nameSi.value =
-                    product.name_si || "";
+                description.value = product.description || "";
 
-                category.value =
-                    product.category || "";
-
-                slug.value =
-                    product.slug || "";
-
-                price.value =
-                    product.price ?? "";
-
-                oldPrice.value =
-                    product.old_price ?? "";
-
+                // Reset image fields
                 imageFile.value = "";
+                imageUrlInput.value = "";
 
+                // IMPORTANT:
+                // Keep existing image URL for UPDATE
                 if (product.image) {
 
-                    previewImage.src =
-                        product.image;
+                    image.value = product.image;
 
+                    previewImage.src = product.image;
                     imagePreview.classList.add("show");
 
                 } else {
 
+                    image.value = "";
+                    previewImage.src = "";
                     imagePreview.classList.remove("show");
-                }
-
-                description.value =
-                    product.description || "";
-
-
-                modalTitle.textContent =
-                    "Edit Product";
-
-                saveProductBtn.textContent =
-                    "Update Product";
-
-
-                if (product.image) {
-
-                    previewImage.src =
-                        product.image;
-
-                    imagePreview.classList.add("show");
 
                 }
 
+                // Default image mode
+                imageUploadBox.style.display = "block";
+                imageUrlBox.style.display = "none";
+
+                modalTitle.textContent = "Edit Product";
+                saveProductBtn.textContent = "Update Product";
 
                 modal.classList.add("show");
-
-            };
-
-
-            /* =========================================
-               DELETE PRODUCT
-            ========================================= */
-
-            window.deleteProduct = async function (id) {
-
-                const product =
-                    products.find(
-                        p => String(p.id) === String(id)
-                    );
-
-
-                const productName =
-                    product?.name_en || "this product";
-
-
-                if (!confirm(
-                    `Delete "${productName}"?\n\nThis action cannot be undone.`
-                )) {
-
-                    return;
-
-                }
-
-
-                try {
-
-                    const {
-                        error
-                    } = await supabaseClient
-
-                        .from("products")
-
-                        .delete()
-
-                        .eq("id", id);
-
-
-                    if (error) {
-
-                        throw error;
-
-                    }
-
-
-                    showToast(
-                        "Product deleted successfully!"
-                    );
-
-
-                    await loadProducts();
-
-
-                } catch (error) {
-
-                    console.error(error);
-
-                    showToast(
-                        error.message ||
-                        "Failed to delete product.",
-                        "error"
-                    );
-
-                }
-
             };
 
 
