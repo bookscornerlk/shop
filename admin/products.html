@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,9 +53,9 @@
         }
 
         .logout-btn {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .add-btn {
@@ -63,8 +64,8 @@
         }
 
         .products-panel {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 20px;
             overflow: hidden;
@@ -105,12 +106,12 @@
             color: #aaa;
             font-size: 13px;
             padding: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         td {
             padding: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
             vertical-align: middle;
         }
 
@@ -153,7 +154,7 @@
             padding: 5px 9px;
             border-radius: 20px;
             font-size: 12px;
-            background: rgba(80,200,120,0.12);
+            background: rgba(80, 200, 120, 0.12);
             color: #70df98;
         }
 
@@ -173,12 +174,12 @@
         }
 
         .edit-btn {
-            background: rgba(214,173,85,0.15);
+            background: rgba(214, 173, 85, 0.15);
             color: #e2bd68;
         }
 
         .delete-btn {
-            background: rgba(255,80,80,0.12);
+            background: rgba(255, 80, 80, 0.12);
             color: #ff7777;
         }
 
@@ -196,7 +197,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.78);
+            background: rgba(0, 0, 0, 0.78);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             display: none;
@@ -216,9 +217,9 @@
             max-height: 92vh;
             overflow-y: auto;
             background: #17130d;
-            border: 1px solid rgba(226,189,104,0.25);
+            border: 1px solid rgba(226, 189, 104, 0.25);
             border-radius: 22px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.55);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
             padding: 25px;
         }
 
@@ -239,8 +240,8 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             cursor: pointer;
             font-size: 20px;
@@ -272,8 +273,8 @@
             margin: 0;
             padding: 12px 13px;
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.055);
             color: #fff;
             outline: none;
         }
@@ -281,7 +282,7 @@
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: rgba(226,189,104,0.65);
+            border-color: rgba(226, 189, 104, 0.65);
         }
 
         .form-group textarea {
@@ -308,7 +309,7 @@
             height: 90px;
             object-fit: cover;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .modal-actions {
@@ -333,7 +334,7 @@
         }
 
         .cancel-product-btn {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
         }
 
@@ -350,8 +351,8 @@
             border-radius: 12px;
             background: #1b1b1b;
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.12);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             transform: translateY(20px);
             opacity: 0;
             pointer-events: none;
@@ -365,11 +366,11 @@
         }
 
         .toast.success {
-            border-color: rgba(80,200,120,0.4);
+            border-color: rgba(80, 200, 120, 0.4);
         }
 
         .toast.error {
-            border-color: rgba(255,80,80,0.4);
+            border-color: rgba(255, 80, 80, 0.4);
         }
 
         @media (max-width: 600px) {
@@ -403,445 +404,395 @@
 
 <body>
 
-<div class="admin-container">
+    <div class="admin-container">
 
-    <!-- HEADER -->
-    <header class="admin-header">
+        <!-- HEADER -->
+        <header class="admin-header">
 
-        <div class="admin-title">
-            <h1>📦 Products</h1>
-            <p>Books Corner Admin Portal</p>
-        </div>
-
-        <div class="header-actions">
-
-            <button
-                class="header-btn add-btn"
-                id="addProductBtn">
-                + Add Product
-            </button>
-
-            <button
-                class="header-btn logout-btn"
-                id="logoutBtn">
-                Logout
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- PRODUCTS -->
-    <section class="products-panel">
-
-        <div class="toolbar">
-
-            <input
-                type="search"
-                id="searchProducts"
-                placeholder="Search products..."
-            >
-
-            <div
-                class="product-count"
-                id="productCount">
-                Loading...
+            <div class="admin-title">
+                <h1>📦 Products</h1>
+                <p>Books Corner Admin Portal</p>
             </div>
 
-        </div>
+            <div class="header-actions">
 
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Image</th>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="productsTableBody">
-
-                    <tr>
-                        <td colspan="6" class="loading">
-                            Loading products...
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================
-     PRODUCT MODAL
-========================================= -->
-
-<div class="modal-overlay" id="productModal">
-
-    <div class="product-modal">
-
-        <div class="modal-header">
-
-            <h2 id="modalTitle">
-                Add Product
-            </h2>
-
-            <button
-                type="button"
-                class="close-modal"
-                id="closeModalBtn">
-                ×
-            </button>
-
-        </div>
-
-
-        <form id="productForm">
-
-            <input
-                type="hidden"
-                id="productId"
-            >
-
-
-            <div class="form-group">
-
-                <label>
-                    Product Name — English *
-                </label>
-
-                <input
-                    type="text"
-                    id="nameEn"
-                    required
-                    placeholder="The Classic Package"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Product Name — Sinhala
-                </label>
-
-                <input
-                    type="text"
-                    id="nameSi"
-                    placeholder="අකුරු කියවීමේ කට්ටලය"
-                >
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        Category *
-                    </label>
-
-                    <select id="category" required>
-
-                        <option value="">
-                            Select Category
-                        </option>
-
-                        <option value="Akuru Kiyaweeme Kattala">
-                            Akuru Kiyaweeme Kattala
-                        </option>
-
-                        <option value="Essentials">
-                            Essentials
-                        </option>
-
-                        <option value="Book Packages">
-                            Book Packages
-                        </option>
-
-                        <option value="Stationery">
-                            Stationery
-                        </option>
-
-                        <option value="Toys & Puzzles">
-                            Toys & Puzzles
-                        </option>
-
-                        <option value="Kids & School Essentials">
-                            Kids & School Essentials
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Slug *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="slug"
-                        required
-                        placeholder="the-classic-package"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        Price (Rs.) *
-                    </label>
-
-                    <input
-                        type="number"
-                        id="price"
-                        min="0"
-                        step="1"
-                        required
-                        placeholder="1640"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Old Price (Rs.)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="oldPrice"
-                        min="0"
-                        step="1"
-                        placeholder="4060"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Image URL *
-                </label>
-
-                <input
-                    type="text"
-                    id="image"
-                    required
-                    placeholder="/images/products/product.jpg"
-                >
-
-                <div
-                    class="image-preview"
-                    id="imagePreview">
-
-                    <img
-                        id="previewImage"
-                        src=""
-                        alt="Preview"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    id="description"
-                    placeholder="Product description..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="modal-actions">
-
-                <button
-                    type="button"
-                    class="cancel-product-btn"
-                    id="cancelProductBtn">
-                    Cancel
+                <button class="header-btn add-btn" id="addProductBtn">
+                    + Add Product
                 </button>
 
-                <button
-                    type="submit"
-                    class="save-product-btn"
-                    id="saveProductBtn">
-                    Save Product
+                <button class="header-btn logout-btn" id="logoutBtn">
+                    Logout
                 </button>
 
             </div>
 
-        </form>
+        </header>
+
+
+        <!-- PRODUCTS -->
+        <section class="products-panel">
+
+            <div class="toolbar">
+
+                <input type="search" id="searchProducts" placeholder="Search products...">
+
+                <div class="product-count" id="productCount">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="productsTableBody">
+
+                        <tr>
+                            <td colspan="6" class="loading">
+                                Loading products...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
 
     </div>
 
-</div>
+
+    <!-- =========================================
+     PRODUCT MODAL
+========================================= -->
+
+    <div class="modal-overlay" id="productModal">
+
+        <div class="product-modal">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add Product
+                </h2>
+
+                <button type="button" class="close-modal" id="closeModalBtn">
+                    ×
+                </button>
+
+            </div>
 
 
-<!-- TOAST -->
+            <form id="productForm">
 
-<div
-    class="toast"
-    id="toast">
-</div>
+                <input type="hidden" id="productId">
 
 
-<!-- SUPABASE -->
+                <div class="form-group">
 
-<script src="js/supabase.js"></script>
+                    <label>
+                        Product Name — English *
+                    </label>
 
+                    <input type="text" id="nameEn" required placeholder="The Classic Package">
 
-<script>
-
-document.addEventListener("DOMContentLoaded", async () => {
-
-    const tableBody =
-        document.getElementById("productsTableBody");
-
-    const productCount =
-        document.getElementById("productCount");
-
-    const searchInput =
-        document.getElementById("searchProducts");
-
-    const modal =
-        document.getElementById("productModal");
-
-    const modalTitle =
-        document.getElementById("modalTitle");
-
-    const productForm =
-        document.getElementById("productForm");
-
-    const productId =
-        document.getElementById("productId");
-
-    const nameEn =
-        document.getElementById("nameEn");
-
-    const nameSi =
-        document.getElementById("nameSi");
-
-    const category =
-        document.getElementById("category");
-
-    const slug =
-        document.getElementById("slug");
-
-    const price =
-        document.getElementById("price");
-
-    const oldPrice =
-        document.getElementById("oldPrice");
-
-    const image =
-        document.getElementById("image");
-
-    const description =
-        document.getElementById("description");
-
-    const saveProductBtn =
-        document.getElementById("saveProductBtn");
-
-    const imagePreview =
-        document.getElementById("imagePreview");
-
-    const previewImage =
-        document.getElementById("previewImage");
-
-    let products = [];
+                </div>
 
 
-    /* =========================================
-       CHECK ADMIN LOGIN
-    ========================================= */
+                <div class="form-group">
 
-    const {
-        data: {
-            session
-        }
-    } = await supabaseClient.auth.getSession();
+                    <label>
+                        Product Name — Sinhala
+                    </label>
 
+                    <input type="text" id="nameSi" placeholder="අකුරු කියවීමේ කට්ටලය">
 
-    if (!session) {
-
-        window.location.href = "index.html";
-
-        return;
-
-    }
+                </div>
 
 
-    /* =========================================
-       TOAST
-    ========================================= */
+                <div class="form-row">
 
-    function showToast(message, type = "success") {
+                    <div class="form-group">
 
-        const toast =
-            document.getElementById("toast");
+                        <label>
+                            Category *
+                        </label>
 
-        toast.textContent = message;
+                        <select id="category" required>
 
-        toast.className =
-            `toast ${type} show`;
+                            <option value="">
+                                Select Category
+                            </option>
 
-        setTimeout(() => {
+                            <option value="Akuru Kiyaweeme Kattala">
+                                Akuru Kiyaweeme Kattala
+                            </option>
 
-            toast.classList.remove("show");
+                            <option value="Essentials">
+                                Essentials
+                            </option>
 
-        }, 3000);
+                            <option value="Book Packages">
+                                Book Packages
+                            </option>
 
-    }
+                            <option value="Stationery">
+                                Stationery
+                            </option>
+
+                            <option value="Toys & Puzzles">
+                                Toys & Puzzles
+                            </option>
+
+                            <option value="Kids & School Essentials">
+                                Kids & School Essentials
+                            </option>
+
+                        </select>
+
+                    </div>
 
 
-    /* =========================================
-       LOAD PRODUCTS
-    ========================================= */
+                    <div class="form-group">
 
-    async function loadProducts() {
+                        <label>
+                            Slug *
+                        </label>
 
-        tableBody.innerHTML = `
+                        <input type="text" id="slug" required placeholder="the-classic-package">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Price (Rs.) *
+                        </label>
+
+                        <input type="number" id="price" min="0" step="1" required placeholder="1640">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Old Price (Rs.)
+                        </label>
+
+                        <input type="number" id="oldPrice" min="0" step="1" placeholder="4060">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        Product Image *
+                    </label>
+
+                    <input type="file" id="imageFile" accept="image/*">
+
+                    <!-- Existing image URL is stored here -->
+                    <input type="hidden" id="image">
+
+                    <div class="image-preview" id="imagePreview">
+
+                        <img id="previewImage" src="" alt="Product Preview">
+
+                        <button type="button" id="removeImageBtn" class="remove-image-btn">
+                            Remove Image
+                        </button>
+
+                    </div>
+
+                    <small class="upload-hint">
+                        JPG, PNG, WEBP • Recommended: 1000×1000px
+                    </small>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea id="description" placeholder="Product description..."></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="cancel-product-btn" id="cancelProductBtn">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="save-product-btn" id="saveProductBtn">
+                        Save Product
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+    </div>
+
+
+    <!-- SUPABASE -->
+
+    <script src="js/supabase.js"></script>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            const tableBody =
+                document.getElementById("productsTableBody");
+
+            const productCount =
+                document.getElementById("productCount");
+
+            const searchInput =
+                document.getElementById("searchProducts");
+
+            const modal =
+                document.getElementById("productModal");
+
+            const modalTitle =
+                document.getElementById("modalTitle");
+
+            const productForm =
+                document.getElementById("productForm");
+
+            const productId =
+                document.getElementById("productId");
+
+            const nameEn =
+                document.getElementById("nameEn");
+
+            const nameSi =
+                document.getElementById("nameSi");
+
+            const category =
+                document.getElementById("category");
+
+            const slug =
+                document.getElementById("slug");
+
+            const price =
+                document.getElementById("price");
+
+            const oldPrice =
+                document.getElementById("oldPrice");
+
+            const imageFile =
+                document.getElementById("imageFile");
+
+            const image =
+                document.getElementById("image");
+
+            const removeImageBtn =
+                document.getElementById("removeImageBtn");
+
+            const description =
+                document.getElementById("description");
+
+            const saveProductBtn =
+                document.getElementById("saveProductBtn");
+
+            const imagePreview =
+                document.getElementById("imagePreview");
+
+            const previewImage =
+                document.getElementById("previewImage");
+
+            let products = [];
+
+
+            /* =========================================
+               CHECK ADMIN LOGIN
+            ========================================= */
+
+            const {
+                data: {
+                    session
+                }
+            } = await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                window.location.href = "index.html";
+
+                return;
+
+            }
+
+
+            /* =========================================
+               TOAST
+            ========================================= */
+
+            function showToast(message, type = "success") {
+
+                const toast =
+                    document.getElementById("toast");
+
+                toast.textContent = message;
+
+                toast.className =
+                    `toast ${type} show`;
+
+                setTimeout(() => {
+
+                    toast.classList.remove("show");
+
+                }, 3000);
+
+            }
+
+
+            /* =========================================
+               LOAD PRODUCTS
+            ========================================= */
+
+            async function loadProducts() {
+
+                tableBody.innerHTML = `
             <tr>
                 <td colspan="6" class="loading">
                     Loading products...
@@ -850,25 +801,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
 
 
-        const {
-            data,
-            error
-        } = await supabaseClient
+                const {
+                    data,
+                    error
+                } = await supabaseClient
 
-            .from("products")
+                    .from("products")
 
-            .select("*")
+                    .select("*")
 
-            .order("id", {
-                ascending: true
-            });
+                    .order("id", {
+                        ascending: true
+                    });
 
 
-        if (error) {
+                if (error) {
 
-            console.error(error);
+                    console.error(error);
 
-            tableBody.innerHTML = `
+                    tableBody.innerHTML = `
                 <tr>
                     <td colspan="6" class="empty">
                         Failed to load products.
@@ -878,33 +829,33 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </tr>
             `;
 
-            productCount.textContent = "Error";
+                    productCount.textContent = "Error";
 
-            return;
+                    return;
 
-        }
-
-
-        products = data || [];
-
-        renderProducts(products);
-
-    }
+                }
 
 
-    /* =========================================
-       RENDER PRODUCTS
-    ========================================= */
+                products = data || [];
 
-    function renderProducts(list) {
+                renderProducts(products);
 
-        productCount.textContent =
-            `${list.length} Products`;
+            }
 
 
-        if (!list.length) {
+            /* =========================================
+               RENDER PRODUCTS
+            ========================================= */
 
-            tableBody.innerHTML = `
+            function renderProducts(list) {
+
+                productCount.textContent =
+                    `${list.length} Products`;
+
+
+                if (!list.length) {
+
+                    tableBody.innerHTML = `
                 <tr>
                     <td colspan="6" class="empty">
                         No products found.
@@ -912,21 +863,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </tr>
             `;
 
-            return;
+                    return;
 
-        }
-
-
-        tableBody.innerHTML = list.map(product => {
-
-            const currentPrice =
-                Number(product.price || 0);
-
-            const previousPrice =
-                Number(product.old_price || 0);
+                }
 
 
-            return `
+                tableBody.innerHTML = list.map(product => {
+
+                    const currentPrice =
+                        Number(product.price || 0);
+
+                    const previousPrice =
+                        Number(product.old_price || 0);
+
+
+                    return `
 
                 <tr>
 
@@ -947,16 +898,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <div class="product-name">
 
                             ${escapeHTML(
-                                product.name_en || ''
-                            )}
+                        product.name_en || ''
+                    )}
 
                         </div>
 
                         <div class="product-si">
 
                             ${escapeHTML(
-                                product.name_si || ''
-                            )}
+                        product.name_si || ''
+                    )}
 
                         </div>
 
@@ -968,8 +919,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <span class="category">
 
                             ${escapeHTML(
-                                product.category || ''
-                            )}
+                        product.category || ''
+                    )}
 
                         </span>
 
@@ -985,8 +936,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                         </div>
 
-                        ${
-                            previousPrice > currentPrice
+                        ${previousPrice > currentPrice
 
                             ?
 
@@ -1045,487 +995,584 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             `;
 
-        }).join("");
+                }).join("");
 
-    }
+            }
 
 
-    /* =========================================
-       SEARCH
-    ========================================= */
+            /* =========================================
+               SEARCH
+            ========================================= */
 
-    searchInput.addEventListener("input", () => {
+            searchInput.addEventListener("input", () => {
 
-        const query =
-            searchInput.value
-                .trim()
-                .toLowerCase();
+                const query =
+                    searchInput.value
+                        .trim()
+                        .toLowerCase();
 
 
-        const filtered =
-            products.filter(product =>
+                const filtered =
+                    products.filter(product =>
 
-                String(product.name_en || "")
-                    .toLowerCase()
-                    .includes(query)
+                        String(product.name_en || "")
+                            .toLowerCase()
+                            .includes(query)
 
-                ||
+                        ||
 
-                String(product.name_si || "")
-                    .toLowerCase()
-                    .includes(query)
+                        String(product.name_si || "")
+                            .toLowerCase()
+                            .includes(query)
 
-                ||
+                        ||
 
-                String(product.category || "")
-                    .toLowerCase()
-                    .includes(query)
+                        String(product.category || "")
+                            .toLowerCase()
+                            .includes(query)
 
-                ||
+                        ||
 
-                String(product.slug || "")
-                    .toLowerCase()
-                    .includes(query)
+                        String(product.slug || "")
+                            .toLowerCase()
+                            .includes(query)
 
-            );
+                    );
 
 
-        renderProducts(filtered);
+                renderProducts(filtered);
 
-    });
+            });
 
 
-    /* =========================================
-       OPEN ADD PRODUCT
-    ========================================= */
+            /* =========================================
+               OPEN ADD PRODUCT
+            ========================================= */
 
-    document
-        .getElementById("addProductBtn")
-        .addEventListener("click", () => {
+            document
+                .getElementById("addProductBtn")
+                .addEventListener("click", () => {
 
-            productForm.reset();
+                    productForm.reset();
 
-            productId.value = "";
+                    productId.value = "";
 
-            modalTitle.textContent =
-                "Add Product";
+                    modalTitle.textContent =
+                        "Add Product";
 
-            saveProductBtn.textContent =
-                "Save Product";
+                    saveProductBtn.textContent =
+                        "Save Product";
 
-            imagePreview.classList.remove("show");
+                    imagePreview.classList.remove("show");
 
-            modal.classList.add("show");
+                    modal.classList.add("show");
 
-            nameEn.focus();
+                    nameEn.focus();
 
-        });
+                });
 
 
-    /* =========================================
-       CLOSE MODAL
-    ========================================= */
+            /* =========================================
+               CLOSE MODAL
+            ========================================= */
 
-    function closeModal() {
+            function closeModal() {
 
-        modal.classList.remove("show");
+                modal.classList.remove("show");
 
-        productForm.reset();
+                productForm.reset();
 
-        productId.value = "";
+                productId.value = "";
 
-        imagePreview.classList.remove("show");
+                imagePreview.classList.remove("show");
 
-    }
+            }
 
 
-    document
-        .getElementById("closeModalBtn")
-        .addEventListener("click", closeModal);
+            document
+                .getElementById("closeModalBtn")
+                .addEventListener("click", closeModal);
 
 
-    document
-        .getElementById("cancelProductBtn")
-        .addEventListener("click", closeModal);
+            document
+                .getElementById("cancelProductBtn")
+                .addEventListener("click", closeModal);
 
 
-    modal.addEventListener("click", (e) => {
+            modal.addEventListener("click", (e) => {
 
-        if (e.target === modal) {
+                if (e.target === modal) {
 
-            closeModal();
+                    closeModal();
 
-        }
+                }
 
-    });
+            });
 
 
-    /* =========================================
-       IMAGE PREVIEW
-    ========================================= */
+            /* =========================================
+               IMAGE PREVIEW
+            ========================================= */
 
-    image.addEventListener("input", () => {
+            imageFile.addEventListener("change", () => {
 
-        const url =
-            image.value.trim();
+                const file = imageFile.files[0];
 
+                if (!file) {
+                    return;
+                }
 
-        if (!url) {
+                if (!file.type.startsWith("image/")) {
+                    showToast(
+                        "Please select an image file.",
+                        "error"
+                    );
 
-            imagePreview.classList.remove("show");
+                    imageFile.value = "";
+                    return;
+                }
 
-            return;
+                const maxSize = 5 * 1024 * 1024;
 
-        }
+                if (file.size > maxSize) {
+                    showToast(
+                        "Image must be smaller than 5MB.",
+                        "error"
+                    );
 
+                    imageFile.value = "";
+                    return;
+                }
 
-        previewImage.src = url;
+                const previewURL =
+                    URL.createObjectURL(file);
 
-        imagePreview.classList.add("show");
+                previewImage.src = previewURL;
 
-    });
+                imagePreview.classList.add("show");
+            });
 
 
-    /* =========================================
-       SAVE PRODUCT
-    ========================================= */
+            async function uploadProductImage(file) {
 
-    productForm.addEventListener("submit", async (e) => {
+                if (!file) {
+                    return null;
+                }
 
-        e.preventDefault();
+                const fileExt =
+                    file.name.split(".").pop().toLowerCase();
 
+                const fileName =
+                    `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
 
-        const id =
-            productId.value.trim();
+                const filePath =
+                    `products/${fileName}`;
 
+                const {
+                    error: uploadError
+                } = await supabaseClient
+                    .storage
+                    .from("product-images")
+                    .upload(filePath, file, {
+                        cacheControl: "3600",
+                        upsert: false
+                    });
 
-        const productData = {
+                if (uploadError) {
+                    throw uploadError;
+                }
 
-            name_en:
-                nameEn.value.trim(),
+                const {
+                    data
+                } = supabaseClient
+                    .storage
+                    .from("product-images")
+                    .getPublicUrl(filePath);
 
-            name_si:
-                nameSi.value.trim(),
+                return data.publicUrl;
+            }
+            /* =========================================
+               SAVE PRODUCT
+            ========================================= */
 
-            category:
-                category.value,
+            productForm.addEventListener("submit", async (e) => {
 
-            price:
-                Number(price.value),
+                e.preventDefault();
 
-            old_price:
-                oldPrice.value
-                    ? Number(oldPrice.value)
-                    : null,
 
-            image:
-                image.value.trim(),
+                const id =
+                    productId.value.trim();
 
-            slug:
-                slug.value.trim(),
 
-            description:
-                description.value.trim() || null
+                let imageURL = image.value.trim();
 
-        };
+                const selectedFile =
+                    imageFile.files[0];
 
+                if (selectedFile) {
 
-        if (
-            !productData.name_en ||
-            !productData.category ||
-            !productData.price ||
-            !productData.image ||
-            !productData.slug
-        ) {
+                    try {
 
-            showToast(
-                "Please fill all required fields.",
-                "error"
-            );
+                        saveProductBtn.textContent =
+                            "Uploading Image...";
 
-            return;
+                        imageURL =
+                            await uploadProductImage(selectedFile);
 
-        }
+                    } catch (uploadError) {
 
+                        console.error(uploadError);
 
-        saveProductBtn.classList.add("saving");
+                        showToast(
+                            uploadError.message ||
+                            "Image upload failed.",
+                            "error"
+                        );
 
-        saveProductBtn.textContent =
-            id
-                ? "Updating..."
-                : "Saving...";
+                        saveProductBtn.classList.remove("saving");
+                        saveProductBtn.textContent =
+                            "Save Product";
 
+                        return;
+                    }
+                }
+                const productData = {
+                    name_en:
+                        nameEn.value.trim(),
 
-        try {
+                    name_si:
+                        nameSi.value.trim(),
 
-            let result;
+                    category:
+                        category.value,
 
+                    price:
+                        Number(price.value),
 
-            /* ===============================
-               EDIT
-            =============================== */
+                    old_price:
+                        oldPrice.value
+                            ? Number(oldPrice.value)
+                            : null,
 
-            if (id) {
+                    image:
+                        imageURL,
 
-                result =
-                    await supabaseClient
+                    slug:
+                        slug.value.trim(),
+
+                    description:
+                        description.value.trim() || null
+                };
+
+
+                if (
+                    !productData.name_en ||
+                    !productData.category ||
+                    !productData.price ||
+                    !productData.image ||
+                    !productData.slug
+                ) {
+
+                    showToast(
+                        "Please fill all required fields.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                saveProductBtn.classList.add("saving");
+
+                saveProductBtn.textContent =
+                    id
+                        ? "Updating..."
+                        : "Saving...";
+
+
+                try {
+
+                    let result;
+
+
+                    /* ===============================
+                       EDIT
+                    =============================== */
+
+                    if (id) {
+
+                        result =
+                            await supabaseClient
+
+                                .from("products")
+
+                                .update(productData)
+
+                                .eq("id", id);
+
+
+                    }
+
+                    /* ===============================
+                       ADD
+                    =============================== */
+
+                    else {
+
+                        result =
+                            await supabaseClient
+
+                                .from("products")
+
+                                .insert(productData);
+
+                    }
+
+
+                    if (result.error) {
+
+                        throw result.error;
+
+                    }
+
+
+                    showToast(
+
+                        id
+                            ? "Product updated successfully!"
+                            : "Product added successfully!"
+
+                    );
+
+
+                    closeModal();
+
+                    await loadProducts();
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        error.message ||
+                        "Something went wrong.",
+                        "error"
+                    );
+
+                }
+
+
+                saveProductBtn.classList.remove("saving");
+
+
+                saveProductBtn.textContent =
+                    "Save Product";
+
+            });
+
+
+            /* =========================================
+               EDIT PRODUCT
+            ========================================= */
+
+            window.editProduct = async function (id) {
+
+                const product =
+                    products.find(
+                        p => String(p.id) === String(id)
+                    );
+
+
+                if (!product) {
+
+                    showToast(
+                        "Product not found.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                productId.value =
+                    product.id || "";
+
+                nameEn.value =
+                    product.name_en || "";
+
+                nameSi.value =
+                    product.name_si || "";
+
+                category.value =
+                    product.category || "";
+
+                slug.value =
+                    product.slug || "";
+
+                price.value =
+                    product.price ?? "";
+
+                oldPrice.value =
+                    product.old_price ?? "";
+
+                imageFile.value = "";
+
+                if (product.image) {
+
+                    previewImage.src =
+                        product.image;
+
+                    imagePreview.classList.add("show");
+
+                } else {
+
+                    imagePreview.classList.remove("show");
+                }
+
+                description.value =
+                    product.description || "";
+
+
+                modalTitle.textContent =
+                    "Edit Product";
+
+                saveProductBtn.textContent =
+                    "Update Product";
+
+
+                if (product.image) {
+
+                    previewImage.src =
+                        product.image;
+
+                    imagePreview.classList.add("show");
+
+                }
+
+
+                modal.classList.add("show");
+
+            };
+
+
+            /* =========================================
+               DELETE PRODUCT
+            ========================================= */
+
+            window.deleteProduct = async function (id) {
+
+                const product =
+                    products.find(
+                        p => String(p.id) === String(id)
+                    );
+
+
+                const productName =
+                    product?.name_en || "this product";
+
+
+                if (!confirm(
+                    `Delete "${productName}"?\n\nThis action cannot be undone.`
+                )) {
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const {
+                        error
+                    } = await supabaseClient
 
                         .from("products")
 
-                        .update(productData)
+                        .delete()
 
                         .eq("id", id);
 
 
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    showToast(
+                        "Product deleted successfully!"
+                    );
+
+
+                    await loadProducts();
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        error.message ||
+                        "Failed to delete product.",
+                        "error"
+                    );
+
+                }
+
+            };
+
+
+            /* =========================================
+               LOGOUT
+            ========================================= */
+
+            document
+                .getElementById("logoutBtn")
+                .addEventListener("click", async () => {
+
+                    await supabaseClient.auth.signOut();
+
+                    window.location.href =
+                        "index.html";
+
+                });
+
+
+            /* =========================================
+               ESCAPE HTML
+            ========================================= */
+
+            function escapeHTML(value) {
+
+                return String(value || "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
             }
 
-            /* ===============================
-               ADD
-            =============================== */
 
-            else {
-
-                result =
-                    await supabaseClient
-
-                        .from("products")
-
-                        .insert(productData);
-
-            }
-
-
-            if (result.error) {
-
-                throw result.error;
-
-            }
-
-
-            showToast(
-
-                id
-                    ? "Product updated successfully!"
-                    : "Product added successfully!"
-
-            );
-
-
-            closeModal();
+            /* =========================================
+               INITIAL LOAD
+            ========================================= */
 
             await loadProducts();
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            showToast(
-                error.message ||
-                "Something went wrong.",
-                "error"
-            );
-
-        }
-
-
-        saveProductBtn.classList.remove("saving");
-
-
-        saveProductBtn.textContent =
-            "Save Product";
-
-    });
-
-
-    /* =========================================
-       EDIT PRODUCT
-    ========================================= */
-
-    window.editProduct = async function(id) {
-
-        const product =
-            products.find(
-                p => String(p.id) === String(id)
-            );
-
-
-        if (!product) {
-
-            showToast(
-                "Product not found.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        productId.value =
-            product.id || "";
-
-        nameEn.value =
-            product.name_en || "";
-
-        nameSi.value =
-            product.name_si || "";
-
-        category.value =
-            product.category || "";
-
-        slug.value =
-            product.slug || "";
-
-        price.value =
-            product.price ?? "";
-
-        oldPrice.value =
-            product.old_price ?? "";
-
-        image.value =
-            product.image || "";
-
-        description.value =
-            product.description || "";
-
-
-        modalTitle.textContent =
-            "Edit Product";
-
-        saveProductBtn.textContent =
-            "Update Product";
-
-
-        if (product.image) {
-
-            previewImage.src =
-                product.image;
-
-            imagePreview.classList.add("show");
-
-        }
-
-
-        modal.classList.add("show");
-
-    };
-
-
-    /* =========================================
-       DELETE PRODUCT
-    ========================================= */
-
-    window.deleteProduct = async function(id) {
-
-        const product =
-            products.find(
-                p => String(p.id) === String(id)
-            );
-
-
-        const productName =
-            product?.name_en || "this product";
-
-
-        if (!confirm(
-            `Delete "${productName}"?\n\nThis action cannot be undone.`
-        )) {
-
-            return;
-
-        }
-
-
-        try {
-
-            const {
-                error
-            } = await supabaseClient
-
-                .from("products")
-
-                .delete()
-
-                .eq("id", id);
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-
-            showToast(
-                "Product deleted successfully!"
-            );
-
-
-            await loadProducts();
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            showToast(
-                error.message ||
-                "Failed to delete product.",
-                "error"
-            );
-
-        }
-
-    };
-
-
-    /* =========================================
-       LOGOUT
-    ========================================= */
-
-    document
-        .getElementById("logoutBtn")
-        .addEventListener("click", async () => {
-
-            await supabaseClient.auth.signOut();
-
-            window.location.href =
-                "index.html";
 
         });
 
-
-    /* =========================================
-       ESCAPE HTML
-    ========================================= */
-
-    function escapeHTML(value) {
-
-        return String(value || "")
-
-            .replace(/&/g, "&amp;")
-
-            .replace(/</g, "&lt;")
-
-            .replace(/>/g, "&gt;")
-
-            .replace(/"/g, "&quot;")
-
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* =========================================
-       INITIAL LOAD
-    ========================================= */
-
-    await loadProducts();
-
-});
-
-</script>
+    </script>
 
 </body>
+
 </html>
