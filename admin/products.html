@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | Books Corner Admin</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <style>
+        body {
+            display: block;
+            min-height: 100vh;
+            padding: 25px;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .admin-title h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .admin-title p {
+            color: #999;
+            margin: 7px 0 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            width: auto;
+            margin: 0;
+            padding: 11px 18px;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #e2bd68, #9c711e);
+            color: #100d07;
+        }
+
+        .products-panel {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        #searchProducts {
+            max-width: 400px;
+            margin: 0;
+        }
+
+        .product-count {
+            color: #aaa;
+            display: flex;
+            align-items: center;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            text-align: left;
+            color: #aaa;
+            font-size: 13px;
+            padding: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            vertical-align: middle;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #111;
+        }
+
+        .product-name {
+            font-weight: 600;
+        }
+
+        .product-si {
+            color: #888;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .category {
+            color: #d6ad55;
+            font-size: 13px;
+        }
+
+        .price {
+            font-weight: 700;
+        }
+
+        .old-price {
+            color: #777;
+            text-decoration: line-through;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: rgba(80,200,120,0.12);
+            color: #70df98;
+        }
+
+        .actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .action-btn {
+            width: auto;
+            margin: 0;
+            padding: 8px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .edit-btn {
+            background: rgba(214,173,85,0.15);
+            color: #e2bd68;
+        }
+
+        .delete-btn {
+            background: rgba(255,80,80,0.12);
+            color: #ff7777;
+        }
+
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .admin-title h1 {
+                font-size: 24px;
+            }
+
+            .header-actions {
+                width: 100%;
+            }
+
+            .header-btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- HEADER -->
+
+    <header class="admin-header">
+
+        <div class="admin-title">
+            <h1>📦 Products</h1>
+            <p>Books Corner Admin Portal</p>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="header-btn add-btn"
+                id="addProductBtn">
+                + Add Product
+            </button>
+
+            <button
+                class="header-btn logout-btn"
+                id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="products-panel">
+
+        <div class="toolbar">
+
+            <input
+                type="search"
+                id="searchProducts"
+                placeholder="Search products..."
+            >
+
+            <div
+                class="product-count"
+                id="productCount">
+                Loading...
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="productsTableBody">
+
+                    <tr>
+                        <td colspan="6" class="loading">
+                            Loading products...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="js/supabase.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const tableBody =
+        document.getElementById("productsTableBody");
+
+    const productCount =
+        document.getElementById("productCount");
+
+    const searchInput =
+        document.getElementById("searchProducts");
+
+
+    let products = [];
+
+
+    // ==============================
+    // CHECK ADMIN LOGIN
+    // ==============================
+
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient.auth.getSession();
+
+
+    if (!session) {
+
+        window.location.href = "index.html";
+
+        return;
+
+    }
+
+
+    // ==============================
+    // LOAD PRODUCTS
+    // ==============================
+
+    async function loadProducts() {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6" class="loading">
+                    Loading products...
+                </td>
+            </tr>
+        `;
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("products")
+            .select("*")
+            .order("id", {
+                ascending: true
+            });
+
+
+        if (error) {
+
+            console.error(error);
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="empty">
+                        Failed to load products.<br>
+                        ${error.message}
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        products = data || [];
+
+        renderProducts(products);
+
+    }
+
+
+    // ==============================
+    // RENDER PRODUCTS
+    // ==============================
+
+    function renderProducts(list) {
+
+        productCount.textContent =
+            `${list.length} Products`;
+
+
+        if (!list.length) {
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="empty">
+                        No products found.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        tableBody.innerHTML = list.map(product => {
+
+            const price =
+                Number(product.price || 0)
+                .toLocaleString();
+
+
+            const oldPrice =
+                Number(product.old_price || 0)
+                .toLocaleString();
+
+
+            return `
+
+                <tr>
+
+                    <td>
+
+                        <img
+                            class="product-image"
+                            src="${escapeHTML(product.image || '')}"
+                            alt=""
+                            onerror="this.style.opacity='0.3'"
+                        >
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="product-name">
+                            ${escapeHTML(product.name_en || '')}
+                        </div>
+
+                        <div class="product-si">
+                            ${escapeHTML(product.name_si || '')}
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="category">
+                            ${escapeHTML(product.category || '')}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="price">
+                            Rs. ${price}
+                        </div>
+
+                        ${
+                            product.old_price &&
+                            Number(product.old_price) > Number(product.price)
+                            ?
+                            `<div class="old-price">
+                                Rs. ${oldPrice}
+                            </div>`
+                            :
+                            ''
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="status">
+                            Active
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="action-btn edit-btn"
+                                onclick="editProduct('${product.id}')">
+                                Edit
+                            </button>
+
+                            <button
+                                class="action-btn delete-btn"
+                                onclick="deleteProduct('${product.id}')">
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+    }
+
+
+    // ==============================
+    // SEARCH
+    // ==============================
+
+    searchInput.addEventListener("input", () => {
+
+        const query =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        const filtered =
+            products.filter(product =>
+
+                String(product.name_en || '')
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                String(product.name_si || '')
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                String(product.category || '')
+                    .toLowerCase()
+                    .includes(query)
+
+            );
+
+
+        renderProducts(filtered);
+
+    });
+
+
+    // ==============================
+    // LOGOUT
+    // ==============================
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href = "index.html";
+
+        });
+
+
+    // ==============================
+    // ADD PRODUCT
+    // ==============================
+
+    document
+        .getElementById("addProductBtn")
+        .addEventListener("click", () => {
+
+            alert("Add Product form එක ඊළඟ step එකේ හදමු.");
+
+        });
+
+
+    // ==============================
+    // ESCAPE HTML
+    // ==============================
+
+    function escapeHTML(value) {
+
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    // ==============================
+    // INITIAL LOAD
+    // ==============================
+
+    await loadProducts();
+
+
+    // Make functions globally available
+
+    window.editProduct = function(id) {
+
+        alert("Edit product ID: " + id);
+
+    };
+
+
+    window.deleteProduct = async function(id) {
+
+        if (!confirm(
+            "Are you sure you want to delete this product?"
+        )) {
+            return;
+        }
+
+
+        const {
+            error
+        } = await supabaseClient
+            .from("products")
+            .delete()
+            .eq("id", id);
+
+
+        if (error) {
+
+            alert(error.message);
+
+            return;
+
+        }
+
+
+        await loadProducts();
+
+    };
+
+});
+
+</script>
+
+</body>
+</html>
