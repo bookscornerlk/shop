@@ -1,287 +1,388 @@
-// 1. Badu wala list eka (Data Array)
-const pics = [
-    {
-        id: "1",
-        image: "Happy Customers/picture (1).jpg",
-    },
-    {
-        id: "2",
-        image: "Happy Customers/picture (2).jpg",
-    },
-    {
-        id: "3",
-        image: "Happy Customers/picture (3).jpg",
-    },
-    {
-        id: "4",
-        image: "Happy Customers/picture (4).jpg",
-    },
-    {
-        id: "5",
-        image: "Happy Customers/picture (5).jpg",
-    },
-    {
-        id: "6",
-        image: "Happy Customers/picture (6).jpg",
-    },
-    {
-        id: "7",
-        image: "Happy Customers/picture (7).jpg",
-    },
-    {
-        id: "8",
-        image: "Happy Customers/picture (8).jpg",
-    },
-    {
-        id: "9",
-        image: "Happy Customers/picture (9).jpg",
-    },
-    {
-        id: "10",
-        image: "Happy Customers/picture (10).jpg",
-    },
-    {
-        id: "11",
-        image: "Happy Customers/picture (11).jpg",
-    },
-    {
-        id: "12",
-        image: "Happy Customers/picture (12).jpg",
-    },
-    {
-        id: "13",
-        image: "Happy Customers/picture (13).jpg",
-    },
-    {
-        id: "14",
-        image: "Happy Customers/picture (14).jpg",
-    },
-    {
-        id: "15",
-        image: "Happy Customers/picture (15).jpg",
-    },
-    {
-        id: "16",
-        image: "Happy Customers/picture (16).jpg",
-    },
-    {
-        id: "17",
-        image: "Happy Customers/picture (17).jpg",
-    },
-    {
-        id: "18",
-        image: "Happy Customers/picture (18).jpg",
-    },
-    {
-        id: "19",
-        image: "Happy Customers/picture (19).jpg",
-    },
-    {
-        id: "20",
-        image: "Happy Customers/picture (20).jpg",
-    },
-    {
-        id: "21",
-        image: "Happy Customers/picture (21).jpg",
-    },
-    {
-        id: "22",
-        image: "Happy Customers/picture (22).jpg",
-    },
-    {
-        id: "23",
-        image: "Happy Customers/picture (23).jpg",
-    },
-    {
-        id: "24",
-        image: "Happy Customers/picture (24).jpg",
-    },
-    {
-        id: "25",
-        image: "Happy Customers/picture (25).jpg",
-    },
-    {
-        id: "26",
-        image: "Happy Customers/picture (26).jpg",
-    },
-    {
-        id: "27",
-        image: "Happy Customers/picture (27).jpg",
-    },
-    {
-        id: "28",
-        image: "Happy Customers/picture (28).jpg",
-    },
-    {
-        id: "29",
-        image: "Happy Customers/picture (29).jpg",
-    },
-    {
-        id: "30",
-        image: "Happy Customers/picture (30).jpg",
-    },
-    {
-        id: "31",
-        image: "Happy Customers/picture (31).jpg",
-    },
-    {
-        id: "32",
-        image: "Happy Customers/picture (32).jpg",
-    },
-    {
-        id: "33",
-        image: "Happy Customers/picture (33).jpg",
-    },
-    {
-        id: "34",
-        image: "Happy Customers/picture (34).jpg",
-    },
-    {
-        id: "35",
-        image: "Happy Customers/picture (35).jpg",
-    },
-    {
-        id: "36",
-        image: "Happy Customers/picture (36).jpg",
-    },
-    {
-        id: "37",
-        image: "Happy Customers/picture (37).jpg",
-    },
-    {
-        id: "38",
-        image: "Happy Customers/picture (38).jpg",
-    },
-    {
-        id: "39",
-        image: "Happy Customers/picture (39).jpg",
-    },
-    {
-        id: "40",
-        image: "Happy Customers/picture (40).jpg",
-    },
-    {
-        id: "41",
-        image: "Happy Customers/picture (41).jpg",
-    },
-    {
-        id: "42",
-        image: "Happy Customers/picture (42).jpg",
-    },
-    {
-        id: "43",
-        image: "Happy Customers/picture (43).jpg",
-    },
-    {
-        id: "44",
-        image: "Happy Customers/picture (44).jpg",
-    },
-    {
-        id: "45",
-        image: "Happy Customers/picture (45).jpg",
-    },
-    {
-        id: "46",
-        image: "Happy Customers/picture (46).jpg",
-    },
-    {
-        id: "47",
-        image: "Happy Customers/picture (47).jpg",
-    },
-    {
-        id: "48",
-        image: "Happy Customers/picture (48).jpg",
-    },
-    {
-        id: "49",
-        image: "Happy Customers/picture (49).jpg",
-    },
-    {
-        id: "50",
-        image: "Happy Customers/picture (50).jpg",
-    },
+// js/happy-customers-gallery.js
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const gridContainer = document.getElementById("picsGridContainer");
+
+    if (!gridContainer) return;
+
+    // =========================================
+    // SUPABASE DATA
+    // =========================================
+
+    let pics = [];
+
+    try {
+
+        const { data, error } = await supabaseClient
+            .from("happy_customers")
+            .select("id, image")
+            .order("id", { ascending: true });
+
+        if (error) {
+            throw error;
+        }
+
+        pics = data || [];
+
+        console.log("Happy Customers loaded:", pics);
+
+    } catch (error) {
+
+        console.error("Happy Customers load error:", error);
+
+        gridContainer.innerHTML = `
+            <div style="
+                width:100%;
+                text-align:center;
+                padding:40px;
+                color:#999;
+            ">
+                Failed to load happy customers.
+            </div>
+        `;
+
+        return;
+    }
 
 
-];
+    // =========================================
+    // HTML SETTINGS
+    // =========================================
 
-function displayPics() {
-    const gridContainer = document.getElementById('picsGridContainer');
+    const root =
+        gridContainer.getAttribute("data-root") || "";
 
-    if (gridContainer) {
-        const root = gridContainer.getAttribute('data-root') || "";
-        const limit = parseInt(gridContainer.getAttribute('data-limit')) || null;
-        const targetIdsString = gridContainer.getAttribute('data-ids');
+    const limit =
+        parseInt(
+            gridContainer.getAttribute("data-limit")
+        ) || null;
 
-        gridContainer.innerHTML = "";
-        let filteredPics = [...pics];
+    const targetIdsString =
+        gridContainer.getAttribute("data-ids");
 
-        // A. HTML eke prathama washayenma SPECIFIC IDs thiyenawanam ewa thoragannawa
-        if (targetIdsString) {
-            const targetIds = targetIdsString.split(',').map(id => id.trim());
-            filteredPics = filteredPics.filter(pic => targetIds.includes(pic.id.toString()));
-            filteredPics.sort((a, b) => targetIds.indexOf(a.id.toString()) - targetIds.indexOf(b.id.toString()));
+
+    // =========================================
+    // FILTER
+    // =========================================
+
+    let filteredPics = [...pics];
+
+
+    // Specific IDs from HTML
+    if (targetIdsString) {
+
+        const targetIds =
+            targetIdsString
+                .split(",")
+                .map(id => id.trim());
+
+        filteredPics =
+            filteredPics.filter(pic =>
+                targetIds.includes(
+                    pic.id.toString()
+                )
+            );
+
+        filteredPics.sort(
+            (a, b) =>
+                targetIds.indexOf(a.id.toString()) -
+                targetIds.indexOf(b.id.toString())
+        );
+    }
+
+
+    // Limit
+    if (limit) {
+        filteredPics =
+            filteredPics.slice(0, limit);
+    }
+
+
+    // =========================================
+    // CLEAR GRID
+    // =========================================
+
+    gridContainer.innerHTML = "";
+
+
+    // =========================================
+    // CREATE GALLERY ITEMS
+    // =========================================
+
+    filteredPics.forEach((pic, index) => {
+
+        /*
+         * Supabase table එකේ image field එකේ
+         * full URL එක තියෙනවා නම් root එක
+         * නැවත එකතු නොකරන්න.
+         */
+
+        let imageUrl = pic.image || "";
+
+        if (
+            root &&
+            !imageUrl.startsWith("http://") &&
+            !imageUrl.startsWith("https://")
+        ) {
+            imageUrl = root + imageUrl;
         }
 
 
+        const cardHTML = `
+            <div
+                class="gallery-item"
+                data-idx="${index}"
+                data-url="${escapeAttribute(imageUrl)}"
+                data-caption=""
+            >
 
-        filteredPics.forEach(pic => {
-            const cardHTML = `
-        <div class="gallery-item" data-idx="0"
-                        data-url="${root}${pic.image}" data-caption="">
-                        <img src="${root}${pic.image}" alt="Akuru Kiyaweema ceremony moment 1" loading="eager">
-                        <div class="gallery-item-overlay">
-                            <i class="bi bi-zoom-in"></i>
-                        </div>
-                    </div>
+                <img
+                    src="${escapeAttribute(imageUrl)}"
+                    alt="Happy Customer ${index + 1}"
+                    loading="eager"
+                >
 
-            `;
-            gridContainer.innerHTML += cardHTML;
-            (function () {
-            const items = Array.from(document.querySelectorAll('.gallery-item'));
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lbImg');
-            const lbCap = document.getElementById('lbCaption');
-            const lbCtr = document.getElementById('lbCounter');
-            let current = 0;
+                <div class="gallery-item-overlay">
+                    <i class="bi bi-zoom-in"></i>
+                </div>
 
-            function open(idx) {
-                current = idx;
-                const item = items[idx];
-                lbImg.src = item.dataset.url;
-                lbImg.alt = item.dataset.caption || 'AKuru Kiyaweema' + (idx + 1);
-                lbCap.textContent = item.dataset.caption || '';
-                lbCtr.textContent = (idx + 1) + ' / ' + items.length;
-                lb.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+            </div>
+        `;
 
-            function close() {
-                lb.classList.remove('active');
-                document.body.style.overflow = '';
-                lbImg.src = '';
-            }
+        gridContainer.insertAdjacentHTML(
+            "beforeend",
+            cardHTML
+        );
+    });
 
-            function prev() { open((current - 1 + items.length) % items.length); }
-            function next() { open((current + 1) % items.length); }
 
-            items.forEach((item, i) => item.addEventListener('click', () => open(i)));
-            document.getElementById('lbClose').addEventListener('click', close);
-            document.getElementById('lbPrev').addEventListener('click', prev);
-            document.getElementById('lbNext').addEventListener('click', next);
-            lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    // =========================================
+    // LIGHTBOX
+    // =========================================
 
-            document.addEventListener('keydown', e => {
-                if (!lb.classList.contains('active')) return;
-                if (e.key === 'Escape') close();
-                if (e.key === 'ArrowLeft') prev();
-                if (e.key === 'ArrowRight') next();
-            });
-        })();
-        });
+    const items =
+        Array.from(
+            gridContainer.querySelectorAll(
+                ".gallery-item"
+            )
+        );
+
+    const lb =
+        document.getElementById("lightbox");
+
+    const lbImg =
+        document.getElementById("lbImg");
+
+    const lbCap =
+        document.getElementById("lbCaption");
+
+    const lbCtr =
+        document.getElementById("lbCounter");
+
+    const lbClose =
+        document.getElementById("lbClose");
+
+    const lbPrev =
+        document.getElementById("lbPrev");
+
+    const lbNext =
+        document.getElementById("lbNext");
+
+
+    // If lightbox elements don't exist
+    if (
+        !lb ||
+        !lbImg ||
+        !lbCap ||
+        !lbCtr
+    ) {
+        console.warn(
+            "Lightbox elements not found."
+        );
+        return;
     }
-}
-
-document.addEventListener('DOMContentLoaded', displayPics);
 
 
+    let current = 0;
 
+
+    // =========================================
+    // OPEN
+    // =========================================
+
+    function openLightbox(index) {
+
+        if (!items.length) return;
+
+        current = index;
+
+        const item = items[index];
+
+        lbImg.src =
+            item.dataset.url;
+
+        lbImg.alt =
+            item.dataset.caption ||
+            "Happy Customer " +
+            (index + 1);
+
+        lbCap.textContent =
+            item.dataset.caption || "";
+
+        lbCtr.textContent =
+            (index + 1) +
+            " / " +
+            items.length;
+
+        lb.classList.add("active");
+
+        document.body.style.overflow =
+            "hidden";
+    }
+
+
+    // =========================================
+    // CLOSE
+    // =========================================
+
+    function closeLightbox() {
+
+        lb.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+        lbImg.src = "";
+    }
+
+
+    // =========================================
+    // PREVIOUS
+    // =========================================
+
+    function prev() {
+
+        if (!items.length) return;
+
+        openLightbox(
+            (current - 1 + items.length) %
+            items.length
+        );
+    }
+
+
+    // =========================================
+    // NEXT
+    // =========================================
+
+    function next() {
+
+        if (!items.length) return;
+
+        openLightbox(
+            (current + 1) %
+            items.length
+        );
+    }
+
+
+    // =========================================
+    // IMAGE CLICK
+    // =========================================
+
+    items.forEach((item, index) => {
+
+        item.addEventListener(
+            "click",
+            () => openLightbox(index)
+        );
+
+    });
+
+
+    // =========================================
+    // LIGHTBOX BUTTONS
+    // =========================================
+
+    if (lbClose) {
+        lbClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+    }
+
+    if (lbPrev) {
+        lbPrev.addEventListener(
+            "click",
+            prev
+        );
+    }
+
+    if (lbNext) {
+        lbNext.addEventListener(
+            "click",
+            next
+        );
+    }
+
+
+    // =========================================
+    // CLICK OUTSIDE
+    // =========================================
+
+    lb.addEventListener("click", e => {
+
+        if (e.target === lb) {
+            closeLightbox();
+        }
+
+    });
+
+
+    // =========================================
+    // KEYBOARD
+    // =========================================
+
+    document.addEventListener(
+        "keydown",
+        e => {
+
+            if (
+                !lb.classList.contains(
+                    "active"
+                )
+            ) {
+                return;
+            }
+
+            if (e.key === "Escape") {
+                closeLightbox();
+            }
+
+            if (e.key === "ArrowLeft") {
+                prev();
+            }
+
+            if (e.key === "ArrowRight") {
+                next();
+            }
+
+        }
+    );
+
+
+    // =========================================
+    // ESCAPE HTML
+    // =========================================
+
+    function escapeAttribute(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+});
