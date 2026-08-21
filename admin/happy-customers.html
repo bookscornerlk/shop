@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Customers | Books Corner Admin</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="https://bookscorner.lk/admin/icon.png"
+    >
+
+    <style>
+
+        body {
+            display: block;
+            min-height: 100vh;
+            padding: 25px;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .admin-title h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .admin-title p {
+            color: #999;
+            margin: 7px 0 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            width: auto;
+            margin: 0;
+            padding: 11px 18px;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #e2bd68, #9c711e);
+            color: #100d07;
+        }
+
+        /* =========================
+           PANEL
+        ========================= */
+
+        .customers-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        #searchCustomers {
+            max-width: 400px;
+            margin: 0;
+        }
+
+        .customer-count {
+            color: #aaa;
+            display: flex;
+            align-items: center;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th {
+            text-align: left;
+            color: #aaa;
+            font-size: 13px;
+            padding: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            vertical-align: middle;
+        }
+
+        .customer-image {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #111;
+            display: block;
+        }
+
+        .customer-id {
+            font-weight: 600;
+        }
+
+        .customer-image-url {
+            color: #777;
+            font-size: 12px;
+            max-width: 350px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: rgba(80, 200, 120, 0.12);
+            color: #70df98;
+        }
+
+        .actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .action-btn {
+            width: auto;
+            margin: 0;
+            padding: 8px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background: rgba(214, 173, 85, 0.15);
+            color: #e2bd68;
+        }
+
+        .delete-btn {
+            background: rgba(255, 80, 80, 0.12);
+            color: #ff7777;
+        }
+
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .customer-modal {
+            width: 100%;
+            max-width: 550px;
+            max-height: 92vh;
+            overflow-y: auto;
+
+            background: #17130d;
+            border: 1px solid rgba(226, 189, 104, 0.25);
+            border-radius: 22px;
+
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .close-modal {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: #cfcfcf;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+
+            margin: 0;
+            padding: 12px 13px;
+
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            background: rgba(255, 255, 255, 0.055);
+            color: #fff;
+
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: rgba(226, 189, 104, 0.65);
+        }
+
+        .image-mode-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image-mode-buttons button {
+            flex: 1;
+            margin: 0;
+            padding: 10px;
+
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+
+            cursor: pointer;
+        }
+
+        .image-mode-buttons button.active {
+            background: rgba(226, 189, 104, 0.18);
+            border-color: rgba(226, 189, 104, 0.45);
+            color: #e2bd68;
+        }
+
+        .image-preview {
+            display: none;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .image-preview img {
+            width: 130px;
+            height: 130px;
+
+            object-fit: cover;
+            border-radius: 14px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .remove-image-btn {
+            display: block;
+
+            margin-top: 8px;
+
+            padding: 7px 10px;
+            border-radius: 8px;
+
+            border: 0;
+
+            background: rgba(255, 80, 80, 0.12);
+            color: #ff7777;
+
+            cursor: pointer;
+        }
+
+        .upload-hint {
+            display: block;
+            margin-top: 8px;
+
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MODAL ACTIONS
+        ========================= */
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+
+            margin: 0;
+            padding: 13px;
+
+            border-radius: 10px;
+            cursor: pointer;
+
+            border: 0;
+            font-weight: 700;
+        }
+
+        .save-customer-btn {
+            background: linear-gradient(135deg, #e2bd68, #9c711e);
+            color: #100d07;
+        }
+
+        .cancel-customer-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .saving {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        .toast {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            padding: 13px 18px;
+
+            border-radius: 12px;
+
+            background: #1b1b1b;
+            color: #fff;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+            transform: translateY(20px);
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: 0.25s ease;
+
+            z-index: 10000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-color: rgba(80, 200, 120, 0.4);
+        }
+
+        .toast.error {
+            border-color: rgba(255, 80, 80, 0.4);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .admin-title h1 {
+                font-size: 24px;
+            }
+
+            .header-actions {
+                width: 100%;
+            }
+
+            .header-btn {
+                flex: 1;
+            }
+
+            .customer-modal {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="admin-header">
+
+        <div class="admin-title">
+
+            <img
+                id="logo"
+                src="../src/Untitled-1.png"
+                style="width: 200px;"
+                alt="Books Corner"
+            >
+
+            <p>Books Corner Admin Portal</p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="header-btn add-btn"
+                id="addCustomerBtn"
+            >
+                + Add Happy Customer
+            </button>
+
+            <button
+                class="header-btn logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HAPPY CUSTOMERS
+    ========================= -->
+
+    <section class="customers-panel">
+
+        <div class="toolbar">
+
+            <input
+                type="search"
+                id="searchCustomers"
+                placeholder="Search customer photos..."
+            >
+
+            <div
+                class="customer-count"
+                id="customerCount"
+            >
+                Loading...
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Image</th>
+
+                        <th>ID</th>
+
+                        <th>Image URL</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="customersTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="loading"
+                        >
+                            Loading happy customers...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     CUSTOMER MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="customerModal"
+>
+
+    <div class="customer-modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Happy Customer
+            </h2>
+
+            <button
+                type="button"
+                class="close-modal"
+                id="closeModalBtn"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="customerForm">
+
+            <input
+                type="hidden"
+                id="customerId"
+            >
+
+
+            <!-- IMAGE -->
+
+            <div class="form-group">
+
+                <label>
+                    Customer Photo *
+                </label>
+
+
+                <div class="image-mode-buttons">
+
+                    <button
+                        type="button"
+                        id="imageUploadModeBtn"
+                        class="active"
+                    >
+                        Upload Image
+                    </button>
+
+                    <button
+                        type="button"
+                        id="imageUrlModeBtn"
+                    >
+                        Use Image URL
+                    </button>
+
+                </div>
+
+
+                <!-- UPLOAD -->
+
+                <div id="imageUploadBox">
+
+                    <input
+                        type="file"
+                        id="imageFile"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <!-- URL -->
+
+                <div
+                    id="imageUrlBox"
+                    style="display:none;"
+                >
+
+                    <input
+                        type="url"
+                        id="imageUrlInput"
+                        placeholder="https://example.com/image.jpg"
+                    >
+
+                </div>
+
+
+                <!-- Existing image -->
+
+                <input
+                    type="hidden"
+                    id="image"
+                >
+
+
+                <!-- PREVIEW -->
+
+                <div
+                    class="image-preview"
+                    id="imagePreview"
+                >
+
+                    <img
+                        id="previewImage"
+                        src=""
+                        alt="Customer Preview"
+                    >
+
+                    <button
+                        type="button"
+                        id="removeImageBtn"
+                        class="remove-image-btn"
+                    >
+                        Remove Image
+                    </button>
+
+                </div>
+
+
+                <small class="upload-hint">
+                    Upload JPG, PNG, WEBP or paste an image URL.
+                    Maximum 5MB.
+                </small>
+
+            </div>
+
+
+            <!-- MODAL BUTTONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-customer-btn"
+                    id="cancelCustomerBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-customer-btn"
+                    id="saveCustomerBtn"
+                >
+                    Save Customer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+
+<!-- =========================
+     HAPPY CUSTOMERS JS
+========================= -->
+
+<script src="js/happy-customers.js"></script>
+
+</body>
+</html>
