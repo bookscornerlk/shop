@@ -158,3 +158,54 @@ button:disabled {
 .error {
     color: #ff6b6b;
 }
+
+#imageFile {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 11px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.055);
+    color: #fff;
+    cursor: pointer;
+}
+
+#imageFile::file-selector-button {
+    margin-right: 12px;
+    padding: 8px 13px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e2bd68, #9c711e);
+    color: #100d07;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.upload-hint {
+    display: block;
+    margin-top: 7px;
+    color: #777;
+    font-size: 12px;
+}
+
+.image-preview {
+    position: relative;
+    width: fit-content;
+}
+
+.image-preview img {
+    display: block;
+}
+
+.remove-image-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(255,80,80,0.12);
+    color: #ff7777;
+    cursor: pointer;
+    font-size: 12px;
+}
