@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Products | Books Corner Admin</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <link rel="stylesheet" href="css/admin.css">
 
     <style>
@@ -170,6 +168,8 @@
             padding: 8px 11px;
             border-radius: 8px;
             font-size: 12px;
+            border: 0;
+            cursor: pointer;
         }
 
         .edit-btn {
@@ -189,6 +189,189 @@
             color: #888;
         }
 
+        /* ==============================
+           PRODUCT MODAL
+        ============================== */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .product-modal {
+            width: 100%;
+            max-width: 650px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: #17130d;
+            border: 1px solid rgba(226,189,104,0.25);
+            border-radius: 22px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.55);
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .close-modal {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cfcfcf;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 12px 13px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.055);
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: rgba(226,189,104,0.65);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group select option {
+            background: #17130d;
+            color: #fff;
+        }
+
+        .image-preview {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .image-preview img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            margin: 0;
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 0;
+            font-weight: 700;
+        }
+
+        .save-product-btn {
+            background: linear-gradient(135deg, #e2bd68, #9c711e);
+            color: #100d07;
+        }
+
+        .cancel-product-btn {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+        }
+
+        .saving {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 13px 18px;
+            border-radius: 12px;
+            background: #1b1b1b;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.25s ease;
+            z-index: 10000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-color: rgba(80,200,120,0.4);
+        }
+
+        .toast.error {
+            border-color: rgba(255,80,80,0.4);
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 15px;
@@ -205,6 +388,15 @@
             .header-btn {
                 flex: 1;
             }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .product-modal {
+                padding: 18px;
+            }
         }
     </style>
 </head>
@@ -214,7 +406,6 @@
 <div class="admin-container">
 
     <!-- HEADER -->
-
     <header class="admin-header">
 
         <div class="admin-title">
@@ -242,7 +433,6 @@
 
 
     <!-- PRODUCTS -->
-
     <section class="products-panel">
 
         <div class="toolbar">
@@ -298,6 +488,244 @@
 </div>
 
 
+<!-- =========================================
+     PRODUCT MODAL
+========================================= -->
+
+<div class="modal-overlay" id="productModal">
+
+    <div class="product-modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Product
+            </h2>
+
+            <button
+                type="button"
+                class="close-modal"
+                id="closeModalBtn">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <input
+                type="hidden"
+                id="productId"
+            >
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name — English *
+                </label>
+
+                <input
+                    type="text"
+                    id="nameEn"
+                    required
+                    placeholder="The Classic Package"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name — Sinhala
+                </label>
+
+                <input
+                    type="text"
+                    id="nameSi"
+                    placeholder="අකුරු කියවීමේ කට්ටලය"
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Category *
+                    </label>
+
+                    <select id="category" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Akuru Kiyaweeme Kattala">
+                            Akuru Kiyaweeme Kattala
+                        </option>
+
+                        <option value="Essentials">
+                            Essentials
+                        </option>
+
+                        <option value="Book Packages">
+                            Book Packages
+                        </option>
+
+                        <option value="Stationery">
+                            Stationery
+                        </option>
+
+                        <option value="Toys & Puzzles">
+                            Toys & Puzzles
+                        </option>
+
+                        <option value="Kids & School Essentials">
+                            Kids & School Essentials
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Slug *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="slug"
+                        required
+                        placeholder="the-classic-package"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Price (Rs.) *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        min="0"
+                        step="1"
+                        required
+                        placeholder="1640"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Old Price (Rs.)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="oldPrice"
+                        min="0"
+                        step="1"
+                        placeholder="4060"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Image URL *
+                </label>
+
+                <input
+                    type="text"
+                    id="image"
+                    required
+                    placeholder="/images/products/product.jpg"
+                >
+
+                <div
+                    class="image-preview"
+                    id="imagePreview">
+
+                    <img
+                        id="previewImage"
+                        src=""
+                        alt="Preview"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Product description..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-product-btn"
+                    id="cancelProductBtn">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-product-btn"
+                    id="saveProductBtn">
+                    Save Product
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
 <!-- SUPABASE -->
 
 <script src="js/supabase.js"></script>
@@ -316,13 +744,57 @@ document.addEventListener("DOMContentLoaded", async () => {
     const searchInput =
         document.getElementById("searchProducts");
 
+    const modal =
+        document.getElementById("productModal");
+
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+    const productForm =
+        document.getElementById("productForm");
+
+    const productId =
+        document.getElementById("productId");
+
+    const nameEn =
+        document.getElementById("nameEn");
+
+    const nameSi =
+        document.getElementById("nameSi");
+
+    const category =
+        document.getElementById("category");
+
+    const slug =
+        document.getElementById("slug");
+
+    const price =
+        document.getElementById("price");
+
+    const oldPrice =
+        document.getElementById("oldPrice");
+
+    const image =
+        document.getElementById("image");
+
+    const description =
+        document.getElementById("description");
+
+    const saveProductBtn =
+        document.getElementById("saveProductBtn");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
+
+    const previewImage =
+        document.getElementById("previewImage");
 
     let products = [];
 
 
-    // ==============================
-    // CHECK ADMIN LOGIN
-    // ==============================
+    /* =========================================
+       CHECK ADMIN LOGIN
+    ========================================= */
 
     const {
         data: {
@@ -340,9 +812,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==============================
-    // LOAD PRODUCTS
-    // ==============================
+    /* =========================================
+       TOAST
+    ========================================= */
+
+    function showToast(message, type = "success") {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.className =
+            `toast ${type} show`;
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 3000);
+
+    }
+
+
+    /* =========================================
+       LOAD PRODUCTS
+    ========================================= */
 
     async function loadProducts() {
 
@@ -359,8 +854,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             data,
             error
         } = await supabaseClient
+
             .from("products")
+
             .select("*")
+
             .order("id", {
                 ascending: true
             });
@@ -373,13 +871,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             tableBody.innerHTML = `
                 <tr>
                     <td colspan="6" class="empty">
-                        Failed to load products.<br>
-                        ${error.message}
+                        Failed to load products.
+                        <br><br>
+                        ${escapeHTML(error.message)}
                     </td>
                 </tr>
             `;
 
+            productCount.textContent = "Error";
+
             return;
+
         }
 
 
@@ -390,9 +892,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==============================
-    // RENDER PRODUCTS
-    // ==============================
+    /* =========================================
+       RENDER PRODUCTS
+    ========================================= */
 
     function renderProducts(list) {
 
@@ -411,19 +913,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
 
             return;
+
         }
 
 
         tableBody.innerHTML = list.map(product => {
 
-            const price =
-                Number(product.price || 0)
-                .toLocaleString();
+            const currentPrice =
+                Number(product.price || 0);
 
-
-            const oldPrice =
-                Number(product.old_price || 0)
-                .toLocaleString();
+            const previousPrice =
+                Number(product.old_price || 0);
 
 
             return `
@@ -445,11 +945,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <td>
 
                         <div class="product-name">
-                            ${escapeHTML(product.name_en || '')}
+
+                            ${escapeHTML(
+                                product.name_en || ''
+                            )}
+
                         </div>
 
                         <div class="product-si">
-                            ${escapeHTML(product.name_si || '')}
+
+                            ${escapeHTML(
+                                product.name_si || ''
+                            )}
+
                         </div>
 
                     </td>
@@ -458,7 +966,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <td>
 
                         <span class="category">
-                            ${escapeHTML(product.category || '')}
+
+                            ${escapeHTML(
+                                product.category || ''
+                            )}
+
                         </span>
 
                     </td>
@@ -467,18 +979,29 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <td>
 
                         <div class="price">
-                            Rs. ${price}
+
+                            Rs.
+                            ${currentPrice.toLocaleString()}
+
                         </div>
 
                         ${
-                            product.old_price &&
-                            Number(product.old_price) > Number(product.price)
+                            previousPrice > currentPrice
+
                             ?
-                            `<div class="old-price">
-                                Rs. ${oldPrice}
-                            </div>`
+
+                            `
+                            <div class="old-price">
+
+                                Rs.
+                                ${previousPrice.toLocaleString()}
+
+                            </div>
+                            `
+
                             :
-                            ''
+
+                            ""
                         }
 
                     </td>
@@ -499,14 +1022,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                             <button
                                 class="action-btn edit-btn"
-                                onclick="editProduct('${product.id}')">
+                                onclick="editProduct('${escapeHTML(String(product.id))}')">
+
                                 Edit
+
                             </button>
+
 
                             <button
                                 class="action-btn delete-btn"
-                                onclick="deleteProduct('${product.id}')">
+                                onclick="deleteProduct('${escapeHTML(String(product.id))}')">
+
                                 Delete
+
                             </button>
 
                         </div>
@@ -522,9 +1050,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==============================
-    // SEARCH
-    // ==============================
+    /* =========================================
+       SEARCH
+    ========================================= */
 
     searchInput.addEventListener("input", () => {
 
@@ -537,19 +1065,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         const filtered =
             products.filter(product =>
 
-                String(product.name_en || '')
+                String(product.name_en || "")
                     .toLowerCase()
                     .includes(query)
 
                 ||
 
-                String(product.name_si || '')
+                String(product.name_si || "")
                     .toLowerCase()
                     .includes(query)
 
                 ||
 
-                String(product.category || '')
+                String(product.category || "")
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                String(product.slug || "")
                     .toLowerCase()
                     .includes(query)
 
@@ -561,9 +1095,394 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
-    // ==============================
-    // LOGOUT
-    // ==============================
+    /* =========================================
+       OPEN ADD PRODUCT
+    ========================================= */
+
+    document
+        .getElementById("addProductBtn")
+        .addEventListener("click", () => {
+
+            productForm.reset();
+
+            productId.value = "";
+
+            modalTitle.textContent =
+                "Add Product";
+
+            saveProductBtn.textContent =
+                "Save Product";
+
+            imagePreview.classList.remove("show");
+
+            modal.classList.add("show");
+
+            nameEn.focus();
+
+        });
+
+
+    /* =========================================
+       CLOSE MODAL
+    ========================================= */
+
+    function closeModal() {
+
+        modal.classList.remove("show");
+
+        productForm.reset();
+
+        productId.value = "";
+
+        imagePreview.classList.remove("show");
+
+    }
+
+
+    document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
+
+
+    document
+        .getElementById("cancelProductBtn")
+        .addEventListener("click", closeModal);
+
+
+    modal.addEventListener("click", (e) => {
+
+        if (e.target === modal) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+    /* =========================================
+       IMAGE PREVIEW
+    ========================================= */
+
+    image.addEventListener("input", () => {
+
+        const url =
+            image.value.trim();
+
+
+        if (!url) {
+
+            imagePreview.classList.remove("show");
+
+            return;
+
+        }
+
+
+        previewImage.src = url;
+
+        imagePreview.classList.add("show");
+
+    });
+
+
+    /* =========================================
+       SAVE PRODUCT
+    ========================================= */
+
+    productForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+
+        const id =
+            productId.value.trim();
+
+
+        const productData = {
+
+            name_en:
+                nameEn.value.trim(),
+
+            name_si:
+                nameSi.value.trim(),
+
+            category:
+                category.value,
+
+            price:
+                Number(price.value),
+
+            old_price:
+                oldPrice.value
+                    ? Number(oldPrice.value)
+                    : null,
+
+            image:
+                image.value.trim(),
+
+            slug:
+                slug.value.trim(),
+
+            description:
+                description.value.trim() || null
+
+        };
+
+
+        if (
+            !productData.name_en ||
+            !productData.category ||
+            !productData.price ||
+            !productData.image ||
+            !productData.slug
+        ) {
+
+            showToast(
+                "Please fill all required fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        saveProductBtn.classList.add("saving");
+
+        saveProductBtn.textContent =
+            id
+                ? "Updating..."
+                : "Saving...";
+
+
+        try {
+
+            let result;
+
+
+            /* ===============================
+               EDIT
+            =============================== */
+
+            if (id) {
+
+                result =
+                    await supabaseClient
+
+                        .from("products")
+
+                        .update(productData)
+
+                        .eq("id", id);
+
+
+            }
+
+            /* ===============================
+               ADD
+            =============================== */
+
+            else {
+
+                result =
+                    await supabaseClient
+
+                        .from("products")
+
+                        .insert(productData);
+
+            }
+
+
+            if (result.error) {
+
+                throw result.error;
+
+            }
+
+
+            showToast(
+
+                id
+                    ? "Product updated successfully!"
+                    : "Product added successfully!"
+
+            );
+
+
+            closeModal();
+
+            await loadProducts();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message ||
+                "Something went wrong.",
+                "error"
+            );
+
+        }
+
+
+        saveProductBtn.classList.remove("saving");
+
+
+        saveProductBtn.textContent =
+            "Save Product";
+
+    });
+
+
+    /* =========================================
+       EDIT PRODUCT
+    ========================================= */
+
+    window.editProduct = async function(id) {
+
+        const product =
+            products.find(
+                p => String(p.id) === String(id)
+            );
+
+
+        if (!product) {
+
+            showToast(
+                "Product not found.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        productId.value =
+            product.id || "";
+
+        nameEn.value =
+            product.name_en || "";
+
+        nameSi.value =
+            product.name_si || "";
+
+        category.value =
+            product.category || "";
+
+        slug.value =
+            product.slug || "";
+
+        price.value =
+            product.price ?? "";
+
+        oldPrice.value =
+            product.old_price ?? "";
+
+        image.value =
+            product.image || "";
+
+        description.value =
+            product.description || "";
+
+
+        modalTitle.textContent =
+            "Edit Product";
+
+        saveProductBtn.textContent =
+            "Update Product";
+
+
+        if (product.image) {
+
+            previewImage.src =
+                product.image;
+
+            imagePreview.classList.add("show");
+
+        }
+
+
+        modal.classList.add("show");
+
+    };
+
+
+    /* =========================================
+       DELETE PRODUCT
+    ========================================= */
+
+    window.deleteProduct = async function(id) {
+
+        const product =
+            products.find(
+                p => String(p.id) === String(id)
+            );
+
+
+        const productName =
+            product?.name_en || "this product";
+
+
+        if (!confirm(
+            `Delete "${productName}"?\n\nThis action cannot be undone.`
+        )) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const {
+                error
+            } = await supabaseClient
+
+                .from("products")
+
+                .delete()
+
+                .eq("id", id);
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            showToast(
+                "Product deleted successfully!"
+            );
+
+
+            await loadProducts();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message ||
+                "Failed to delete product.",
+                "error"
+            );
+
+        }
+
+    };
+
+
+    /* =========================================
+       LOGOUT
+    ========================================= */
 
     document
         .getElementById("logoutBtn")
@@ -571,85 +1490,38 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             await supabaseClient.auth.signOut();
 
-            window.location.href = "index.html";
+            window.location.href =
+                "index.html";
 
         });
 
 
-    // ==============================
-    // ADD PRODUCT
-    // ==============================
-
-    document
-        .getElementById("addProductBtn")
-        .addEventListener("click", () => {
-
-            alert("Add Product form එක ඊළඟ step එකේ හදමු.");
-
-        });
-
-
-    // ==============================
-    // ESCAPE HTML
-    // ==============================
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
 
     function escapeHTML(value) {
 
         return String(value || "")
+
             .replace(/&/g, "&amp;")
+
             .replace(/</g, "&lt;")
+
             .replace(/>/g, "&gt;")
+
             .replace(/"/g, "&quot;")
+
             .replace(/'/g, "&#039;");
 
     }
 
 
-    // ==============================
-    // INITIAL LOAD
-    // ==============================
+    /* =========================================
+       INITIAL LOAD
+    ========================================= */
 
     await loadProducts();
-
-
-    // Make functions globally available
-
-    window.editProduct = function(id) {
-
-        alert("Edit product ID: " + id);
-
-    };
-
-
-    window.deleteProduct = async function(id) {
-
-        if (!confirm(
-            "Are you sure you want to delete this product?"
-        )) {
-            return;
-        }
-
-
-        const {
-            error
-        } = await supabaseClient
-            .from("products")
-            .delete()
-            .eq("id", id);
-
-
-        if (error) {
-
-            alert(error.message);
-
-            return;
-
-        }
-
-
-        await loadProducts();
-
-    };
 
 });
 
