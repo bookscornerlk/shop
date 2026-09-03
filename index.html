@@ -415,6 +415,340 @@
         }
     </style>
 
+    <style>
+        /* =========================================================
+   BOOKS CORNER — SCROLL REVEAL ANIMATIONS
+========================================================= */
+
+        :root {
+            --bc-reveal-duration: 0.85s;
+            --bc-reveal-ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        /* Base reveal state */
+        .bc-reveal {
+            opacity: 0;
+            transform: translateY(45px);
+            transition:
+                opacity var(--bc-reveal-duration) var(--bc-reveal-ease),
+                transform var(--bc-reveal-duration) var(--bc-reveal-ease);
+            will-change: opacity, transform;
+        }
+
+        /* Visible state */
+        .bc-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------------------------------------------------------
+   Direction variations
+--------------------------------------------------------- */
+
+        .bc-reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition:
+                opacity .9s var(--bc-reveal-ease),
+                transform .9s var(--bc-reveal-ease);
+        }
+
+        .bc-reveal-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .bc-reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition:
+                opacity .9s var(--bc-reveal-ease),
+                transform .9s var(--bc-reveal-ease);
+        }
+
+        .bc-reveal-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .bc-reveal-scale {
+            opacity: 0;
+            transform: scale(.88);
+            transition:
+                opacity .9s var(--bc-reveal-ease),
+                transform .9s var(--bc-reveal-ease);
+        }
+
+        .bc-reveal-scale.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ---------------------------------------------------------
+   Image reveal
+--------------------------------------------------------- */
+
+        .bc-image-reveal {
+            overflow: hidden;
+        }
+
+        .bc-image-reveal img {
+            opacity: 0;
+            transform: scale(1.12);
+            transition:
+                opacity .8s ease,
+                transform 1.1s var(--bc-reveal-ease);
+        }
+
+        .bc-image-reveal.is-visible img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ---------------------------------------------------------
+   Stagger animation
+--------------------------------------------------------- */
+
+        .bc-stagger>* {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity .7s var(--bc-reveal-ease),
+                transform .7s var(--bc-reveal-ease);
+        }
+
+        .bc-stagger.is-visible>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bc-stagger.is-visible>*:nth-child(1) {
+            transition-delay: .05s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(2) {
+            transition-delay: .12s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(3) {
+            transition-delay: .19s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(4) {
+            transition-delay: .26s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(5) {
+            transition-delay: .33s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(6) {
+            transition-delay: .40s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(7) {
+            transition-delay: .47s;
+        }
+
+        .bc-stagger.is-visible>*:nth-child(8) {
+            transition-delay: .54s;
+        }
+
+        /* ---------------------------------------------------------
+   Section title animation
+--------------------------------------------------------- */
+
+        .bc-section-reveal .section-title h2,
+        .bc-section-reveal .section-title p {
+            opacity: 0;
+            transform: translateY(25px);
+            transition:
+                opacity .7s var(--bc-reveal-ease),
+                transform .7s var(--bc-reveal-ease);
+        }
+
+        .bc-section-reveal .section-title .title-line {
+            transform: scaleX(0);
+            transform-origin: center;
+            transition:
+                transform .8s var(--bc-reveal-ease);
+        }
+
+        .bc-section-reveal.is-visible .section-title h2,
+        .bc-section-reveal.is-visible .section-title p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bc-section-reveal.is-visible .section-title p {
+            transition-delay: .12s;
+        }
+
+        .bc-section-reveal.is-visible .section-title .title-line {
+            transform: scaleX(1);
+            transition-delay: .18s;
+        }
+
+        /* ---------------------------------------------------------
+   Product cards
+--------------------------------------------------------- */
+
+        .bc-card-reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(.97);
+            transition:
+                opacity .75s var(--bc-reveal-ease),
+                transform .75s var(--bc-reveal-ease);
+        }
+
+        .bc-card-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ---------------------------------------------------------
+   Buttons / CTA
+--------------------------------------------------------- */
+
+        .bc-cta-reveal {
+            opacity: 0;
+            transform: translateY(25px) scale(.96);
+            transition:
+                opacity .7s var(--bc-reveal-ease),
+                transform .7s var(--bc-reveal-ease);
+        }
+
+        .bc-cta-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ---------------------------------------------------------
+   Hero entrance
+--------------------------------------------------------- */
+
+        .hero .hero-content>* {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: bcHeroIn .8s var(--bc-reveal-ease) forwards;
+        }
+
+        .hero .hero-content>*:nth-child(1) {
+            animation-delay: .15s;
+        }
+
+        .hero .hero-content>*:nth-child(2) {
+            animation-delay: .25s;
+        }
+
+        .hero .hero-content>*:nth-child(3) {
+            animation-delay: .35s;
+        }
+
+        .hero .hero-content>*:nth-child(4) {
+            animation-delay: .45s;
+        }
+
+        .hero .hero-content>*:nth-child(5) {
+            animation-delay: .55s;
+        }
+
+        .hero .hero-content>*:nth-child(6) {
+            animation-delay: .65s;
+        }
+
+        .hero .hero-content>*:nth-child(7) {
+            animation-delay: .75s;
+        }
+
+        @keyframes bcHeroIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------------------------------------------------------
+   Hero polaroids entrance
+--------------------------------------------------------- */
+
+        .hero-polaroids,
+        #heroPolaroids {
+            animation: bcPolaroidEntrance 1s var(--bc-reveal-ease) .35s both;
+        }
+
+        @keyframes bcPolaroidEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(.94);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ---------------------------------------------------------
+   Hover polish for cards
+--------------------------------------------------------- */
+
+        .bc-card-reveal,
+        .featured-slide,
+        .ceremony-feature,
+        .categoryBTN {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* ---------------------------------------------------------
+   Accessibility
+--------------------------------------------------------- */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .bc-reveal,
+            .bc-reveal-left,
+            .bc-reveal-right,
+            .bc-reveal-scale,
+            .bc-card-reveal,
+            .bc-cta-reveal,
+            .bc-stagger>*,
+            .bc-image-reveal img,
+            .bc-section-reveal .section-title h2,
+            .bc-section-reveal .section-title p,
+            .bc-section-reveal .section-title .title-line,
+            .hero .hero-content>*,
+            #heroPolaroids {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        .product-card {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card.card-reveal {
+            animation: cardReveal 0.6s ease forwards;
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner Akuru Kiyaweema","url":"https://bookscorner.lk/","logo":"https://bookscorner.lk/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
     <script>window.BC = { base: '', siteUrl: 'https://bookscorner.lk/' };</script>
@@ -821,7 +1155,7 @@
         <!-- ══════════════════════════════════════════════════════
      FEATURED PACKAGES CAROUSEL
 ══════════════════════════════════════════════════════ -->
-        <section class="featured-section section" aria-labelledby="featuredHeading">
+        <section class="featured-section section bc-section-reveal" aria-labelledby="featuredHeading">
             <div class="container">
                 <div class="section-title">
                     <h2 id="featuredHeading">First Letter Reading Packages</h2>
@@ -833,7 +1167,7 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide featured-slide">
+                        <div class="swiper-slide featured-slide bc-card-reveal">
                             <a class="featured-slide-img" aria-label="Classic Package"
                                 href="https://bookscorner.lk/product/index.html?slug=the-classic-package">
                                 <img src="images/akuru-kiyaweema/1990-Classic.png" alt="Classic Package" loading="lazy">
@@ -996,14 +1330,15 @@
      ezCategoryDiv GRID
 ══════════════════════════════════════════════════════ -->
 
-        <section class="section" style="background:#ebe5c1" aria-labelledby="productsHeading">
+        <section class="section bc-section-reveal" style="background:#ebe5c1" aria-labelledby="productsHeading">
             <div class="section-title">
                 <h2 id="productsHeading">~ Product Categories ~</h2>
                 <div class="title-line"></div>
                 <p>Perfectly aligned products range...</p>
             </div>
             <center>
-                <div id="ezCategoryDiv">
+                <div id="ezCategoryDiv" class="bc-stagger">
+
                     <center>
                         <a href="products/" class="categoryBTN"><i class="bi bi-grid-3x3-gap"></i> All Products</a>
                         <a href="akuru-kiyaweeme-kattala/" class="categoryBTN"><i class="bi-box2-heart"></i> Akuru
@@ -1027,7 +1362,7 @@
         <!-- ══════════════════════════════════════════════════════
      More PRODUCTS GRID
 ══════════════════════════════════════════════════════ -->
-        <section class="section" style="background:#f3f3f3" aria-labelledby="productsHeading">
+        <section class="section bc-section-reveal" style="background:#f3f3f3" aria-labelledby="productsHeading">
             <div class="container">
                 <div class="section-title">
                     <h2 id="productsHeading">~ Hot Selling Products ~</h2>
@@ -1047,9 +1382,9 @@
         <!-- ══════════════════════════════════════════════════════
      CEREMONY INFO STRIP
 ══════════════════════════════════════════════════════ -->
-        <section class="ceremony-strip" aria-labelledby="ceremonyHeading">
+        <section class="ceremony-strip bc-section-reveal" aria-labelledby="ceremonyHeading">
             <div class="container ceremony-strip-inner">
-                <div class="ceremony-text">
+                <div class="ceremony-text bc-reveal-left">
                     <h2 id="ceremonyHeading">Why is Akuru Kiyaweema Ceremony?</h2>
                     <span class="si">අකුරු කියවීමට චාරිත්‍රයක් මොකටද ?</span>
                     <p>Akuru Kiyaweema (අකුරු කියවීම), which translates to "reading of the first letters," is an ancient
@@ -1064,8 +1399,8 @@
                         Select Your Package <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
-                <div>
-                    <div class="ceremony-features">
+                <div class="bc-reveal-right">
+                    <div class="ceremony-features bc-stagger">
                         <div class="ceremony-feature">
                             <div class="ceremony-feature-icon"><i class="bi bi-truck"></i></div>
                             <div class="ceremony-feature-text">
@@ -1101,14 +1436,18 @@
 
 
 
-        <section
+        <section class="bc-section-reveal"
             style="background: linear-gradient(135deg, #002638 0%, #272727 40%, #5a5a5a 100%);padding:var(--s16) 0;text-align:center">
+
             <div class="container">
-                <h2 style="color:#fff;margin-bottom:var(--s3);font-size:clamp(1.5rem,3vw,2rem)">Celebrate your child's
+                <h2 class="bc-reveal" style="color:#fff;margin-bottom:var(--s3);font-size:clamp(1.5rem,3vw,2rem)">
+                    Celebrate your child's
                     special day with us...</h2>
-                <p class="si" style="color:var(--gold-light);font-size:1.1rem;margin-bottom:var(--s6)">අකුරු කියවීමේ
+                <p class="si bc-reveal" style="color:var(--gold-light);font-size:1.1rem;margin-bottom:var(--s6)">
+                    අකුරු කියවීමේ
                     නැකතට ඕන හැමදේම Books Corner වෙතින්ම </p>
-                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <div class="bc-cta-reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+
                     <a href="products/" class="btn btn-gold btn-lg"><i class="bi bi-box-seam"></i> View All Products</a>
                     <a href="https://wa.me/94761909344" target="_blank" rel="noopener"
                         class="btn btn-whatsapp btn-lg"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
@@ -1126,7 +1465,7 @@
 
 
     <!-- FOOTER -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer bc-section-reveal" role="contentinfo">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -1230,40 +1569,95 @@
                 loader.classList.add("is-hidden");
 
                 setTimeout(function () {
-
-                    if (loader) {
-                        loader.remove();
-                    }
-
+                    loader.remove();
                 }, 700);
-
             }
 
 
-            /* Wait until entire page is loaded */
+            /*
+             * Only wait for images that are NOT lazy-loaded.
+             * Lazy-loaded product images are intentionally ignored.
+             */
 
-            if (document.readyState === "complete") {
+            function waitForInitialImages() {
 
-                setTimeout(hideLoader, 250);
+                const images = Array.from(document.images).filter(function (img) {
 
-            } else {
+                    return img.getAttribute("loading") !== "lazy";
 
-                window.addEventListener(
-                    "load",
-                    function () {
+                });
+
+
+                if (images.length === 0) {
+
+                    setTimeout(hideLoader, 300);
+                    return;
+
+                }
+
+
+                let completed = 0;
+
+
+                function done() {
+
+                    completed++;
+
+                    if (completed >= images.length) {
 
                         setTimeout(hideLoader, 250);
 
-                    },
-                    {
-                        once: true
                     }
-                );
+
+                }
+
+
+                images.forEach(function (img) {
+
+                    if (img.complete) {
+
+                        done();
+
+                    } else {
+
+                        img.addEventListener("load", done, {
+                            once: true
+                        });
+
+                        img.addEventListener("error", done, {
+                            once: true
+                        });
+
+                    }
+
+                });
 
             }
 
 
-            /* Safety fallback */
+            /*
+             * Wait until the HTML is ready.
+             */
+
+            if (document.readyState === "loading") {
+
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    waitForInitialImages,
+                    { once: true }
+                );
+
+            } else {
+
+                waitForInitialImages();
+
+            }
+
+
+            /*
+             * Safety fallback.
+             * Never keep the user trapped on the loader.
+             */
 
             setTimeout(function () {
 
@@ -1271,19 +1665,6 @@
 
             }, 5000);
 
-
-            /* Handle browser back/forward cache */
-
-            window.addEventListener(
-                "pageshow",
-                function (event) {
-
-                    if (event.persisted) {
-                        hideLoader();
-                    }
-
-                }
-            );
 
         })();
     </script>
@@ -1335,6 +1716,69 @@
 
     </script>
 
+
+
+
+    <script>
+        /* =========================================================
+           BOOKS CORNER — SCROLL REVEAL ENGINE
+        ========================================================= */
+
+        (function () {
+
+            const revealElements = document.querySelectorAll(
+                '.bc-reveal, ' +
+                '.bc-reveal-left, ' +
+                '.bc-reveal-right, ' +
+                '.bc-reveal-scale, ' +
+                '.bc-stagger, ' +
+                '.bc-card-reveal, ' +
+                '.bc-cta-reveal, ' +
+                '.bc-image-reveal, ' +
+                '.bc-section-reveal'
+            );
+
+            if (!revealElements.length) return;
+
+            /* Reduced motion */
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                revealElements.forEach(el => {
+                    el.classList.add('is-visible');
+                });
+                return;
+            }
+
+            const observer = new IntersectionObserver(
+                function (entries, obs) {
+
+                    entries.forEach(function (entry) {
+
+                        if (!entry.isIntersecting) return;
+
+                        entry.target.classList.add('is-visible');
+
+                        /*
+                         * Stop observing after first reveal.
+                         * This prevents the animation from replaying
+                         * every time the user scrolls.
+                         */
+                        obs.unobserve(entry.target);
+
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: '0px 0px -60px 0px'
+                }
+            );
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+
+        })();
+    </script>
 
 </body>
 
