@@ -121,7 +121,19 @@ function displayProducts(customProductsList = null) {
         });
 
         // Batch update innerHTML once to optimize performance
+        // Render all cards
         gridContainer.innerHTML = cardsHTML.join("");
+
+        requestAnimationFrame(() => {
+            const cards = gridContainer.querySelectorAll(".product-card");
+
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add("card-reveal");
+            });
+        });
+
+
     }
 }
 
@@ -129,9 +141,9 @@ function displayProducts(customProductsList = null) {
 if (typeof document !== 'undefined') {
     document.addEventListener("DOMContentLoaded", async () => {
 
-    if (!document.getElementById("single-product-wrapper")) {
-        await loadWebProducts();
-    }
+        if (!document.getElementById("single-product-wrapper")) {
+            await loadWebProducts();
+        }
 
-});
+    });
 }
