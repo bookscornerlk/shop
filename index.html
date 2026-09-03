@@ -66,7 +66,376 @@
   ]
 }
 </script>
-</script>
+
+    <style>
+        /* =====================================================
+   BOOKS CORNER — PREMIUM PAGE LOADER
+===================================================== */
+
+        .bc-loader {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 50% 42%,
+                    rgba(255, 196, 0, 0.12),
+                    transparent 30%),
+                linear-gradient(135deg,
+                    #fffdf7 0%,
+                    #f8f4e8 50%,
+                    #fffaf0 100%);
+
+            opacity: 1;
+            visibility: visible;
+
+            transition:
+                opacity 0.65s ease,
+                visibility 0.65s ease;
+        }
+
+
+        /* Hide loader */
+
+        .bc-loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* Soft background glow */
+
+        .bc-loader-glow {
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle,
+                    rgba(255, 174, 0, 0.18),
+                    rgba(255, 174, 0, 0) 68%);
+
+            filter: blur(5px);
+
+            animation:
+                bcGlow 3.2s ease-in-out infinite;
+        }
+
+
+        /* Main content */
+
+        .bc-loader-content {
+            position: relative;
+            z-index: 2;
+
+            width: min(320px, 82vw);
+
+            text-align: center;
+
+            animation:
+                bcLoaderIn 0.8s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+
+        /* Logo container */
+
+        .bc-logo-wrap {
+            position: relative;
+
+            width: 212px;
+            height: 112px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+            place-items: center;
+        }
+
+
+        /* Outer ring */
+
+        .bc-logo-ring {
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 50px;
+
+            border: 1px solid rgba(218, 151, 0, 0.28);
+
+            box-shadow:
+                0 0 0 8px rgba(255, 190, 0, 0.035),
+                0 10px 35px rgba(145, 95, 0, 0.10);
+
+            animation:
+                bcRing 2.4s ease-in-out infinite;
+        }
+
+
+        /* Inner dashed ring */
+
+        .bc-logo-ring::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 7px;
+
+            border-radius: 50px;
+
+            border: 1px dashed rgba(218, 151, 0, 0.28);
+
+            animation:
+                bcSpin 8s linear infinite;
+        }
+
+
+        /* Logo */
+
+        .bc-loader-logo {
+            position: relative;
+
+            width: 156px;
+            max-width: 156px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(0 8px 14px rgba(70, 45, 0, 0.14));
+
+            animation:
+                bcFloat 2.8s ease-in-out infinite;
+        }
+
+
+        /* Brand name */
+
+        .bc-loader-brand {
+            margin-top: 4px;
+
+            font-family:
+                "Outfit",
+                sans-serif;
+
+            font-size:
+                clamp(1.25rem, 4vw, 1.55rem);
+
+            font-weight: 700;
+
+            letter-spacing: 0.16em;
+
+            color: #5a3d16;
+        }
+
+
+        /* Subtitle */
+
+        .bc-loader-sub {
+            margin-top: 6px;
+
+            font-family:
+                "Poppins",
+                Arial,
+                sans-serif;
+
+            font-size: 0.68rem;
+
+            letter-spacing: 0.08em;
+
+            color: #9a805a;
+
+            opacity: 0.9;
+        }
+
+
+        /* Loading line */
+
+        .bc-loader-line {
+            width: 150px;
+            height: 3px;
+
+            margin: 22px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background:
+                rgba(174, 124, 31, 0.13);
+        }
+
+
+        /* Moving loading line */
+
+        .bc-loader-line span {
+            display: block;
+
+            width: 45%;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(90deg,
+                    #d89b22,
+                    #ffca28,
+                    #d89b22);
+
+            box-shadow:
+                0 0 10px rgba(255, 174, 0, 0.35);
+
+            animation:
+                bcProgress 1.35s ease-in-out infinite;
+        }
+
+
+        /* =====================================================
+   ANIMATIONS
+===================================================== */
+
+        @keyframes bcLoaderIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0) scale(1);
+            }
+
+        }
+
+
+        @keyframes bcGlow {
+
+            0%,
+            100% {
+                transform: scale(0.92);
+                opacity: 0.65;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+
+        }
+
+
+        @keyframes bcFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+        }
+
+
+        @keyframes bcRing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.75;
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: 1;
+            }
+
+        }
+
+
+        @keyframes bcSpin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        @keyframes bcProgress {
+
+            0% {
+                transform: translateX(-120%);
+            }
+
+            50% {
+                transform: translateX(115%);
+            }
+
+            100% {
+                transform: translateX(260%);
+            }
+
+        }
+
+
+        /* =====================================================
+   MOBILE
+===================================================== */
+
+        @media (max-width: 480px) {
+
+            .bc-logo-wrap {
+                width: 100px;
+                height: 100px;
+            }
+
+            .bc-loader-logo {
+                width: 68px;
+                max-width: 68px;
+            }
+
+            .bc-loader-brand {
+                font-size: 1.15rem;
+                letter-spacing: 0.13em;
+            }
+
+            .bc-loader-sub {
+                font-size: 0.62rem;
+            }
+
+        }
+
+
+        /* Accessibility */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .bc-loader *,
+            .bc-loader-glow,
+            .bc-loader-content {
+                animation: none !important;
+            }
+
+        }
+    </style>
 
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner Akuru Kiyaweema","url":"https://bookscorner.lk/","logo":"https://bookscorner.lk/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
@@ -75,11 +444,46 @@
 
 <body>
 
+    <!-- =====================================================
+     BOOKS CORNER — PREMIUM PAGE LOADER
+===================================================== -->
+    <div id="bcPageLoader" class="bc-loader" aria-label="Loading Books Corner">
+
+        <div class="bc-loader-glow"></div>
+
+        <div class="bc-loader-content">
+
+            <div class="bc-logo-wrap">
+                <div class="bc-logo-ring"></div>
+
+                <img src="https://bookscorner.lk/src/Untitled-1.png" alt="Books Corner" class="bc-loader-logo">
+            </div>
+
+            <div class="bc-loader-brand">
+                BOOKSCORNER.LK
+            </div>
+
+            <div class="bc-loader-sub">
+                For little minds & big dreams
+            </div>
+
+            <div class="bc-loader-line">
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =====================================================
+     END LOADER
+===================================================== -->
+
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-inner">
             <a href="https://bookscorner.lk/" class="nav-logo" aria-label="Books Corner Home">
-                <img id="logo" alt="#1 Akuru Kiyaweema Packages & Books in Sri Lanka" src="https://bookscorner.lk/src/Untitled-1.png">
+                <img id="logo" alt="#1 Akuru Kiyaweema Packages & Books in Sri Lanka"
+                    src="https://bookscorner.lk/src/Untitled-1.png">
             </a>
 
             <div class="nav-links" role="list">
@@ -452,7 +856,8 @@
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Classic Package" href="https://bookscorner.lk/product/index.html?slug=the-classic-package" >
+                            <a class="featured-slide-img" aria-label="Classic Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-classic-package">
                                 <img src="images/akuru-kiyaweema/1990-Classic.png" alt="Classic Package" loading="lazy">
                             </a>
                             <div class="featured-slide-body">
@@ -473,7 +878,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Premium Package" href="https://bookscorner.lk/product/index.html?slug=the-premium-package">
+                            <a class="featured-slide-img" aria-label="Premium Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-premium-package">
                                 <img src="images/akuru-kiyaweema/3000-Premium.png" alt="Premium Package" loading="lazy">
                             </a>
                             <div class="featured-slide-body">
@@ -494,7 +900,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Signature Package" href="https://bookscorner.lk/product/index.html?slug=the-signature-package">
+                            <a class="featured-slide-img" aria-label="Signature Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-signature-package">
                                 <img src="images/akuru-kiyaweema/3840-Signature.png" alt="Signature Package"
                                     loading="lazy">
                             </a>
@@ -516,7 +923,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Elite Package" href="https://bookscorner.lk/product/index.html?slug=the-elite-package">
+                            <a class="featured-slide-img" aria-label="Elite Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-elite-package">
                                 <img src="images/akuru-kiyaweema/4640-Elite.png" alt="Elite Package" loading="lazy">
                             </a>
                             <div class="featured-slide-body">
@@ -536,7 +944,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="ElitePlus Package" href="https://bookscorner.lk/product/index.html?slug=the-eliteplus-package">
+                            <a class="featured-slide-img" aria-label="ElitePlus Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-eliteplus-package">
                                 <img src="images/akuru-kiyaweema/4990-ElitePlus.png" alt="ElitePlus Package"
                                     loading="lazy">
                             </a>
@@ -556,7 +965,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Supreme Package" href="https://bookscorner.lk/product/index.html?slug=the-supreme-package">
+                            <a class="featured-slide-img" aria-label="Supreme Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-supreme-package">
                                 <img src="https://bookscorner.lk/images/akuru-kiyaweema/5990-Supreme.png"
                                     alt="Supreme Package" loading="lazy">
                             </a>
@@ -577,7 +987,8 @@
                             </div>
                         </div>
                         <div class="swiper-slide featured-slide">
-                            <a class="featured-slide-img" aria-label="Super Package" href="https://bookscorner.lk/product/index.html?slug=the-super-package">
+                            <a class="featured-slide-img" aria-label="Super Package"
+                                href="https://bookscorner.lk/product/index.html?slug=the-super-package">
                                 <img src="https://bookscorner.lk/images/akuru-kiyaweema/7990-Super.png"
                                     alt="Super Package" loading="lazy">
                             </a>
@@ -823,6 +1234,81 @@
         </div>
     </footer>
 
+    <script>
+        (function () {
+
+            const loader = document.getElementById("bcPageLoader");
+
+            if (!loader) return;
+
+            let hidden = false;
+
+            function hideLoader() {
+
+                if (hidden) return;
+
+                hidden = true;
+
+                loader.classList.add("is-hidden");
+
+                setTimeout(function () {
+
+                    if (loader) {
+                        loader.remove();
+                    }
+
+                }, 700);
+
+            }
+
+
+            /* Wait until entire page is loaded */
+
+            if (document.readyState === "complete") {
+
+                setTimeout(hideLoader, 250);
+
+            } else {
+
+                window.addEventListener(
+                    "load",
+                    function () {
+
+                        setTimeout(hideLoader, 250);
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+            }
+
+
+            /* Safety fallback */
+
+            setTimeout(function () {
+
+                hideLoader();
+
+            }, 5000);
+
+
+            /* Handle browser back/forward cache */
+
+            window.addEventListener(
+                "pageshow",
+                function (event) {
+
+                    if (event.persisted) {
+                        hideLoader();
+                    }
+
+                }
+            );
+
+        })();
+    </script>
     <script src="js/products.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
     <script src="js/cart.js"></script>
