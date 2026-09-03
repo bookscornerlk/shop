@@ -1057,16 +1057,55 @@ h4 {
 }
 
 .categories-bar::after {
-    content: '';
+    font-family: "Poppins", sans-serif;
+    content: '<';
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
-    bottom: 0;
-    width: 3rem;
-    background: linear-gradient(to right, transparent, var(--white) 85%);
+
+    width: 55px;
+    height: 100%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding-right: 10px;
+
+   
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+
+    color: var(--gold-dark);
+
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.88) 55%,
+        rgba(255, 255, 255, 0.98)
+    );
+
     pointer-events: none;
     z-index: 5;
+
+    animation: categoryScrollHint 2.2s ease-in-out infinite;
 }
+
+@keyframes categoryScrollHint {
+    0%, 100% {
+        opacity: 0.45;
+        padding-right: 10px;
+    }
+
+    50% {
+        opacity: 1;
+        padding-right: 5px;
+    }
+}
+
 
 .categories-bar .container {
     display: flex;
@@ -2982,7 +3021,9 @@ h4 {
     }
 
     .categories-bar::after {
-        width: 4rem;
+         width: 60px;
+        font-size: 30px;
+        padding-right: 8px;
     }
 }
 
