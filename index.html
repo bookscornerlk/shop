@@ -727,25 +727,14 @@
             }
         }
 
-        .products-grid {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
         .product-card {
-            min-width: 0;
-            max-width: 100%;
-            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 12px;
-            }
+        .product-card.card-reveal {
+            animation: cardReveal 0.6s ease forwards;
         }
-
 
         @keyframes cardReveal {
             from {
@@ -1393,7 +1382,7 @@
         <!-- ══════════════════════════════════════════════════════
      CEREMONY INFO STRIP
 ══════════════════════════════════════════════════════ -->
-        <section class="ceremony-strip bc-section-reveal" aria-labelledby="ceremonyHeading">
+        <section class="ceremony-strip " aria-labelledby="ceremonyHeading">
             <div class="container ceremony-strip-inner">
                 <div class="ceremony-text bc-reveal-left">
                     <h2 id="ceremonyHeading">Why is Akuru Kiyaweema Ceremony?</h2>
@@ -1410,8 +1399,8 @@
                         Select Your Package <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
-                <div class="bc-reveal-right">
-                    <div class="ceremony-features bc-stagger">
+                <div >
+                    <div class="ceremony-features ">
                         <div class="ceremony-feature">
                             <div class="ceremony-feature-icon"><i class="bi bi-truck"></i></div>
                             <div class="ceremony-feature-text">
@@ -1561,6 +1550,13 @@
 
         </div>
     </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/admin/js/supabase.js"></script>
 
     <script>
         (function () {
@@ -1784,12 +1780,7 @@
         })();
     </script>
 
-    <script src="js/products.js"></script>
-    <script src="js/swiper-bundle.min.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/admin/js/supabase.js"></script>
+
 
 
 </body>
