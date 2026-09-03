@@ -304,7 +304,7 @@ h4 {
 .nav-link {
     font-family: "Outfit", sans-serif;
     padding: var(--s2) var(--s3);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: #664703;
     border-radius: var(--r-md);
@@ -676,6 +676,7 @@ h4 {
     line-height: 1.15;
     color: #fff;
     margin-bottom: var(--s5);
+
 }
 
 .hero-title-en em {
@@ -937,9 +938,16 @@ h4 {
 }
 
 .btn-outline-light {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.5px) url(#lg-filter) blur(1px) saturate(1.5) brightness(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.8) brightness(1.15) contrast(1.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.2);
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.5);
+
 }
 
 .btn-outline-light:hover {
@@ -1035,7 +1043,9 @@ h4 {
    CATEGORIES BAR
    ===================================================== */
 .categories-bar {
-    background: rgba(250, 247, 213, 0.616);
+    background: rgba(255, 255, 255, 0.472);
+    backdrop-filter: blur(0.5px) url(#lg-filter) blur(1px) saturate(1.5) brightness(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.8) brightness(1.15) contrast(1.05);
     backdrop-filter: blur(20px);
     box-shadow: 0 .1px 10px #cbb175c4;
     border-bottom: 1px solid var(--cream-border);
@@ -2270,13 +2280,18 @@ h4 {
 .whatsapp-float:hover {
     transform: translateY(-1px);
 
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.5px) url(#lg-filter) blur(1px) saturate(1.5) brightness(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.8) brightness(1.15) contrast(1.05);
     box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, .25),
-        0 4px 0 rgba(18, 140, 65, .4),
-        0 10px 22px rgba(0, 0, 0, .18);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.2);
 
-    color: #fff;
+    color: #000000;
 }
+
 
 .whatsapp-float:active {
     transform: translateY(3px);
@@ -2491,8 +2506,18 @@ h4 {
    PAGE HEADER
    ===================================================== */
 .page-header {
-    background: linear-gradient(135deg, #644001 0%, #454545 100%);
+    background: linear-gradient(135deg, #392400 0%, #393838 100%);
+    backdrop-filter: blur(1.5px) url(#lg-filter) blur(3px) saturate(1.5) brightness(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.8) brightness(1.15) contrast(1.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.2);
     padding: var(--s16) 0;
+    margin: 10px;
+
+    border-radius: 20px;
 }
 
 .page-header h1 {
@@ -2662,16 +2687,16 @@ h4 {
 
     .nav-link {
         padding: var(--s3) var(--s3);
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 500;
         color: #ffffff;
         border-radius: var(--r-md);
         transition: color var(--t-fast), background var(--t-fast);
         text-decoration: none;
         font-weight: 600;
-        border-bottom: 1px solid #6464638b;
+        border-bottom: 1px solid #ffffff8b;
         border-radius: 0;
-        width: 90%;
+        width: 95%;
         margin: 1px 10px 1px 10px;
     }
 
@@ -2705,11 +2730,12 @@ h4 {
 
         transform:
             translateY(14px);
+        font-weight: 800;
 
         transition:
             opacity .45s ease,
             transform .45s cubic-bezier(.22, 1, .36, 1);
-
+        font-family: "Sour Gummy", sans-serif;
     }
 
     .nav-hamburger {
@@ -3392,6 +3418,7 @@ h4 {
 
 
 .nav-drawer {
+    font-family: "Sour Gummy", sans-serif;
     position: fixed;
     top: var(--nav-height);
     left: 0;
@@ -3403,7 +3430,7 @@ h4 {
 
     padding: 1rem;
 
-    background: rgba(255, 255, 255, 0.04);
+    background: linear-gradient(#c7b109b9, #262415b9);
     backdrop-filter: blur(0.5px) url(#lg-filter) blur(1px) saturate(1.5) brightness(1.1);
     -webkit-backdrop-filter: blur(8px) saturate(1.8) brightness(1.15) contrast(1.05);
     box-shadow:
@@ -3411,7 +3438,6 @@ h4 {
         inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.5),
         inset 0 0 12px rgba(255, 255, 255, 0.2),
         0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--gold);
 
 
 
@@ -3452,7 +3478,7 @@ h4 {
     position: fixed;
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.19);
+    background: rgba(0, 0, 0, 0.285);
 
     backdrop-filter: blur(8px);
 
