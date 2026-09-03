@@ -41,9 +41,456 @@
     <link rel="alternate" hreflang="x-default" href="https://bookscorner.lk/stationery">
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner Akuru Kiyaweema","url":"https://bookscorner.lk/","logo":"https://bookscorner.lk/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
+
+    <style>
+        /* ================================
+       SCROLL REVEAL ANIMATIONS
+       ================================ */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.reveal-left {
+            transform: translateX(-40px);
+        }
+
+        .reveal.reveal-right {
+            transform: translateX(40px);
+        }
+
+        .reveal.reveal-scale {
+            transform: scale(0.92);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Product cards */
+        .product-card.reveal {
+            transform: translateY(45px) scale(0.97);
+        }
+
+        .product-card.reveal.is-visible {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Product image */
+        .product-card-img img {
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-card-img img {
+            transform: scale(1.04);
+        }
+
+        /* Respect users who prefer less animation */
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal,
+            .product-card.reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .product-card-img img {
+                transition: none;
+            }
+        }
+    </style>
+
+    <style>
+        /* =====================================================
+   BOOKS CORNER — PREMIUM PAGE LOADER
+===================================================== */
+
+        .bc-loader {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 50% 42%,
+                    rgba(255, 196, 0, 0.12),
+                    transparent 30%),
+                linear-gradient(135deg,
+                    #fffdf7 0%,
+                    #f8f4e8 50%,
+                    #fffaf0 100%);
+
+            opacity: 1;
+            visibility: visible;
+
+            transition:
+                opacity 0.65s ease,
+                visibility 0.65s ease;
+        }
+
+
+        /* Hide loader */
+
+        .bc-loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* Soft background glow */
+
+        .bc-loader-glow {
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle,
+                    rgba(255, 174, 0, 0.18),
+                    rgba(255, 174, 0, 0) 68%);
+
+            filter: blur(5px);
+
+            animation:
+                bcGlow 3.2s ease-in-out infinite;
+        }
+
+
+        /* Main content */
+
+        .bc-loader-content {
+            position: relative;
+            z-index: 2;
+
+            width: min(320px, 82vw);
+
+            text-align: center;
+
+            animation:
+                bcLoaderIn 0.8s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+
+        /* Logo container */
+
+        .bc-logo-wrap {
+            position: relative;
+
+            width: 212px;
+            height: 112px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+            place-items: center;
+        }
+
+
+        /* Outer ring */
+
+        .bc-logo-ring {
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 50px;
+
+            border: 1px solid rgba(218, 151, 0, 0.28);
+
+            box-shadow:
+                0 0 0 8px rgba(255, 190, 0, 0.035),
+                0 10px 35px rgba(145, 95, 0, 0.10);
+
+            animation:
+                bcRing 2.4s ease-in-out infinite;
+        }
+
+
+        /* Inner dashed ring */
+
+        .bc-logo-ring::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 7px;
+
+            border-radius: 50px;
+
+            border: 1px dashed rgba(218, 151, 0, 0.28);
+
+            animation:
+                bcSpin 8s linear infinite;
+        }
+
+
+        /* Logo */
+
+        .bc-loader-logo {
+            position: relative;
+
+            width: 156px;
+            max-width: 156px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(0 8px 14px rgba(70, 45, 0, 0.14));
+
+            animation:
+                bcFloat 2.8s ease-in-out infinite;
+        }
+
+
+        /* Brand name */
+
+        .bc-loader-brand {
+            margin-top: 4px;
+
+            font-family:
+                "Outfit",
+                sans-serif;
+
+            font-size:
+                clamp(1.25rem, 4vw, 1.55rem);
+
+            font-weight: 700;
+
+            letter-spacing: 0.16em;
+
+            color: #5a3d16;
+        }
+
+
+        /* Subtitle */
+
+        .bc-loader-sub {
+            margin-top: 6px;
+
+            font-family:
+                "Poppins",
+                Arial,
+                sans-serif;
+
+            font-size: 0.68rem;
+
+            letter-spacing: 0.08em;
+
+            color: #9a805a;
+
+            opacity: 0.9;
+        }
+
+
+        /* Loading line */
+
+        .bc-loader-line {
+            width: 150px;
+            height: 3px;
+
+            margin: 22px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background:
+                rgba(174, 124, 31, 0.13);
+        }
+
+
+        /* Moving loading line */
+
+        .bc-loader-line span {
+            display: block;
+
+            width: 45%;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(90deg,
+                    #d89b22,
+                    #ffca28,
+                    #d89b22);
+
+            box-shadow:
+                0 0 10px rgba(255, 174, 0, 0.35);
+
+            animation:
+                bcProgress 1.35s ease-in-out infinite;
+        }
+
+
+        /* =====================================================
+   ANIMATIONS
+===================================================== */
+
+        @keyframes bcLoaderIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0) scale(1);
+            }
+
+        }
+
+
+        @keyframes bcGlow {
+
+            0%,
+            100% {
+                transform: scale(0.92);
+                opacity: 0.65;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+
+        }
+
+
+        @keyframes bcFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+        }
+
+
+        @keyframes bcRing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.75;
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: 1;
+            }
+
+        }
+
+
+        @keyframes bcSpin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        @keyframes bcProgress {
+
+            0% {
+                transform: translateX(-120%);
+            }
+
+            50% {
+                transform: translateX(115%);
+            }
+
+            100% {
+                transform: translateX(260%);
+            }
+
+        }
+
+
+        /* =====================================================
+   MOBILE
+===================================================== */
+
+
+
+        /* Accessibility */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .bc-loader *,
+            .bc-loader-glow,
+            .bc-loader-content {
+                animation: none !important;
+            }
+
+        }
+    </style>
+
 </head>
 
 <body>
+    <!-- =====================================================
+     BOOKS CORNER — PREMIUM PAGE LOADER
+===================================================== -->
+    <div id="bcPageLoader" class="bc-loader" aria-label="Loading Books Corner">
+
+        <div class="bc-loader-glow"></div>
+
+        <div class="bc-loader-content">
+
+            <div class="bc-logo-wrap">
+                <div class="bc-logo-ring"></div>
+
+                <img src="https://bookscorner.lk/src/Untitled-1.png" alt="Books Corner" class="bc-loader-logo">
+            </div>
+
+            <div class="bc-loader-brand">
+                BOOKSCORNER.LK
+            </div>
+
+            <div class="bc-loader-sub">
+                For little minds & big dreams
+            </div>
+
+            <div class="bc-loader-line">
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =====================================================
+     END LOADER
+===================================================== -->
 
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-inner">
@@ -266,7 +713,8 @@
     <script>
         (function () {
             var state = { page: 1, hasMore: true, cat: "", q: "", sort: "sort_order" };
-            var grid = document.getElementById("productsGrid");
+            var grid = document.getElementById("productsGridContainer");
+
             var trigger = document.getElementById("infiniteScrollTrigger");
             var spinner = document.getElementById("infiniteScrollSpinner");
             var endMsg = document.getElementById("infiniteScrollEnd");
@@ -316,6 +764,467 @@
             }
             var observer = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) loadMore(); }, { rootMargin: "300px" });
             observer.observe(trigger);
+        })();
+    </script>
+    <script>
+        (function () {
+
+            var state = {
+                page: 1,
+                hasMore: true,
+                cat: "",
+                q: "",
+                sort: "sort_order"
+            };
+
+            var grid = document.getElementById("productsGridContainer");
+            var trigger = document.getElementById("infiniteScrollTrigger");
+            var spinner = document.getElementById("infiniteScrollSpinner");
+            var endMsg = document.getElementById("infiniteScrollEnd");
+
+            if (!grid || !trigger || !state.hasMore) return;
+
+            var loading = false;
+            var base = (window.BC && window.BC.base) || "";
+
+            function esc(s) {
+                var d = document.createElement("div");
+                d.textContent = s || "";
+                return d.innerHTML;
+            }
+
+            /* ================================
+               REVEAL OBSERVER
+               ================================ */
+
+            var revealObserver = new IntersectionObserver(function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("is-visible");
+
+                        /* Animate only once */
+                        revealObserver.unobserve(entry.target);
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+
+            /* ================================
+               CARD HTML
+               ================================ */
+
+            function buildCard(p) {
+
+                var badge = p.is_featured
+                    ? '<span class="product-card-badge featured">⭐ Featured</span>'
+                    : (p.has_sale
+                        ? '<span class="product-card-badge">Sale</span>'
+                        : '');
+
+                var orig = p.orig_fmt
+                    ? '<span class="price-original">' + esc(p.orig_fmt) + '</span>'
+                    : '';
+
+                return `
+            <a href="${p.url}" class="product-card-img">
+
+                ${badge}
+
+                <img
+                    src="${p.image_url}"
+                    alt="${esc(p.name_en)}"
+                    loading="lazy"
+                >
+
+            </a>
+
+            <div class="product-card-body">
+
+                <div class="product-card-cat">
+                    ${esc(p.cat_name)}
+                </div>
+
+                <h3 class="product-card-name" style="font-size:1rem">
+                    <a href="${p.url}">
+                        ${esc(p.name_en)}
+                    </a>
+                </h3>
+
+                <p class="product-card-name-si si">
+                    ${esc(p.name_si)}
+                </p>
+
+                <div class="product-card-price">
+
+                    <span class="price-current">
+                        ${esc(p.price_fmt)}
+                    </span>
+
+                    ${orig}
+
+                </div>
+
+                <div class="product-card-actions">
+
+                    <button
+                        class="btn-add-cart"
+                        data-add-cart
+                        data-id="${p.id}"
+                        data-name-en="${esc(p.name_en)}"
+                        data-name-si="${esc(p.name_si)}"
+                        data-price="${p.price}"
+                        data-image="${p.image_url}"
+                        data-slug="${p.slug}"
+                    >
+                        <i class="bi bi-bag-plus"></i>
+                        Add to Cart
+                    </button>
+
+                    <a
+                        href="${p.url}"
+                        class="btn btn-sm btn-outline-gold"
+                    >
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+        `;
+            }
+
+
+            /* ================================
+               LOAD PRODUCTS
+               ================================ */
+
+            function loadMore() {
+
+                if (loading || !state.hasMore) return;
+
+                loading = true;
+                spinner.style.display = "flex";
+
+                var p = "page=" + (state.page + 1);
+
+                if (state.cat)
+                    p += "&cat=" + encodeURIComponent(state.cat);
+
+                if (state.q)
+                    p += "&q=" + encodeURIComponent(state.q);
+
+                if (state.sort)
+                    p += "&sort=" + encodeURIComponent(state.sort);
+
+
+                fetch(base + "/api/products.php?" + p)
+
+                    .then(function (r) {
+                        return r.json();
+                    })
+
+                    .then(function (data) {
+
+                        data.products.forEach(function (prod, index) {
+
+                            var el = document.createElement("article");
+
+                            /*
+                             * reveal class = hidden initially
+                             * product-card = existing design
+                             */
+
+                            el.className = "product-card reveal";
+
+                            /*
+                             * Stagger effect
+                             * Card 1 -> 0ms
+                             * Card 2 -> 80ms
+                             * Card 3 -> 160ms
+                             */
+
+                            el.style.transitionDelay =
+                                (index * 80) + "ms";
+
+                            el.innerHTML = buildCard(prod);
+
+                            grid.appendChild(el);
+
+                            /* Watch card */
+                            revealObserver.observe(el);
+
+                        });
+
+
+                        state.page = data.next_page;
+                        state.hasMore = data.has_more;
+
+                        loading = false;
+                        spinner.style.display = "none";
+
+
+                        if (!state.hasMore) {
+
+                            observer.disconnect();
+
+                            endMsg.style.display = "block";
+
+                            /*
+                             * Reveal "All products loaded"
+                             */
+                            endMsg.classList.add("reveal");
+
+                            revealObserver.observe(endMsg);
+                        }
+
+                    })
+
+                    .catch(function () {
+
+                        loading = false;
+                        spinner.style.display = "none";
+
+                    });
+            }
+
+
+            /* ================================
+               INFINITE SCROLL
+               ================================ */
+
+            var observer = new IntersectionObserver(
+
+                function (entries) {
+
+                    if (entries[0].isIntersecting) {
+                        loadMore();
+                    }
+
+                },
+
+                {
+                    rootMargin: "300px"
+                }
+
+            );
+
+            observer.observe(trigger);
+
+
+            /* ================================
+               EXISTING PAGE ELEMENTS
+               ================================ */
+
+            /*
+             * Add reveal to existing elements.
+             */
+
+            var selectors = [
+                ".page-header",
+                ".categories-bar",
+                ".footer-brand",
+                ".footer-col",
+                ".footer-bottom"
+            ];
+
+            selectors.forEach(function (selector) {
+
+                document.querySelectorAll(selector).forEach(function (el) {
+
+                    el.classList.add("reveal");
+
+                    revealObserver.observe(el);
+
+                });
+
+            });
+
+        })();
+    </script>
+
+    <script>
+        /* =========================================================
+           BOOKS CORNER — SCROLL REVEAL ENGINE
+        ========================================================= */
+
+        (function () {
+
+            const revealElements = document.querySelectorAll(
+                '.bc-reveal, ' +
+                '.bc-reveal-left, ' +
+                '.bc-reveal-right, ' +
+                '.bc-reveal-scale, ' +
+                '.bc-stagger, ' +
+                '.bc-card-reveal, ' +
+                '.bc-cta-reveal, ' +
+                '.bc-image-reveal, ' +
+                '.bc-section-reveal'
+            );
+
+            if (!revealElements.length) return;
+
+            /* Reduced motion */
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                revealElements.forEach(el => {
+                    el.classList.add('is-visible');
+                });
+                return;
+            }
+
+            const observer = new IntersectionObserver(
+                function (entries, obs) {
+
+                    entries.forEach(function (entry) {
+
+                        if (!entry.isIntersecting) return;
+
+                        entry.target.classList.add('is-visible');
+
+                        /*
+                         * Stop observing after first reveal.
+                         * This prevents the animation from replaying
+                         * every time the user scrolls.
+                         */
+                        obs.unobserve(entry.target);
+
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: '0px 0px -60px 0px'
+                }
+            );
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+
+        })();
+    </script>
+    <script>
+        (function () {
+
+            const loader = document.getElementById("bcPageLoader");
+
+            if (!loader) return;
+
+            let hidden = false;
+
+            function hideLoader() {
+
+                if (hidden) return;
+
+                hidden = true;
+
+                loader.classList.add("is-hidden");
+
+                setTimeout(function () {
+                    loader.remove();
+                }, 700);
+            }
+
+
+            /*
+             * Only wait for images that are NOT lazy-loaded.
+             * Lazy-loaded product images are intentionally ignored.
+             */
+
+            function waitForInitialImages() {
+
+                const images = Array.from(document.images).filter(function (img) {
+
+                    return img.getAttribute("loading") !== "lazy";
+
+                });
+
+
+                if (images.length === 0) {
+
+                    setTimeout(hideLoader, 300);
+                    return;
+
+                }
+
+
+                let completed = 0;
+
+
+                function done() {
+
+                    completed++;
+
+                    if (completed >= images.length) {
+
+                        setTimeout(hideLoader, 250);
+
+                    }
+
+                }
+
+
+                images.forEach(function (img) {
+
+                    if (img.complete) {
+
+                        done();
+
+                    } else {
+
+                        img.addEventListener("load", done, {
+                            once: true
+                        });
+
+                        img.addEventListener("error", done, {
+                            once: true
+                        });
+
+                    }
+
+                });
+
+            }
+
+
+            /*
+             * Wait until the HTML is ready.
+             */
+
+            if (document.readyState === "loading") {
+
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    waitForInitialImages,
+                    { once: true }
+                );
+
+            } else {
+
+                waitForInitialImages();
+
+            }
+
+
+            /*
+             * Safety fallback.
+             * Never keep the user trapped on the loader.
+             */
+
+            setTimeout(function () {
+
+                hideLoader();
+
+            }, 5000);
+
+
         })();
     </script>
 
