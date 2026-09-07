@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MICOMATE | O/L Study Dashboard</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #080b16;
+  --card: #111628;
+  --card2: #171d33;
+  --text: #f4f7ff;
+  --muted: #8d96b2;
+  --primary: #6c63ff;
+  --secondary: #00d4ff;
+  --green: #35e69a;
+  --red: #ff5c7a;
+  --border: rgba(255,255,255,.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(108,99,255,.18), transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(0,212,255,.10), transparent 25%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin: auto;
+}
+
+/* NAVBAR */
+nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--secondary);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-badge {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* HERO */
+.hero {
+  padding: 45px 0 30px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 6vw, 62px);
+  line-height: 1;
+  letter-spacing: -3px;
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 600px;
+}
+
+/* COUNTDOWN */
+.countdown {
+  margin-top: 30px;
+  background: linear-gradient(135deg, #17183b, #10192b);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: var(--primary);
+  filter: blur(100px);
+  opacity: .25;
+  right: -50px;
+  top: -50px;
+}
+
+.countdown-title {
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.time-box {
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.time-box strong {
+  display: block;
+  font-size: clamp(30px, 5vw, 48px);
+}
+
+.time-box small {
+  color: var(--muted);
+}
+
+/* DASHBOARD */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 0 60px;
+}
+
+.card {
+  background: rgba(17,22,40,.88);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px;
+  backdrop-filter: blur(15px);
+}
+
+.card h2 {
+  font-size: 19px;
+  margin-bottom: 5px;
+}
+
+.card-subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* PLANNER */
+.planner-form {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr .7fr auto;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+input, select {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: white;
+  border-radius: 10px;
+  padding: 11px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: 700;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card2);
+  border-radius: 12px;
+  padding: 13px;
+  margin-bottom: 9px;
+  border: 1px solid transparent;
+}
+
+.task.done {
+  opacity: .55;
+}
+
+.task.done .task-name {
+  text-decoration: line-through;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.task-meta {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.check {
+  width: 21px;
+  height: 21px;
+  accent-color: var(--green);
+}
+
+.delete-btn {
+  color: var(--red);
+  background: transparent;
+  font-size: 18px;
+}
+
+/* TIMER */
+.timer {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.timer-mode {
+  color: var(--secondary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.timer-display {
+  font-size: clamp(65px, 12vw, 105px);
+  font-weight: 800;
+  letter-spacing: -5px;
+  margin: 15px 0;
+}
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.timer-buttons button {
+  padding: 11px 17px;
+  border-radius: 10px;
+  color: white;
+  background: var(--card2);
+  border: 1px solid var(--border);
+}
+
+.timer-buttons .start {
+  background: var(--green);
+  color: #06130e;
+  font-weight: 800;
+}
+
+/* PROGRESS */
+.progress-item {
+  margin-bottom: 20px;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+
+.progress-top span:last-child {
+  color: var(--muted);
+}
+
+.progress-bar {
+  height: 9px;
+  background: #252b40;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width .4s ease;
+}
+
+.progress-controls {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.progress-controls button {
+  background: var(--card2);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 9px;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.stat {
+  background: var(--card2);
+  padding: 15px;
+  border-radius: 13px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 23px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* MOTIVATION */
+.quote {
+  margin-top: 20px;
+  padding: 20px;
+  border-left: 3px solid var(--secondary);
+  background: rgba(0,212,255,.05);
+  border-radius: 8px;
+  color: #cfd6eb;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* RESPONSIVE */
+@media(max-width: 800px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .planner-form button {
+    grid-column: span 2;
+  }
+}
+
+@media(max-width: 500px) {
+  .time-grid {
+    gap: 7px;
+  }
+
+  .time-box {
+    padding: 13px 5px;
+  }
+
+  .time-box strong {
+    font-size: 27px;
+  }
+
+  .planner-form {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-form button {
+    grid-column: auto;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <nav>
+    <div class="logo">MICO<span>MATE</span></div>
+    <div class="nav-right">
+      <div class="date-badge" id="today"></div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Your O/L Journey.<br><span>Let's Win It.</span></h1>
+    <p>
+      Your personal O/L study dashboard. Plan your day, focus your time,
+      track your progress and stay ready for the exam.
+    </p>
+
+    <div class="countdown">
+      <div class="countdown-title">🎯 O/L Exam Countdown — December 8, 2026</div>
+
+      <div class="time-grid">
+        <div class="time-box">
+          <strong id="days">0</strong>
+          <small>Days</small>
+        </div>
+        <div class="time-box">
+          <strong id="hours">0</strong>
+          <small>Hours</small>
+        </div>
+        <div class="time-box">
+          <strong id="minutes">0</strong>
+          <small>Minutes</small>
+        </div>
+        <div class="time-box">
+          <strong id="seconds">0</strong>
+          <small>Seconds</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard">
+
+    <!-- PLANNER -->
+    <div class="card">
+      <h2>📅 Study Planner</h2>
+      <div class="card-subtitle">Plan what you need to study today.</div>
+
+      <div class="planner-form">
+        <input id="taskInput" type="text" placeholder="What will you study?">
+
+        <select id="subjectInput">
+          <option>Mathematics</option>
+          <option>Science</option>
+          <option>English</option>
+          <option>Sinhala</option>
+          <option>History</option>
+          <option>ICT</option>
+          <option>Religion</option>
+          <option>Other</option>
+        </select>
+
+        <input id="durationInput" type="number" min="1" placeholder="Min">
+
+        <button class="primary-btn" onclick="addTask()">Add</button>
+      </div>
+
+      <div id="taskList"></div>
+    </div>
+
+    <!-- TIMER -->
+    <div class="card">
+      <h2>⏱️ Study Timer</h2>
+      <div class="card-subtitle">Focus. Study. Repeat.</div>
+
+      <div class="timer">
+        <div class="timer-mode" id="timerMode">Focus Session</div>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+
+        <div class="timer-buttons">
+          <button class="start" id="startBtn" onclick="toggleTimer()">Start</button>
+          <button onclick="resetTimer()">Reset</button>
+          <button onclick="setTimer(5)">5 Min</button>
+          <button onclick="setTimer(25)">25 Min</button>
+          <button onclick="setTimer(50)">50 Min</button>
+        </div>
+      </div>
+
+      <div class="quote">
+        💡 <strong>Remember:</strong> You don't need to study everything today.
+        You just need to make progress every day.
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="card">
+      <h2>📈 Progress Tracker</h2>
+      <div class="card-subtitle">Track your confidence in each subject.</div>
+
+      <div id="progressList"></div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong id="overallProgress">0%</strong>
+          <span>Overall</span>
+        </div>
+
+        <div class="stat">
+          <strong id="completedTasks">0</strong>
+          <span>Tasks Done</span>
+        </div>
+
+        <div class="stat">
+          <strong id="studyMinutes">0</strong>
+          <span>Study Min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY GOAL -->
+    <div class="card">
+      <h2>🔥 Daily Goal</h2>
+      <div class="card-subtitle">Build your study streak.</div>
+
+      <div class="progress-item">
+        <div class="progress-top">
+          <span>Today's tasks</span>
+          <span id="dailyText">0 / 3</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="dailyBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <button class="primary-btn" onclick="resetAll()" style="margin-top:10px;">
+        Reset All Data
+      </button>
+
+      <div class="quote">
+        🚀 <strong>MICOMATE:</strong> Small steps every day → Big results on exam day.
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  MICOMATE © 2026 — Built for O/L Students 💙
+</footer>
+
+<script>
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const examDate = new Date("December 8, 2026 08:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = examDate - now;
+
+  if (distance <= 0) {
+    document.getElementById("days").textContent = "0";
+    document.getElementById("hours").textContent = "0";
+    document.getElementById("minutes").textContent = "0";
+    document.getElementById("seconds").textContent = "0";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+
+/* =========================
+   DATE
+========================= */
+
+document.getElementById("today").textContent =
+  new Date().toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  });
+
+
+/* =========================
+   PLANNER
+========================= */
+
+let tasks = JSON.parse(localStorage.getItem("micoTasks")) || [];
+
+function saveTasks() {
+  localStorage.setItem("micoTasks", JSON.stringify(tasks));
+}
+
+function addTask() {
+  const name = document.getElementById("taskInput").value.trim();
+  const subject = document.getElementById("subjectInput").value;
+  const duration = document.getElementById("durationInput").value;
+
+  if (!name) {
+    alert("Please enter a study task.");
+    return;
+  }
+
+  tasks.push({
+    id: Date.now(),
+    name,
+    subject,
+    duration: duration || 0,
+    done: false
+  });
+
+  saveTasks();
+
+  document.getElementById("taskInput").value = "";
+  document.getElementById("durationInput").value = "";
+
+  renderTasks();
+}
+
+function toggleTask(id) {
+  tasks = tasks.map(task =>
+    task.id === id ? {...task, done: !task.done} : task
+  );
+
+  saveTasks();
+  renderTasks();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(task => task.id !== id);
+  saveTasks();
+  renderTasks();
+}
+
+function renderTasks() {
+  const list = document.getElementById("taskList");
+
+  if (tasks.length === 0) {
+    list.innerHTML = `
+      <div style="color:#8d96b2;text-align:center;padding:20px;">
+        No tasks yet. Add your first study task! 📚
+      </div>
+    `;
+  } else {
+    list.innerHTML = tasks.map(task => `
+      <div class="task ${task.done ? "done" : ""}">
+        <input
+          class="check"
+          type="checkbox"
+          ${task.done ? "checked" : ""}
+          onchange="toggleTask(${task.id})"
+        >
+
+        <div class="task-info">
+          <div class="task-name">${escapeHTML(task.name)}</div>
+          <div class="task-meta">
+            ${escapeHTML(task.subject)}
+            ${task.duration ? " • " + task.duration + " min" : ""}
+          </div>
+        </div>
+
+        <button class="delete-btn" onclick="deleteTask(${task.id})">×</button>
+      </div>
+    `).join("");
+  }
+
+  updateStats();
+}
+
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, function(m) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m];
+  });
+}
+
+
+/* =========================
+   PROGRESS TRACKER
+========================= */
+
+const defaultSubjects = [
+  "Mathematics",
+  "Science",
+  "English",
+  "Sinhala",
+  "History",
+  "ICT"
+];
+
+let progress = JSON.parse(localStorage.getItem("micoProgress")) || {};
+
+defaultSubjects.forEach(subject => {
+  if (progress[subject] === undefined) {
+    progress[subject] = 0;
+  }
+});
+
+function saveProgress() {
+  localStorage.setItem("micoProgress", JSON.stringify(progress));
+}
+
+function changeProgress(subject, amount) {
+  progress[subject] = Math.max(
+    0,
+    Math.min(100, progress[subject] + amount)
+  );
+
+  saveProgress();
+  renderProgress();
+}
+
+function renderProgress() {
+  const list = document.getElementById("progressList");
+
+  list.innerHTML = defaultSubjects.map(subject => `
+    <div class="progress-item">
+
+      <div class="progress-top">
+        <span>${subject}</span>
+        <span>${progress[subject]}%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div
+          class="progress-fill"
+          style="width:${progress[subject]}%"
+        ></div>
+      </div>
+
+      <div class="progress-controls">
+        <button onclick="changeProgress('${subject}', -10)">−10</button>
+        <button onclick="changeProgress('${subject}', 10)">+10</button>
+        <button onclick="changeProgress('${subject}', 25)">+25</button>
+      </div>
+
+    </div>
+  `).join("");
+
+  updateStats();
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+let timerSeconds = 25 * 60;
+let timerInterval = null;
+let timerRunning = false;
+let selectedMinutes = 25;
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timerSeconds / 60);
+  const seconds = timerSeconds % 60;
+
+  document.getElementById("timerDisplay").textContent =
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(seconds).padStart(2, "0");
+}
+
+function toggleTimer() {
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById("startBtn").textContent = "Start";
+    return;
+  }
+
+  timerRunning = true;
+  document.getElementById("startBtn").textContent = "Pause";
+
+  timerInterval = setInterval(() => {
+
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+
+      document.getElementById("startBtn").textContent = "Start";
+
+      const oldMinutes =
+        Number(localStorage.getItem("micoStudyMinutes")) || 0;
+
+      localStorage.setItem(
+        "micoStudyMinutes",
+        oldMinutes + selectedMinutes
+      );
+
+      alert("🎉 Study session complete! Great work!");
+      updateStats();
+
+      timerSeconds = selectedMinutes * 60;
+      updateTimerDisplay();
+
+      return;
+    }
+
+    timerSeconds--;
+    updateTimerDisplay();
+
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = selectedMinutes * 60;
+  document.getElementById("startBtn").textContent = "Start";
+  updateTimerDisplay();
+}
+
+function setTimer(minutes) {
+  selectedMinutes = minutes;
+  timerSeconds = minutes * 60;
+
+  document.getElementById("timerMode").textContent =
+    minutes === 5 ? "Short Break" :
+    minutes === 25 ? "Focus Session" :
+    "Deep Work Session";
+
+  resetTimer();
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats() {
+
+  const completed = tasks.filter(t => t.done).length;
+
+  const totalProgress = defaultSubjects.reduce(
+    (sum, subject) => sum + progress[subject],
+    0
+  );
+
+  const overall = Math.round(
+    totalProgress / defaultSubjects.length
+  );
+
+  const studyMinutes =
+    Number(localStorage.getItem("micoStudyMinutes")) || 0;
+
+  document.getElementById("overallProgress").textContent =
+    overall + "%";
+
+  document.getElementById("completedTasks").textContent =
+    completed;
+
+  document.getElementById("studyMinutes").textContent =
+    studyMinutes;
+
+  const dailyGoal = 3;
+
+  const dailyPercent = Math.min(
+    100,
+    Math.round((completed / dailyGoal) * 100)
+  );
+
+  document.getElementById("dailyText").textContent =
+    completed + " / " + dailyGoal;
+
+  document.getElementById("dailyBar").style.width =
+    dailyPercent + "%";
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetAll() {
+  if (!confirm("Reset all MICOMATE data?")) return;
+
+  localStorage.removeItem("micoTasks");
+  localStorage.removeItem("micoProgress");
+  localStorage.removeItem("micoStudyMinutes");
+
+  tasks = [];
+
+  defaultSubjects.forEach(subject => {
+    progress[subject] = 0;
+  });
+
+  saveProgress();
+
+  renderTasks();
+  renderProgress();
+
+  alert("MICOMATE has been reset.");
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderTasks();
+renderProgress();
+updateTimerDisplay();
+
+</script>
+
+</body>
+</html>

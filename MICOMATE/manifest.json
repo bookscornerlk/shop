@@ -1,0 +1,22 @@
+{
+"name": "MICOMATE O/L Study Dashboard",
+"short_name": "MICOMATE",
+"description": "Personal O/L study planner, timetable and motivation dashboard.",
+"start_url": "./",
+"display": "standalone",
+"background_color": "#080b16",
+"theme_color": "#080b16",
+"orientation": "portrait-primary",
+"icons": [
+{
+"src": "icon.png",
+"sizes": "192x192",
+"type": "image/png"
+},
+{
+"src": "icon.png",
+"sizes": "512x512",
+"type": "image/png"
+}
+]
+}
