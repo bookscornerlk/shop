@@ -1218,6 +1218,35 @@
             localStorage.setItem("micoReminders", JSON.stringify({ morning, study, night }));
             showToast("Reminders saved!");
         }
+
+        // 1. Service Worker එක Register කිරීම (Chrome Native Prompt එක එන්න මේක අනිවාර්යයි)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('Service Worker Registered Successfully'))
+            .catch(err => console.log('Service Worker Registration Failed:', err));
+    });
+}
+
+// 2. Chrome Native Install Prompt එක Auto Catch කිරීම
+let nativePrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Browser එකේ default trigger එක තබා ගන්නවා
+    nativePrompt = e;
+    
+    // User පළමු වරට Click එකක් දැමූ පසු Prompt එක automatically auto-show කිරීමට:
+    setTimeout(() => {
+        if (nativePrompt) {
+            nativePrompt.prompt();
+            nativePrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the native install prompt');
+                }
+                nativePrompt = null;
+            });
+        }
+    }, 3000); // Website එකට ඇවිත් තත්පර 3 කින් auto පෙන්නයි
+});
     </script>
 </body>
 
