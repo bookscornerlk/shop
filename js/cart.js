@@ -738,13 +738,12 @@ function renderCart() {
                 </h3>
 
                 <p>
-                    Browse our ceremony packages
-                    and stationery to add items
+                    Browse our products and stationery to add items
                     to your order.
                 </p>
 
                 <a
-                    href="products"
+                    href="https://bookscorner.lk/products/"
                     class="btn btn-gold"
                 >
                     Browse Products
