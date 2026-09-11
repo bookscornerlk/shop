@@ -1,276 +1,3816 @@
+```html
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - Books Corner Akuru Kiyaweema</title>
+
+    <title>
+        Cart - Books Corner Akuru Kiyaweema
+    </title>
+
     <meta name="description"
-        content='Quality stationery items specially selected for the first letter reading ceremony. stationery delivered island-wide across Sri Lanka. Order via Whatsapp.'>
-    <meta name="google-site-verification" content="v96631U9iamGh5pL-5EmrGkTK52NnhX8Fa17listRy0" />
+        content="Quality stationery items specially selected for the first letter reading ceremony. Stationery delivered island-wide across Sri Lanka. Order via WhatsApp.">
+
+    <meta name="google-site-verification" content="v96631U9iamGh5pL-5EmrGkTK52NnhX8Fa17listRy0">
+
     <meta name="keywords"
         content="akuru kiyaweema, akuru kiyawamu, අකුරු කියවීම, අකුරු කියවමු, akuru kiyawanne kohomada, babata akuru kiyawamu, a akura, Akuru kiyaweema packages, අකුරු කියවීමේ, first letter reading, ගල් ලෑල්ල, වැලි පීල්ල, first letter reading ceremony sri lanka, akuru kiyawana nakatha, අකුරු කියවන්නේ කොහමද, බබාට අකුරු කියවමු">
+
     <meta name="robots" content="index, follow">
+
     <link rel="canonical" href="https://bookscorner.lk/cart">
+
+
+    <!-- Open Graph -->
+
     <meta property="og:title" content="Cart - Books Corner Akuru Kiyaweema">
+
     <meta property="og:description"
-        content="Quality stationery items specially selected for the first letter reading ceremony. stationery delivered island-wide across Sri Lanka. Order via Whatsapp.">
+        content="Quality stationery items specially selected for the first letter reading ceremony. Stationery delivered island-wide across Sri Lanka. Order via WhatsApp.">
+
     <meta property="og:type" content="website">
+
     <meta property="og:url" content="https://bookscorner.lk/cart">
+
     <meta property="og:image" content="images/default.jpg">
+
     <meta property="og:image:width" content="1024">
+
     <meta property="og:image:height" content="1024">
-    <meta property="og:site_name" content="Cart - Books Corner Akuru Kiyaweema">
+
+    <meta property="og:site_name" content="Books Corner Akuru Kiyaweema">
+
     <meta property="og:locale" content="si_LK">
+
     <meta property="og:locale:alternate" content="en_US">
+
+
+    <!-- Twitter -->
+
     <meta name="twitter:card" content="summary_large_image">
+
     <meta name="twitter:title" content="Cart - Books Corner Akuru Kiyaweema">
+
     <meta name="twitter:description"
-        content="Quality stationery items specially selected for the first letter reading ceremony. stationery delivered island-wide across Sri Lanka. Order via Whatsapp.">
+        content="Quality stationery items specially selected for the first letter reading ceremony. Stationery delivered island-wide across Sri Lanka. Order via WhatsApp.">
+
+
+    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+
+    <!-- Styles -->
+
     <link rel="stylesheet" href="https://bookscorner.lk/css/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="https://bookscorner.lk/css/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="https://bookscorner.lk/css/style.css">
+
     <link rel="icon" type="image/png" href="https://bookscorner.lk/images/favicon.png">
+
+
+    <!-- Alternate -->
+
     <link rel="alternate" hreflang="si" href="https://bookscorner.lk/cart">
+
     <link rel="alternate" hreflang="en" href="https://bookscorner.lk/cart">
+
     <link rel="alternate" hreflang="x-default" href="https://bookscorner.lk/cart">
-    
-    <script
-        type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Books Corner Akuru Kiyaweema","url":"https://bookscorner.lk/","logo":"https://bookscorner.lk/images/favicon.png","sameAs":["https://www.facebook.com/bookscornerLK/","https://www.instagram.com/bookscornerLK/"],"contactPoint":{"@type":"ContactPoint","telephone":"+94761909344","contactType":"customer service","availableLanguage":["Sinhala","English"]}}</script>
+
+
+    <!-- Organization Schema -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Books Corner Akuru Kiyaweema",
+        "url": "https://bookscorner.lk/",
+        "logo": "https://bookscorner.lk/images/favicon.png",
+        "sameAs": [
+            "https://www.facebook.com/bookscornerLK/",
+            "https://www.instagram.com/bookscornerLK/"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+94761909344",
+            "contactType": "customer service",
+            "availableLanguage": [
+                "Sinhala",
+                "English"
+            ]
+        }
+    }
+    </script>
+
+
+    <!-- =====================================================
+         CUSTOMER / CHECKOUT MODAL CSS
+         ===================================================== -->
+
+    <style>
+        /* =====================================================
+           CHECKOUT CHOICE OPTIONS
+           ===================================================== */
+
+        #bcCustomerOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity .28s ease,
+                visibility .28s ease;
+        }
+
+        #bcCustomerOverlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .bc-customer-overlay-bg {
+            position: absolute;
+            inset: 0;
+
+            background:
+                rgba(30, 16, 12, .58);
+
+            backdrop-filter:
+                blur(20px) saturate(135%);
+
+            -webkit-backdrop-filter:
+                blur(20px) saturate(135%);
+        }
+
+
+        .bc-customer-modal {
+            position: relative;
+            z-index: 2;
+
+            width: min(100%, 500px);
+            max-height: 92vh;
+
+            overflow-y: auto;
+
+            padding: 32px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .94),
+                    rgba(255, 245, 221, .84));
+
+            border:
+                1px solid rgba(255, 255, 255, .82);
+
+            box-shadow:
+                0 35px 90px rgba(0, 0, 0, .30),
+                inset 0 1px 0 rgba(255, 255, 255, .95);
+
+            backdrop-filter:
+                blur(30px) saturate(145%);
+
+            -webkit-backdrop-filter:
+                blur(30px) saturate(145%);
+
+            transform:
+                translateY(24px) scale(.96);
+
+            transition:
+                transform .32s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        #bcCustomerOverlay.show .bc-customer-modal {
+
+            transform:
+                translateY(0) scale(1);
+        }
+
+
+        /* Close */
+
+        .bc-customer-close {
+
+            position: absolute;
+
+            top: 16px;
+            right: 16px;
+
+            width: 40px;
+            height: 40px;
+
+            border: 0;
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            cursor: pointer;
+
+            background:
+                rgba(255, 255, 255, .68);
+
+            color:
+                #5C1E30;
+
+            font-size: 16px;
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
+        }
+
+        .bc-customer-close:hover {
+
+            transform:
+                rotate(8deg);
+
+            background:
+                rgba(255, 255, 255, .95);
+        }
+
+
+        /* Header */
+
+        .bc-customer-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding-right: 40px;
+
+            margin-bottom: 26px;
+        }
+
+
+        .bc-customer-icon {
+
+            flex: 0 0 58px;
+
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+
+            color: white;
+
+            font-size: 24px;
+
+            background:
+                linear-gradient(135deg,
+                    #C9A84C,
+                    #A8882E);
+
+            box-shadow:
+                0 12px 25px rgba(168, 136, 46, .25);
+        }
+
+
+        .bc-small-label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color:
+                #A8882E;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .18em;
+        }
+
+
+        .bc-customer-top h2 {
+
+            margin: 0;
+
+            color:
+                #2C1810;
+
+            font-family:
+                "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size: 28px;
+        }
+
+
+        .bc-customer-top p {
+
+            margin: 6px 0 0;
+
+            color:
+                #6B4C3B;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* Checkout options */
+
+        .bc-checkout-option {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                48px 1fr 24px;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            margin-bottom: 11px;
+
+            border:
+                1px solid rgba(92, 30, 48, .09);
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, .48);
+
+            color:
+                #2C1810;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        .bc-checkout-option:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(255, 255, 255, .82);
+
+            border-color:
+                rgba(201, 168, 76, .40);
+
+            box-shadow:
+                0 12px 28px rgba(60, 36, 20, .09);
+        }
+
+
+        .bc-option-icon {
+
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(201, 168, 76, .12);
+
+            color:
+                #A8882E;
+
+            font-size: 19px;
+        }
+
+
+        .bc-option-content strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .bc-option-content small {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color:
+                #806D62;
+
+            font-size: 10px;
+
+            line-height: 1.45;
+        }
+
+
+        .bc-option-arrow {
+
+            color:
+                #A8882E;
+        }
+
+
+        .bc-cart-only-option .bc-option-icon {
+
+            background:
+                rgba(123, 45, 66, .08);
+
+            color:
+                #7B2D42;
+        }
+
+
+        /* Details panel */
+
+        .bc-details-panel {
+
+            margin-top: 4px;
+
+            animation:
+                bcDetailsReveal .28s cubic-bezier(.22, 1, .36, 1);
+        }
+
+
+        .bc-details-panel[hidden] {
+            display: none;
+        }
+
+
+        @keyframes bcDetailsReveal {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        .bc-panel-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+            padding-bottom: 14px;
+
+            border-bottom:
+                1px solid rgba(92, 30, 48, .08);
+        }
+
+
+        .bc-panel-back {
+
+            width: 36px;
+            height: 36px;
+
+            flex: 0 0 auto;
+
+            display: grid;
+            place-items: center;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, .65);
+
+            color:
+                #5C1E30;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
+        }
+
+
+        .bc-panel-back:hover {
+
+            transform:
+                translateX(-2px);
+
+            background:
+                rgba(255, 255, 255, .95);
+        }
+
+
+        .bc-panel-heading strong {
+
+            display: block;
+
+            color:
+                #2C1810;
+
+            font-size: 13px;
+        }
+
+
+        .bc-panel-heading small {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                #806D62;
+
+            font-size: 10px;
+        }
+
+
+        /* Form */
+
+        .bc-form-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        .bc-form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color:
+                #5C1E30;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .bc-input-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            min-height: 52px;
+
+            padding: 0 15px;
+
+            border-radius: 15px;
+
+            border:
+                1px solid rgba(92, 30, 48, .10);
+
+            background:
+                rgba(255, 255, 255, .62);
+
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .bc-input-box:focus-within {
+
+            background:
+                rgba(255, 255, 255, .96);
+
+            border-color:
+                rgba(201, 168, 76, .8);
+
+            box-shadow:
+                0 0 0 4px rgba(201, 168, 76, .10);
+        }
+
+
+        .bc-input-box i {
+
+            flex: 0 0 auto;
+
+            color:
+                #A8882E;
+
+            font-size: 17px;
+        }
+
+
+        .bc-input-box input,
+        .bc-input-box textarea {
+
+            width: 100%;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            color:
+                #2C1810;
+
+            font-family:
+                inherit;
+
+            font-size: 14px;
+        }
+
+
+        .bc-input-box input::placeholder,
+        .bc-input-box textarea::placeholder {
+
+            color:
+                #A28E82;
+        }
+
+
+        .bc-input-box textarea {
+
+            padding:
+                14px 0;
+
+            min-height: 85px;
+
+            resize: vertical;
+        }
+
+
+        .bc-textarea-box {
+
+            align-items:
+                flex-start;
+        }
+
+
+        .bc-inline-error {
+
+            display: block;
+
+            min-height: 14px;
+
+            margin-top: 4px;
+
+            color:
+                #A23C4D;
+
+            font-size: 10px;
+        }
+
+
+        /* Note */
+
+        .bc-private-note {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 8px;
+
+            padding:
+                11px 13px;
+
+            margin:
+                4px 0 18px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(201, 168, 76, .09);
+
+            border:
+                1px solid rgba(201, 168, 76, .12);
+
+            color:
+                #6B4C3B;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .bc-private-note i {
+
+            flex: 0 0 auto;
+
+            color:
+                #A8882E;
+
+            font-size: 15px;
+        }
+
+
+        /* WhatsApp button */
+
+        .bc-whatsapp-submit {
+
+            width: 100%;
+
+            min-height: 56px;
+
+            border: 0;
+
+            border-radius: 17px;
+
+            padding:
+                0 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            cursor: pointer;
+
+            color:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(135deg,
+                    #218C4B,
+                    #25B55F);
+
+            box-shadow:
+                0 14px 30px rgba(37, 181, 95, .22);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .bc-whatsapp-submit:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 19px 36px rgba(37, 181, 95, .28);
+        }
+
+
+        .bc-whatsapp-submit:active {
+
+            transform:
+                scale(.985);
+        }
+
+
+        .bc-whatsapp-submit i {
+
+            font-size: 21px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            #bcCustomerOverlay {
+
+                align-items:
+                    flex-end;
+
+                padding: 0;
+            }
+
+
+            .bc-customer-modal {
+
+                width: 100%;
+
+                max-height: 94vh;
+
+                padding:
+                    25px 19px calc(20px + env(safe-area-inset-bottom));
+
+                border-radius:
+                    28px 28px 0 0;
+
+                transform:
+                    translateY(100%);
+            }
+
+
+            #bcCustomerOverlay.show .bc-customer-modal {
+
+                transform:
+                    translateY(0);
+            }
+
+
+            .bc-customer-top h2 {
+
+                font-size: 25px;
+            }
+
+
+            .bc-checkout-option {
+
+                grid-template-columns:
+                    44px 1fr 20px;
+
+                padding:
+                    12px;
+            }
+
+
+            .bc-option-icon {
+
+                width: 44px;
+                height: 44px;
+            }
+
+        }
+    </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+
         <div class="container nav-inner">
+
+
+            <!-- Logo -->
+
             <a href="../" class="nav-logo" aria-label="Books Corner Home">
+
                 <img src="../src/Untitled-1.png" alt="Books Corner Logo" onerror="this.style.display='none'"
-                    style="display: none;">
+                    style="display:none;">
+
+
                 <div class="nav-logo-text">
-                    <img id="logo" src="../src/Untitled-1.png">
+
+                    <img id="logo" src="../src/Untitled-1.png" alt="Books Corner">
+
                 </div>
+
             </a>
 
+
+            <!-- Links -->
+
             <div class="nav-links" role="list">
-                <a href="../" class="nav-link">Home</a>
-                <a href="https://bookscorner.lk/products" class="nav-link ">Products</a>
-                <a href="https://bookscorner.lk/stationery" class="nav-link">Stationery</a>
-                <a href="https://bookscorner.lk/album" class="nav-link ">Happy Customers</a>
-                <a href="https://bookscorner.lk/contact-us" class="nav-link ">Contact</a>
+
+                <a href="../" class="nav-link">
+                    Home
+                </a>
+
+                <a href="https://bookscorner.lk/products" class="nav-link">
+                    Products
+                </a>
+
+                <a href="https://bookscorner.lk/stationery" class="nav-link">
+                    Stationery
+                </a>
+
+                <a href="https://bookscorner.lk/album" class="nav-link">
+                    Happy Customers
+                </a>
+
+                <a href="https://bookscorner.lk/contact-us" class="nav-link">
+                    Contact
+                </a>
+
             </div>
+
+
+            <!-- Actions -->
 
             <div class="nav-actions">
-                <!-- WhatsApp full button (desktop) -->
+
+
+                <!-- WhatsApp -->
+
                 <a href="https://wa.me/94761909344" id="navWhatsapp" data-wa="94761909344" target="_blank"
                     rel="noopener" class="nav-whatsapp" aria-label="Chat on WhatsApp">
+
                     <i class="bi bi-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a>
-                <!-- WhatsApp icon-only (mobile) -->
-                <a href="https://wa.me/94761909344" data-wa="94761909344" target="_blank" rel="noopener"
-                    class="nav-whatsapp-icon" aria-label="WhatsApp">
-                    <i class="bi bi-whatsapp"></i>
+
+                    <span>
+                        WhatsApp
+                    </span>
+
                 </a>
 
-                <!-- Cart -->
-                <a href="" class="cart-btn" aria-label="View cart" title="Cart">
-                    <i class="bi bi-bag  active"></i>
-                    <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
+
+                <!-- Mobile WhatsApp -->
+
+                <a href="https://wa.me/94761909344" data-wa="94761909344" target="_blank" rel="noopener"
+                    class="nav-whatsapp-icon" aria-label="WhatsApp">
+
+                    <i class="bi bi-whatsapp"></i>
+
                 </a>
+
+
+                <!-- Cart -->
+
+                <a href="" class="cart-btn" aria-label="View cart" title="Cart">
+
+                    <i class="bi bi-bag active"></i>
+
+                    <span class="cart-badge" id="cartBadge" aria-live="polite">
+                        0
+                    </span>
+
+                </a>
+
 
             </div>
 
+
+            <!-- Hamburger -->
+
             <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+
                 <i class="bi bi-list"></i>
+
             </button>
+
         </div>
+
     </nav>
 
-    <!-- MOBILE DRAWER -->
+
+
+    <!-- =====================================================
+         MOBILE DRAWER
+         ===================================================== -->
+
     <div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Mobile menu">
-        <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
-        <a href="../" class="nav-link">Home</a>
-        <a href="https://bookscorner.lk/products" class="nav-link">Products</a>
-        <a href="https://bookscorner.lk/stationery" class="nav-link">Stationery</a>
-        <a href="https://bookscorner.lk/album" class="nav-link">Happy Customers</a>
-        <!-- <a href="/blog" class="nav-link">Akuru Kiyaweeme Charithraya</a> -->
-        <a href="/contact-us" class="nav-link">Contact</a>
-        <a href="https://wa.me/94761909344" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"
-            style="margin-top:0.5rem;justify-content:center">
-            <i class="bi bi-whatsapp"></i> Order on WhatsApp
+
+        <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">
+            ×
+        </button>
+
+
+        <a href="../" class="nav-link">
+            Home
         </a>
+
+
+        <a href="https://bookscorner.lk/products" class="nav-link">
+            Products
+        </a>
+
+
+        <a href="https://bookscorner.lk/stationery" class="nav-link">
+            Stationery
+        </a>
+
+
+        <a href="https://bookscorner.lk/album" class="nav-link">
+            Happy Customers
+        </a>
+
+
+        <a href="/contact-us" class="nav-link">
+            Contact
+        </a>
+
+
+        <a href="https://wa.me/94761909344" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"
+            style="margin-top:.5rem;justify-content:center">
+
+            <i class="bi bi-whatsapp"></i>
+
+            Order on WhatsApp
+
+        </a>
+
     </div>
 
 
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
     <main id="main-content">
 
-        <div class="page-header">
-            <div class="container">
-                <nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://bookscorner.lk/">Home</a><span
-                        class="breadcrumb-sep" aria-hidden="true">›</span><span>My Cart</span></nav>
-                <h1>My Cart</h1>
-                <p>Review your items and place your order via WhatsApp</p>
-            </div>
-        </div>
 
-        <section class="section-sm">
-            <div class="container">
-                <center>
-                    <h1 style="font-family: 'Outfit', Georgia, serif;"> BOOKSCORNER.LK </h1>
-                </center>
+        <section class="bc-cart-experience" aria-label="Shopping cart">
 
-                <div class="cart-page-layout">
 
-                    <!-- Cart Items (rendered by JS) -->
-                    <div class="cart-table-wrap" id="cartItems">
-                        <div style="padding:3rem;text-align:center;color:var(--text-muted)">
-                            <div class="bi bi-hourglass-split" style="font-size:2rem;display:block;margin-bottom:1rem">
-                            </div>
-                            Loading cart…
-                        </div>
+            <!-- Background -->
+
+            <div class="bc-cart-orb bc-cart-orb-a" aria-hidden="true"></div>
+
+            <div class="bc-cart-orb bc-cart-orb-b" aria-hidden="true"></div>
+
+            <div class="bc-cart-orb bc-cart-orb-c" aria-hidden="true"></div>
+
+            <div class="bc-cart-noise" aria-hidden="true"></div>
+
+
+            <div class="container bc-cart-shell">
+
+
+                <!-- Heading -->
+
+                <div class="bc-cart-heading">
+
+
+                    <!-- Breadcrumb -->
+
+                    <div class="bc-cart-breadcrumb">
+
+                        <a href="https://bookscorner.lk/">
+                            Home
+                        </a>
+
+                        <span>
+                            /
+                        </span>
+
+                        <span>
+                            Cart
+                        </span>
+
                     </div>
 
-                    <!-- Order Summary -->
-                    <aside class="order-summary" id="cartSummary">
-                        <h3>Order Summary</h3>
-                        <div class="summary-row">
-                            <span>Items</span>
-                            <span id="summaryCount">0 items</span>
+
+                    <!-- Main heading -->
+
+                    <div class="bc-cart-heading-row">
+
+                        <div>
+
+
+                            <div class="bc-cart-eyebrow">
+
+                                <span></span>
+
+                                BOOKS CORNER
+                                · My Cart
+
+                            </div>
+
+
+                            <h1>
+                                My<em>Cart
+                                </em>
+                            </h1>
+
+
+                            <p>
+                                Everything you chose,
+                                gathered in one beautiful place.
+                            </p>
+
                         </div>
-                        <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span id="summarySubtotal">Rs. 0</span>
+
+
+                        <!-- Secure -->
+
+                        <div class="bc-cart-secure-pill">
+
+                            <i class="bi bi-shield-check"></i>
+
+
+                            <div>
+
+                                <strong>
+                                    Simple &amp; secure
+                                </strong>
+
+                                <small>
+                                    Order directly on WhatsApp
+                                </small>
+
+                            </div>
+
                         </div>
-                        <div class="summary-row" id="summaryDeliveryRow">
-                            <span>Delivery</span>
-                            <span id="summaryDelivery">Rs. 350</span>
-                        </div>
-                        <div class="summary-total">
-                            <span>Total</span>
-                            <span id="summaryTotal">Rs. 0</span>
-                        </div>
-                        <div style="margin-top:var(--s5);display:flex;flex-direction:column;gap:var(--s3)">
-                            <a id="checkoutWhatsapp" data-wa="94761909344" class="btn btn-whatsapp btn-lg btn-block">
-                                <i class="bi bi-whatsapp"></i> Order via WhatsApp
-                            </a>
-                            <a href="https://bookscorner.lk/products" class="btn btn-outline-gold btn-block">
-                                <i class="bi bi-arrow-left"></i> Continue Shopping
-                            </a>
-                        </div>
-                        <div
-                            style="margin-top:var(--s5);padding:var(--s4);background:var(--gold-bg);border-radius:var(--r-md);border:1px solid var(--cream-border);font-size:0.8rem;color:var(--text-secondary);line-height:1.6">
-                            <i class="bi bi-info-circle" style="color:var(--gold-dark);margin-right:0.4rem"></i>
-                            Clicking <strong>Order via WhatsApp</strong> will open WhatsApp with your full order details
-                            pre-filled. Our team will confirm availability and arrange delivery.
-                        </div>
-                    </aside>
+
+                    </div>
+
                 </div>
+
+
+                <!-- Progress -->
+
+                <div class="bc-cart-progress" aria-hidden="true">
+
+                    <div class="bc-cart-progress-step active">
+
+                        <span>
+                            1
+                        </span>
+
+                        <b>
+                            Cart
+                        </b>
+
+                    </div>
+
+
+                    <i></i>
+
+
+                    <div class="bc-cart-progress-step">
+
+                        <span>
+                            2
+                        </span>
+
+                        <b>
+                            Whatsapp
+                        </b>
+
+                    </div>
+
+
+                    <i></i>
+
+
+                    <div class="bc-cart-progress-step">
+
+                        <span>
+                            3
+                        </span>
+
+                        <b>
+                            Confirm
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Cart Layout -->
+
+                <div class="cart-page-layout bc-cart-layout">
+
+
+                    <!-- Cart items -->
+
+                    <div class="cart-table-wrap bc-cart-items-panel" id="cartItems">
+
+                        <div class="bc-cart-loading">
+
+                            <div class="bc-loading-ring"></div>
+
+                            <span>
+                                Preparing your cart…
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Summary -->
+
+                    <aside class="order-summary bc-order-summary" id="cartSummary">
+
+
+                        <div class="bc-summary-topline">
+
+                            <span>
+                                YOUR ORDER
+                            </span>
+
+                            <i class="bi bi-bag-heart"></i>
+
+                        </div>
+
+
+                        <div class="bc-summary-title-row">
+
+                            <h2>
+                                Order summary
+                            </h2>
+
+                            <div class="bc-summary-live">
+
+                                <span></span>
+
+                                Live
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="bc-summary-card">
+
+
+                            <div class="summary-row">
+
+                                <span>
+
+                                    <i class="bi bi-grid-3x3-gap"></i>
+
+                                    Items
+
+                                </span>
+
+
+                                <span id="summaryCount">
+                                    0 items
+                                </span>
+
+                            </div>
+
+
+                            <div class="summary-row">
+
+                                <span>
+
+                                    <i class="bi bi-receipt"></i>
+
+                                    Subtotal
+
+                                </span>
+
+
+                                <span id="summarySubtotal">
+                                    Rs. 0
+                                </span>
+
+                            </div>
+
+
+                            <div class="summary-row" id="summaryDeliveryRow">
+
+                                <span>
+
+                                    <i class="bi bi-truck"></i>
+
+                                    Delivery
+
+                                </span>
+
+
+                                <span id="summaryDelivery">
+                                    Rs. 350
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- Total -->
+
+                        <div class="bc-total-card">
+
+                            <div>
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <small>
+                                    Including delivery
+                                </small>
+
+                            </div>
+
+
+                            <strong id="summaryTotal">
+                                Rs. 0
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Checkout -->
+
+                        <div class="bc-checkout-actions">
+
+
+                            <a href="#" id="checkoutWhatsapp" data-wa="94761909344"
+                                class="btn btn-whatsapp btn-lg btn-block bc-whatsapp-checkout">
+
+                                <i class="bi bi-whatsapp"></i>
+
+
+                                <span>
+
+                                    Order via WhatsApp
+
+                                    <small>
+                                        We'll prepare your order
+                                    </small>
+
+                                </span>
+
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+
+                            <a href="https://bookscorner.lk/products"
+                                class="btn btn-outline-gold btn-block bc-continue-shopping">
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Continue Shopping
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- Note -->
+
+                        <div class="bc-order-note">
+
+                            <div class="bc-note-icon">
+
+                                <i class="bi bi-stars"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    A little note from us
+                                </strong>
+
+                                <p>
+                                    Your order details will be
+                                    pre-filled in WhatsApp.
+                                    Our team will confirm
+                                    availability and arrange delivery.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Trust -->
+
+                        <div class="bc-summary-trust">
+
+                            <span>
+
+                                <i class="bi bi-truck"></i>
+
+                                Island-wide delivery
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="bi bi-chat-heart"></i>
+
+                                Personal support
+
+                            </span>
+
+                        </div>
+
+                    </aside>
+
+
+                </div>
+
             </div>
+
         </section>
 
-        <script>window.BC_DELIVERY = 350;</script>
+
+        <script>
+            window.BC_DELIVERY = 350;
+        </script>
+
     </main>
 
-    <!-- FLOATING WHATSAPP -->
+
+
+    <!-- =====================================================
+         FLOATING WHATSAPP
+         ===================================================== -->
+
     <a href="https://wa.me/94761909344" id="floatWhatsapp" data-wa="94761909344" target="_blank" rel="noopener"
         class="whatsapp-float" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+
         <i class="bi bi-whatsapp"></i>
+
     </a>
-    <!-- FOOTER -->
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
     <footer class="footer" role="contentinfo">
+
         <div class="container">
+
+
             <div class="footer-grid">
+
+
+                <!-- Brand -->
+
                 <div class="footer-brand">
+
                     <div class="footer-logo">
+
                         Books Corner PVT (LTD)
-                        <span>සෞභාග්‍යයේ අකුරු කියවීමේ කට්ටලය</span>
+
+                        <span>
+                            සෞභාග්‍යයේ අකුරු කියවීමේ කට්ටලය
+                        </span>
+
                     </div>
-                    <p class="footer-desc">Welcoming your little one to the world of letters is the most beautiful
-                        milestone of their childhood. 💖 We have lovingly gathered everything you need for their sacred
-                        'First Letter Reading Ceremony' in one premium, all-in-one place. Let us help you create a
-                        memory you will cherish forever. 🌞</p>
+
+
+                    <p class="footer-desc">
+
+                        Welcoming your little one
+                        to the world of letters is
+                        the most beautiful milestone
+                        of their childhood. 💖
+
+                        We have lovingly gathered
+                        everything you need for their
+                        sacred 'First Letter Reading
+                        Ceremony' in one premium,
+                        all-in-one place.
+
+                        Let us help you create a
+                        memory you will cherish forever. 🌞
+
+                    </p>
+
+
                     <div class="footer-social">
+
                         <a href="https://web.facebook.com/bookscornerLK/" target="_blank" rel="noopener"
-                            aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/bookscornerLK/" target="_blank" rel="noopener"
-                            aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.youtube.com/@bookscornerlk" target="_blank" rel="noopener"
-                            aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                        <a href="https://www.tiktok.com/@bookscornerlk" target="_blank" rel="noopener"
-                            aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-                        <a href="https://wa.me/94761909344" target="_blank" rel="noopener" aria-label="WhatsApp"><i
-                                class="bi bi-whatsapp"></i></a>
-                    </div>
-                </div>
+                            aria-label="Facebook">
 
-                <div class="footer-col">
-                    <h4>Shop</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://bookscorner.lk/akuru-kiyaweeme-kattalaya">Akuru Kiyaweeme Kattala</a></li>
-                        <li><a href="https://bookscorner.lk/essentials">Other Essentials</a></li>
-                        <li><a href="https://bookscorner.lk/book-packages">Book Packages</a></li>
-                        <li><a href="https://bookscorner.lk/stationery">Stationery Items</a></li>
-                        <li><a href="https://bookscorner.lk/toys&puzzles">Toys & Puzzles</a></li>
-                        <li><a href="https://bookscorner.lk/kids&school-essentials">Kids & School Essentials</a></li>
-                    </ul>
-                </div>
+                            <i class="bi bi-facebook"></i>
 
-                <div class="footer-col">
-                    <h4>Pages</h4>
-                    <ul class="footer-links">
-                        <li><a href="../">Home</a></li>
-                        <li><a href="https://bookscorner.lk/products">All Products</a></li>
-                        <li><a href="https://bookscorner.lk/album">Happy Customers</a></li>
-                        <li><a href="https://bookscorner.lk/contact-us">Contact Us</a></li>
-                        <li><a href="https://bookscorner.lk/cart">My Cart</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <div class="footer-contact-item"><i class="bi bi-telephone"></i><span>078 910 2974</span></div>
-                    <div class="footer-contact-item">
-                        <i class="bi bi-whatsapp"></i>
-                        <a href="https://wa.me/94761909344" target="_blank" style="color:rgba(255,255,255,0.6)">
-                            +94761909344 </a>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="bi bi-envelope"></i>
-                        <a href="mailto:bookscornerlk@gmail.com" style="color:rgba(255,255,255,0.6)">
-                            <span class="__cf_email__">bookscornerlk@gmail.com</span>
                         </a>
+
+
+                        <a href="https://www.instagram.com/bookscornerLK/" target="_blank" rel="noopener"
+                            aria-label="Instagram">
+
+                            <i class="bi bi-instagram"></i>
+
+                        </a>
+
+
+                        <a href="https://www.youtube.com/@bookscornerlk" target="_blank" rel="noopener"
+                            aria-label="YouTube">
+
+                            <i class="bi bi-youtube"></i>
+
+                        </a>
+
+
+                        <a href="https://www.tiktok.com/@bookscornerlk" target="_blank" rel="noopener"
+                            aria-label="TikTok">
+
+                            <i class="bi bi-tiktok"></i>
+
+                        </a>
+
+
+                        <a href="https://wa.me/94761909344" target="_blank" rel="noopener" aria-label="WhatsApp">
+
+                            <i class="bi bi-whatsapp"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Shop -->
+
+                <div class="footer-col">
+
+                    <h4>
+                        Shop
+                    </h4>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="https://bookscorner.lk/akuru-kiyaweeme-kattalaya">
+                                Akuru Kiyaweeme Kattala
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/essentials">
+                                Other Essentials
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/book-packages">
+                                Book Packages
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/stationery">
+                                Stationery Items
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/toys&puzzles">
+                                Toys &amp; Puzzles
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/kids&school-essentials">
+                                Kids &amp; School Essentials
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Pages -->
+
+                <div class="footer-col">
+
+                    <h4>
+                        Pages
+                    </h4>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="../">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/products">
+                                All Products
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/album">
+                                Happy Customers
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/contact-us">
+                                Contact Us
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://bookscorner.lk/cart">
+                                My Cart
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Contact -->
+
+                <div class="footer-col">
+
+                    <h4>
+                        Contact
+                    </h4>
+
+
+                    <div class="footer-contact-item">
+
+                        <i class="bi bi-telephone"></i>
+
+                        <span>
+                            078 910 2974
+                        </span>
+
                     </div>
 
 
-                    <div class="footer-contact-item"><i class="bi bi-geo-alt"></i><span>Anderson RD, <br>
-                            Colombo 05</span></div>
+                    <div class="footer-contact-item">
+
+                        <i class="bi bi-whatsapp"></i>
+
+                        <a href="https://wa.me/94761909344" target="_blank" style="color:rgba(255,255,255,0.6)">
+                            +94761909344
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-contact-item">
+
+                        <i class="bi bi-envelope"></i>
+
+                        <a href="mailto:bookscornerlk@gmail.com" style="color:rgba(255,255,255,0.6)">
+                            bookscornerlk@gmail.com
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-contact-item">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        <span>
+                            Anderson RD,
+                            <br>
+                            Colombo 05
+                        </span>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
 
         <div class="footer-bottom">
-            <div class="container"
-                style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;width:100%">
-                <span>© 2026 Books Corner PVT (LTD). All rights reserved.</span>
-                <span>For the first and most important one.</span>
+
+            <div class="container" style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    flex-wrap:wrap;
+                    gap:.5rem;
+                    width:100%
+                ">
+
+                <span>
+                    © 2026 Books Corner PVT (LTD).
+                    All rights reserved.
+                </span>
+
+                <span>
+                    For the first and most important one.
+                </span>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
     <script data-cfasync="false" src="../js/email-decode.min.js"></script>
+
     <script src="../js/swiper-bundle.min.js"></script>
-    <script src="https://bookscorner.lk/js/cart.js?v=10"></script>
+
+    <script src="../js/cart.js"></script>
+
     <script src="../js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/admin/js/supabase.js"></script>
-    <script src="/admin/js/products.js"></script>
+
+
+    <!-- =====================================================
+         CART GLASS SYSTEM
+         ===================================================== -->
+
+    <style id="bc-cart-glass-system">
+        :root {
+
+            --bc-glass-bg:
+                rgba(255, 255, 255, .54);
+
+            --bc-glass-strong:
+                rgba(255, 255, 255, .72);
+
+            --bc-glass-border:
+                rgba(255, 255, 255, .76);
+
+            --bc-glass-line:
+                rgba(92, 52, 30, .10);
+
+            --bc-ink:
+                #29170f;
+
+            --bc-muted:
+                #806d62;
+
+            --bc-gold:
+                #c9a84c;
+
+            --bc-gold-deep:
+                #9a7420;
+
+            --bc-burgundy:
+                #7b2d42;
+
+            --bc-radius:
+                30px;
+
+            --bc-ease:
+                cubic-bezier(.22, 1, .36, 1);
+        }
+
+
+        /* Cart experience */
+
+        .bc-cart-experience {
+
+            position: relative;
+
+            isolation: isolate;
+
+            overflow: hidden;
+
+            min-height: 760px;
+
+            padding:
+                42px 0 100px;
+
+            background:
+                radial-gradient(circle at 9% 18%,
+                    rgba(201, 168, 76, .19),
+                    transparent 24%),
+                radial-gradient(circle at 88% 22%,
+                    rgba(123, 45, 66, .12),
+                    transparent 25%),
+                radial-gradient(circle at 65% 92%,
+                    rgba(239, 197, 84, .16),
+                    transparent 30%),
+                linear-gradient(135deg,
+                    #fbf8f0 0%,
+                    #f5eee1 48%,
+                    #fffdf9 100%);
+        }
+
+
+        .bc-cart-experience::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+                linear-gradient(115deg,
+                    transparent 0 35%,
+                    rgba(255, 255, 255, .72) 50%,
+                    transparent 65%);
+
+            transform:
+                translateX(-55%);
+
+            animation:
+                bcGlassSweep 15s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+
+        .bc-cart-noise {
+
+            position:
+                absolute;
+
+            inset: 0;
+
+            z-index: -1;
+
+            pointer-events: none;
+
+            opacity: .18;
+
+            background-image:
+                radial-gradient(rgba(41, 23, 15, .18) .55px,
+                    transparent .55px);
+
+            background-size:
+                7px 7px;
+
+            mix-blend-mode:
+                multiply;
+        }
+
+
+        .bc-cart-orb {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            filter: blur(2px);
+
+            z-index: -1;
+
+            opacity: .72;
+        }
+
+
+        .bc-cart-orb-a {
+
+            width: 280px;
+            height: 280px;
+
+            left: -120px;
+            top: 260px;
+
+            background:
+                rgba(201, 168, 76, .17);
+        }
+
+
+        .bc-cart-orb-b {
+
+            width: 380px;
+            height: 380px;
+
+            right: -170px;
+            top: 80px;
+
+            background:
+                rgba(123, 45, 66, .11);
+        }
+
+
+        .bc-cart-orb-c {
+
+            width: 240px;
+            height: 240px;
+
+            right: 22%;
+            bottom: -130px;
+
+            background:
+                rgba(255, 214, 108, .15);
+        }
+
+
+        .bc-cart-shell {
+
+            position:
+                relative;
+
+            z-index: 1;
+        }
+
+
+        /* Heading */
+
+        .bc-cart-heading {
+
+            margin-bottom: 26px;
+        }
+
+
+        .bc-cart-breadcrumb {
+
+            display: flex;
+
+            gap: 8px;
+
+            align-items: center;
+
+            font-size: .76rem;
+
+            letter-spacing: .04em;
+
+            color:
+                var(--bc-muted);
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .bc-cart-breadcrumb a {
+
+            color:
+                var(--bc-gold-deep);
+
+            font-weight: 600;
+        }
+
+
+        .bc-cart-heading-row {
+
+            display: flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap: 24px;
+        }
+
+
+        .bc-cart-eyebrow {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: .68rem;
+
+            letter-spacing: .18em;
+
+            font-weight: 700;
+
+            color:
+                var(--bc-gold-deep);
+
+            margin-bottom: 10px;
+        }
+
+
+        .bc-cart-eyebrow span {
+
+            width: 26px;
+
+            height: 1px;
+
+            background:
+                var(--bc-gold);
+
+            display: block;
+        }
+
+
+        .bc-cart-heading h1 {
+
+         
+
+            font-size:
+                clamp(2.7rem,
+                    5vw,
+                    5rem);
+
+          
+
+            letter-spacing:
+                -.045em;
+
+            line-height: .98;
+font-weight: 800;
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-cart-heading h1 em {
+
+            color:
+                var(--bc-burgundy);
+
+            
+
+            font-weight: 800;
+        }
+
+
+        .bc-cart-heading p {
+
+            margin-top:
+                13px;
+
+            color:
+                var(--bc-muted);
+
+            font-size:
+                .95rem;
+        }
+
+
+        /* Secure pill */
+
+        .bc-cart-secure-pill {
+
+            display: flex;
+
+            align-items:
+                center;
+
+            gap: 12px;
+
+            padding:
+                12px 16px;
+
+            border:
+                1px solid var(--bc-glass-border);
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(255, 255, 255, .38);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+                0 10px 35px rgba(70, 42, 25, .07);
+        }
+
+
+        .bc-cart-secure-pill>i {
+
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                12px;
+
+            background:
+                rgba(201, 168, 76, .15);
+
+            color:
+                var(--bc-gold-deep);
+        }
+
+
+        .bc-cart-secure-pill strong,
+        .bc-cart-secure-pill small {
+
+            display: block;
+        }
+
+
+        .bc-cart-secure-pill strong {
+
+            font-size:
+                .78rem;
+
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-cart-secure-pill small {
+
+            font-size:
+                .66rem;
+
+            color:
+                var(--bc-muted);
+
+            margin-top:
+                2px;
+        }
+
+
+        /* Progress */
+
+        .bc-cart-progress {
+
+            display: flex;
+
+            align-items:
+                center;
+
+            max-width:
+                510px;
+
+            margin:
+                0 0 28px auto;
+
+            padding:
+                11px 14px;
+
+            border:
+                1px solid rgba(255, 255, 255, .72);
+
+            background:
+                rgba(255, 255, 255, .35);
+
+            border-radius:
+                999px;
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+        }
+
+
+        .bc-cart-progress>i {
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                rgba(125, 95, 65, .17);
+
+            margin:
+                0 8px;
+        }
+
+
+        .bc-cart-progress-step {
+
+            display: flex;
+
+            align-items:
+                center;
+
+            gap: 7px;
+
+            color:
+                #9c8d82;
+
+            font-size:
+                .68rem;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .bc-cart-progress-step span {
+
+            width: 24px;
+            height: 24px;
+
+            display: grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                50%;
+
+            border:
+                1px solid rgba(125, 95, 65, .17);
+
+            font-size:
+                .64rem;
+        }
+
+
+        .bc-cart-progress-step.active {
+
+            color:
+                var(--bc-gold-deep);
+
+            font-weight:
+                700;
+        }
+
+
+        .bc-cart-progress-step.active span {
+
+            background:
+                var(--bc-gold);
+
+            border-color:
+                var(--bc-gold);
+
+            color:
+                white;
+
+            box-shadow:
+                0 4px 16px rgba(201, 168, 76, .25);
+        }
+
+
+        /* Layout */
+
+        .bc-cart-layout {
+
+            margin-top:
+                0 !important;
+
+            grid-template-columns:
+                minmax(0, 1fr) minmax(330px, 390px) !important;
+
+            gap:
+                26px !important;
+
+            align-items:
+                start;
+        }
+
+
+        /* Glass panels */
+
+        .bc-cart-items-panel,
+        .bc-order-summary {
+
+            border:
+                1px solid var(--bc-glass-border) !important;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .68),
+                    rgba(255, 255, 255, .34)) !important;
+
+            box-shadow:
+                0 25px 70px rgba(73, 45, 28, .10),
+                inset 0 1px rgba(255, 255, 255, .85) !important;
+
+            backdrop-filter:
+                blur(25px) saturate(135%);
+
+            -webkit-backdrop-filter:
+                blur(25px) saturate(135%);
+        }
+
+
+        .bc-cart-items-panel {
+
+            min-height:
+                300px;
+
+            border-radius:
+                var(--bc-radius) !important;
+
+            overflow:
+                hidden;
+        }
+
+
+        /* Cart table */
+
+        .bc-cart-items-panel .cart-table {
+
+            border-collapse:
+                separate !important;
+
+            border-spacing:
+                0 10px !important;
+
+            padding:
+                8px 12px 12px;
+        }
+
+
+        .bc-cart-items-panel .cart-table thead {
+
+            background:
+                transparent !important;
+        }
+
+
+        .bc-cart-items-panel .cart-table th {
+
+            background:
+                transparent !important;
+
+            border: 0 !important;
+
+            color:
+                #9a8779 !important;
+
+            font-size:
+                .64rem !important;
+
+            letter-spacing:
+                .12em !important;
+
+            padding:
+                13px 14px !important;
+        }
+
+
+        .bc-cart-items-panel .cart-table tbody tr {
+
+            background:
+                rgba(255, 255, 255, .47);
+
+            box-shadow:
+                0 9px 26px rgba(55, 35, 23, .055);
+
+            transition:
+                transform .45s var(--bc-ease),
+                box-shadow .45s var(--bc-ease),
+                background .45s var(--bc-ease) !important;
+        }
+
+
+        .bc-cart-items-panel .cart-table tbody tr:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(255, 255, 255, .73);
+
+            box-shadow:
+                0 18px 38px rgba(55, 35, 23, .10);
+        }
+
+
+        .bc-cart-items-panel .cart-table td {
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, .62) !important;
+
+            padding:
+                15px 14px !important;
+
+            background:
+                transparent !important;
+        }
+
+
+        .bc-cart-items-panel .cart-table tbody tr:first-child td:first-child {
+
+            border-radius:
+                20px 0 0 20px;
+        }
+
+
+        .bc-cart-items-panel .cart-table tbody tr:first-child td:last-child {
+
+            border-radius:
+                0 20px 20px 0;
+        }
+
+
+        .bc-cart-items-panel .cart-item-img {
+
+            width: 78px !important;
+            height: 78px !important;
+
+            border-radius:
+                18px !important;
+
+            object-fit:
+                cover;
+
+            box-shadow:
+                0 8px 20px rgba(55, 35, 23, .12);
+
+            border:
+                1px solid rgba(255, 255, 255, .8);
+        }
+
+
+        .bc-cart-items-panel .cart-item-name {
+
+            font-size:
+                .93rem;
+
+            color:
+                var(--bc-ink) !important;
+        }
+
+
+        .bc-cart-items-panel .cart-item-name-si {
+
+            color:
+                #8a7668 !important;
+
+            margin-top:
+                3px;
+        }
+
+
+        .bc-cart-items-panel .qty-stepper {
+
+            padding:
+                4px;
+
+            border:
+                1px solid rgba(119, 89, 60, .12);
+
+            background:
+                rgba(255, 255, 255, .56);
+
+            border-radius:
+                999px;
+
+            gap:
+                3px;
+        }
+
+
+        .bc-cart-items-panel .qty-stepper button {
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            border:
+                0 !important;
+
+            border-radius:
+                50%;
+
+            background:
+                transparent !important;
+
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-cart-items-panel .qty-stepper button:hover {
+
+            background:
+                rgba(201, 168, 76, .16) !important;
+
+            color:
+                var(--bc-gold-deep);
+        }
+
+
+        .bc-cart-items-panel .qty-stepper input {
+
+            border:
+                0 !important;
+
+            background:
+                transparent !important;
+
+            width:
+                34px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--bc-ink);
+
+            outline:
+                none;
+        }
+
+
+        .bc-cart-items-panel .cart-remove {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            border-radius:
+                50%;
+
+            color:
+                #a38f82 !important;
+
+            background:
+                rgba(255, 255, 255, .4);
+        }
+
+
+        .bc-cart-items-panel .cart-remove:hover {
+
+            color:
+                #b3263e !important;
+
+            background:
+                rgba(179, 38, 62, .09) !important;
+
+            transform:
+                rotate(8deg) scale(1.06);
+        }
+
+
+        /* Loading */
+
+        .bc-cart-loading {
+
+            min-height:
+                320px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            align-content:
+                center;
+
+            gap:
+                14px;
+
+            color:
+                var(--bc-muted);
+
+            font-size:
+                .8rem;
+        }
+
+
+        .bc-loading-ring {
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border-radius:
+                50%;
+
+            border:
+                2px solid rgba(201, 168, 76, .18);
+
+            border-top-color:
+                var(--bc-gold);
+
+            animation:
+                bcSpin .8s linear infinite;
+        }
+
+
+        /* Order summary */
+
+        .bc-order-summary {
+
+            border-radius:
+                var(--bc-radius) !important;
+
+            padding:
+                23px !important;
+
+            position:
+                sticky;
+
+            top:
+                90px !important;
+
+            overflow:
+                hidden;
+        }
+
+
+        .bc-order-summary::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                -80px;
+
+            top:
+                -100px;
+
+            width:
+                220px;
+
+            height:
+                220px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255, 255, 255, .45);
+
+            filter:
+                blur(4px);
+
+            pointer-events:
+                none;
+        }
+
+
+        .bc-summary-topline {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            color:
+                #a58b75;
+
+            font-size:
+                .62rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .16em;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .bc-summary-topline i {
+
+            color:
+                var(--bc-gold-deep);
+
+            font-size:
+                1rem;
+        }
+
+
+        .bc-summary-title-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .bc-summary-title-row h2 {
+
+            font-family:
+                'Playfair Display',
+                Georgia,
+                serif;
+
+            font-size:
+                1.65rem;
+
+            font-weight:
+                600;
+
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-summary-live {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            font-size:
+                .62rem;
+
+            color:
+                #71836f;
+        }
+
+
+        .bc-summary-live span {
+
+            width:
+                6px;
+
+            height:
+                6px;
+
+            border-radius:
+                50%;
+
+            background:
+                #58a66b;
+
+            box-shadow:
+                0 0 0 5px rgba(88, 166, 107, .10);
+
+            animation:
+                bcPulse 2s infinite;
+        }
+
+
+        .bc-summary-card {
+
+            padding:
+                14px 0;
+
+            border-top:
+                1px solid var(--bc-glass-line);
+
+            border-bottom:
+                1px solid var(--bc-glass-line);
+        }
+
+
+        .bc-order-summary .summary-row {
+
+            align-items:
+                center;
+
+            margin:
+                0;
+
+            padding:
+                9px 0;
+
+            color:
+                #88766b !important;
+
+            font-size:
+                .8rem;
+        }
+
+
+        .bc-order-summary .summary-row span:first-child {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+        }
+
+
+        .bc-order-summary .summary-row i {
+
+            width:
+                22px;
+
+            color:
+                var(--bc-gold-deep);
+
+            font-size:
+                .82rem;
+        }
+
+
+        .bc-order-summary .summary-row span:last-child {
+
+            color:
+                var(--bc-ink);
+
+            font-weight:
+                600;
+        }
+
+
+        .bc-total-card {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                14px;
+
+            padding:
+                20px 0 18px;
+        }
+
+
+        .bc-total-card span {
+
+            display:
+                block;
+
+            font-size:
+                .9rem;
+
+            font-weight:
+                700;
+
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-total-card small {
+
+            display:
+                block;
+
+            font-size:
+                .62rem;
+
+            color:
+                #9b877b;
+
+            margin-top:
+                3px;
+        }
+
+
+        .bc-total-card strong {
+
+            font-family:
+                'Playfair Display',
+                Georgia,
+                serif;
+
+            font-size:
+                1.7rem;
+
+            color:
+                var(--bc-burgundy);
+
+            letter-spacing:
+                -.03em;
+        }
+
+
+        .bc-checkout-actions {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                10px;
+        }
+
+
+        .bc-whatsapp-checkout {
+
+            min-height:
+                62px !important;
+
+            border-radius:
+                19px !important;
+
+            padding:
+                9px 12px !important;
+
+            display:
+                grid !important;
+
+            grid-template-columns:
+                35px 1fr 20px;
+
+            align-items:
+                center;
+
+            text-align:
+                left;
+
+            gap:
+                9px;
+
+            background:
+                linear-gradient(135deg,
+                    #218c4b,
+                    #25b55f) !important;
+
+            box-shadow:
+                0 15px 30px rgba(37, 181, 95, .22) !important;
+
+            border:
+                1px solid rgba(255, 255, 255, .36) !important;
+
+            transition:
+                transform .4s var(--bc-ease),
+                box-shadow .4s var(--bc-ease) !important;
+        }
+
+
+        .bc-whatsapp-checkout:hover {
+
+            transform:
+                translateY(-3px) !important;
+
+            box-shadow:
+                0 22px 38px rgba(37, 181, 95, .28) !important;
+        }
+
+
+        .bc-whatsapp-checkout>i:first-child {
+
+            width:
+                35px;
+
+            height:
+                35px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                12px;
+
+            background:
+                rgba(255, 255, 255, .16);
+
+            font-size:
+                1.05rem;
+        }
+
+
+        .bc-whatsapp-checkout span {
+
+            display:
+                block;
+
+            font-size:
+                .8rem;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.2;
+        }
+
+
+        .bc-whatsapp-checkout span small {
+
+            display:
+                block;
+
+            font-size:
+                .58rem;
+
+            font-weight:
+                400;
+
+            opacity:
+                .78;
+
+            margin-top:
+                3px;
+        }
+
+
+        .bc-whatsapp-checkout>i:last-child {
+
+            font-size:
+                .85rem;
+
+            opacity:
+                .8;
+        }
+
+
+        .bc-continue-shopping {
+
+            min-height:
+                48px !important;
+
+            border-radius:
+                16px !important;
+
+            border-color:
+                rgba(154, 116, 32, .28) !important;
+
+            background:
+                rgba(255, 255, 255, .34) !important;
+        }
+
+
+        /* Note */
+
+        .bc-order-note {
+
+            display:
+                flex;
+
+            gap:
+                11px;
+
+            margin-top:
+                18px;
+
+            padding:
+                14px;
+
+            border:
+                1px solid rgba(201, 168, 76, .16);
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(255, 249, 228, .42);
+        }
+
+
+        .bc-note-icon {
+
+            flex:
+                0 0 31px;
+
+            width:
+                31px;
+
+            height:
+                31px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(201, 168, 76, .14);
+
+            color:
+                var(--bc-gold-deep);
+        }
+
+
+        .bc-order-note strong {
+
+            display:
+                block;
+
+            font-size:
+                .7rem;
+
+            color:
+                var(--bc-ink);
+        }
+
+
+        .bc-order-note p {
+
+            margin-top:
+                4px;
+
+            font-size:
+                .63rem;
+
+            line-height:
+                1.55;
+
+            color:
+                #8b786c;
+        }
+
+
+        .bc-summary-trust {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                14px;
+
+            padding-top:
+                14px;
+
+            border-top:
+                1px solid var(--bc-glass-line);
+        }
+
+
+        .bc-summary-trust span {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            font-size:
+                .57rem;
+
+            color:
+                #8c7c72;
+        }
+
+
+        .bc-summary-trust i {
+
+            color:
+                var(--bc-gold-deep);
+        }
+
+
+        /* Empty */
+
+        .bc-cart-items-panel .cart-empty {
+
+            min-height:
+                390px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            align-content:
+                center;
+
+            padding:
+                40px !important;
+
+            text-align:
+                center;
+        }
+
+
+        .bc-cart-items-panel .cart-empty i {
+
+            width:
+                74px;
+
+            height:
+                74px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin:
+                0 auto 18px;
+
+            border-radius:
+                24px;
+
+            background:
+                rgba(201, 168, 76, .12);
+
+            color:
+                var(--bc-gold-deep);
+
+            font-size:
+                1.7rem;
+        }
+
+
+        /* Animations */
+
+        @keyframes bcSpin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+
+        @keyframes bcPulse {
+
+            50% {
+
+                transform:
+                    scale(.72);
+
+                opacity:
+                    .45;
+            }
+
+        }
+
+
+        @keyframes bcGlassSweep {
+
+            0%,
+            65%,
+            100% {
+
+                transform:
+                    translateX(-60%);
+
+                opacity:
+                    0;
+            }
+
+            72% {
+                opacity:
+                    .35;
+            }
+
+            88% {
+
+                transform:
+                    translateX(60%);
+
+                opacity:
+                    .18;
+            }
+
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+
+            .bc-cart-heading-row {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .bc-cart-secure-pill {
+
+                align-self:
+                    stretch;
+
+                max-width:
+                    360px;
+            }
+
+
+            .bc-cart-progress {
+
+                margin-left:
+                    0;
+
+                max-width:
+                    none;
+            }
+
+
+            .bc-cart-layout {
+
+                grid-template-columns:
+                    1fr !important;
+            }
+
+
+            .bc-order-summary {
+
+                position:
+                    relative;
+
+                top:
+                    auto !important;
+            }
+
+        }
+
+
+        @media (max-width: 639px) {
+
+            .bc-cart-experience {
+
+                padding:
+                    24px 0 72px;
+
+                min-height:
+                    700px;
+            }
+
+
+            .bc-cart-heading {
+
+                margin-bottom:
+                    18px;
+            }
+
+
+            .bc-cart-breadcrumb {
+
+                margin-bottom:
+                    17px;
+            }
+
+
+            .bc-cart-heading h1 {
+
+                font-size:
+                    3rem;
+            }
+
+
+            .bc-cart-heading p {
+
+                font-size:
+                    .82rem;
+
+                max-width:
+                    290px;
+            }
+
+
+            .bc-cart-secure-pill {
+
+                width:
+                    100%;
+
+                max-width:
+                    none;
+            }
+
+
+            .bc-cart-progress {
+
+                padding:
+                    9px 10px;
+            }
+
+
+            .bc-cart-progress-step {
+
+                font-size:
+                    .57rem;
+            }
+
+
+            .bc-cart-progress>i {
+
+                margin:
+                    0 5px;
+            }
+
+
+            .bc-cart-layout {
+
+                gap:
+                    16px !important;
+            }
+
+
+            .bc-cart-items-panel {
+
+                border-radius:
+                    23px !important;
+            }
+
+
+            .bc-cart-items-panel .cart-table {
+
+                border-spacing:
+                    0 8px !important;
+
+                padding:
+                    5px 7px 9px;
+            }
+
+
+            .bc-cart-items-panel .cart-table td {
+
+                padding:
+                    11px 9px !important;
+            }
+
+
+            .bc-cart-items-panel .cart-item-img {
+
+                width:
+                    64px !important;
+
+                height:
+                    64px !important;
+
+                border-radius:
+                    15px !important;
+            }
+
+
+            .bc-cart-items-panel .cart-item-name {
+
+                font-size:
+                    .8rem;
+            }
+
+
+            .bc-cart-items-panel .cart-item-name-si {
+
+                font-size:
+                    .68rem;
+            }
+
+
+            .bc-cart-items-panel .qty-stepper {
+
+                transform:
+                    scale(.92);
+
+                transform-origin:
+                    left center;
+            }
+
+
+            .bc-order-summary {
+
+                padding:
+                    18px !important;
+
+                border-radius:
+                    23px !important;
+            }
+
+
+            .bc-summary-title-row h2 {
+
+                font-size:
+                    1.45rem;
+            }
+
+
+            .bc-total-card strong {
+
+                font-size:
+                    1.5rem;
+            }
+
+
+            .bc-whatsapp-checkout {
+
+                min-height:
+                    58px !important;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .bc-cart-heading h1 {
+
+                font-size:
+                    2.6rem;
+            }
+
+
+            .bc-cart-secure-pill {
+
+                padding:
+                    10px 12px;
+            }
+
+
+            .bc-cart-progress-step b {
+
+                display:
+                    none;
+            }
+
+
+            .bc-cart-progress {
+
+                justify-content:
+                    space-between;
+            }
+
+
+            .bc-cart-progress>i {
+
+                flex:
+                    1;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .bc-cart-experience::before,
+            .bc-loading-ring,
+            .bc-summary-live span {
+
+                animation:
+                    none !important;
+            }
+
+
+            .bc-cart-items-panel .cart-table tbody tr,
+            .bc-whatsapp-checkout {
+
+                transition:
+                    none !important;
+            }
+
+        }
+        
+    </style>
+
+
+    <!-- =====================================================
+         CART GLASS MOTION
+         ===================================================== -->
+
+    <script id="bc-cart-glass-motion">
+
+        (function () {
+
+            const root =
+                document.querySelector(
+                    '.bc-cart-experience'
+                );
+
+
+            if (!root) {
+                return;
+            }
+
+
+            if (
+                !window
+                    .matchMedia(
+                        '(prefers-reduced-motion: reduce)'
+                    )
+                    .matches
+            ) {
+
+                let tx = 0;
+                let ty = 0;
+
+                let cx = 0;
+                let cy = 0;
+
+                let raf = 0;
+
+
+                root.addEventListener(
+                    'pointermove',
+                    function (e) {
+
+                        const rect =
+                            root.getBoundingClientRect();
+
+
+                        tx =
+                            (
+                                e.clientX -
+                                rect.left
+                            ) /
+                            rect.width -
+                            .5;
+
+
+                        ty =
+                            (
+                                e.clientY -
+                                rect.top
+                            ) /
+                            rect.height -
+                            .5;
+
+
+                        if (!raf) {
+                            raf =
+                                requestAnimationFrame(
+                                    tick
+                                );
+                        }
+
+                    },
+                    {
+                        passive: true
+                    }
+                );
+
+
+                root.addEventListener(
+                    'pointerleave',
+                    function () {
+
+                        tx = 0;
+                        ty = 0;
+
+
+                        if (!raf) {
+
+                            raf =
+                                requestAnimationFrame(
+                                    tick
+                                );
+                        }
+
+                    },
+                    {
+                        passive: true
+                    }
+                );
+
+
+                function tick() {
+
+                    cx +=
+                        (tx - cx) *
+                        .08;
+
+
+                    cy +=
+                        (ty - cy) *
+                        .08;
+
+
+                    const a =
+                        root.querySelector(
+                            '.bc-cart-orb-a'
+                        );
+
+
+                    const b =
+                        root.querySelector(
+                            '.bc-cart-orb-b'
+                        );
+
+
+                    const c =
+                        root.querySelector(
+                            '.bc-cart-orb-c'
+                        );
+
+
+                    if (a) {
+
+                        a.style.transform =
+                            `translate3d(
+                            ${cx * -18}px,
+                            ${cy * -12}px,
+                            0
+                        )`;
+                    }
+
+
+                    if (b) {
+
+                        b.style.transform =
+                            `translate3d(
+                            ${cx * 14}px,
+                            ${cy * 10}px,
+                            0
+                        )`;
+                    }
+
+
+                    if (c) {
+
+                        c.style.transform =
+                            `translate3d(
+                            ${cx * -10}px,
+                            ${cy * 8}px,
+                            0
+                        )`;
+                    }
+
+
+                    if (
+                        Math.abs(tx - cx) +
+                        Math.abs(ty - cy) >
+                        .002
+                    ) {
+
+                        raf =
+                            requestAnimationFrame(
+                                tick
+                            );
+
+                    } else {
+
+                        raf = 0;
+                    }
+
+                }
+
+            }
+
+        })();
+
+    </script>
 
 
 </body>
 
 </html>
+```
