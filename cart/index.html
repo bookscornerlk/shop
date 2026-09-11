@@ -883,6 +883,116 @@
         }
     </style>
 
+
+<style id="bc-cart-compact-glass-v2">
+/* Compact glass cart tiles + larger true 1:1 product previews */
+.bc-cart-items-panel .cart-table {
+    border-spacing: 0 7px !important;
+    padding: 6px 9px 9px !important;
+    width: 100%;
+}
+
+.bc-cart-items-panel .cart-table tbody tr {
+    background: linear-gradient(135deg,
+        rgba(255,255,255,.64),
+        rgba(255,255,255,.30)) !important;
+    border: 1px solid rgba(255,255,255,.78) !important;
+    box-shadow:
+        0 8px 24px rgba(55,35,23,.07),
+        inset 0 1px rgba(255,255,255,.72) !important;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.bc-cart-items-panel .cart-table tbody tr:hover {
+    background: linear-gradient(135deg,
+        rgba(255,255,255,.76),
+        rgba(255,255,255,.42)) !important;
+    box-shadow:
+        0 13px 30px rgba(55,35,23,.10),
+        inset 0 1px rgba(255,255,255,.88) !important;
+}
+
+.bc-cart-items-panel .cart-table td {
+    padding: 9px 10px !important;
+    vertical-align: middle !important;
+}
+
+/* Bigger preview, locked to a real square */
+.bc-cart-items-panel .cart-item-img {
+    width: 94px !important;
+    height: 94px !important;
+    aspect-ratio: 1 / 1 !important;
+    min-width: 94px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,.88) !important;
+    background: rgba(255,255,255,.42) !important;
+    box-shadow:
+        0 7px 18px rgba(55,35,23,.12),
+        inset 0 1px rgba(255,255,255,.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Keep the product cell compact while giving the preview room */
+.bc-cart-items-panel .cart-table td:first-child {
+    padding-left: 10px !important;
+    padding-right: 7px !important;
+    width: 112px;
+}
+
+.bc-cart-items-panel .cart-item-name {
+    font-size: .88rem !important;
+    line-height: 1.28 !important;
+}
+
+.bc-cart-items-panel .cart-item-name-si {
+    font-size: .76rem !important;
+    line-height: 1.25 !important;
+    margin-top: 2px !important;
+}
+
+.bc-cart-items-panel .qty-stepper {
+    padding: 3px !important;
+    gap: 2px !important;
+    background: rgba(255,255,255,.48) !important;
+    border: 1px solid rgba(255,255,255,.68) !important;
+    box-shadow: inset 0 1px rgba(255,255,255,.70) !important;
+}
+
+.bc-cart-items-panel .qty-stepper button {
+    width: 27px !important;
+    height: 27px !important;
+}
+
+@media (max-width: 767px) {
+    .bc-cart-items-panel .cart-table {
+        border-spacing: 0 6px !important;
+        padding: 4px 6px 7px !important;
+    }
+
+    .bc-cart-items-panel .cart-table td {
+        padding: 8px 7px !important;
+    }
+
+    .bc-cart-items-panel .cart-item-img {
+        width: 76px !important;
+        height: 76px !important;
+        min-width: 76px !important;
+        border-radius: 14px !important;
+    }
+
+    .bc-cart-items-panel .cart-table td:first-child {
+        width: 88px;
+        padding-left: 7px !important;
+        padding-right: 5px !important;
+    }
+}
+</style>
+
 </head>
 
 
@@ -1099,7 +1209,7 @@
 
 
                     <!-- Main heading -->
-
+<br>
                     <div class="bc-cart-heading-row">
 
                         <div>
@@ -1758,238 +1868,6 @@
 
     <script src="../js/main.js"></script>
 
-
-    <!-- =====================================================
-         FLUID CART LOADER
-         ===================================================== -->
-    <style id="bc-fluid-cart-loader">
-        #bcFluidCartLoader {
-            position: fixed;
-            inset: 0;
-            z-index: 2147483647;
-            display: grid;
-            place-items: center;
-            background: rgba(250, 247, 240, .82);
-            backdrop-filter: blur(18px) saturate(125%);
-            -webkit-backdrop-filter: blur(18px) saturate(125%);
-            opacity: 1;
-            visibility: visible;
-            transition: opacity .55s cubic-bezier(.22,1,.36,1), visibility .55s ease;
-            overflow: hidden;
-        }
-
-        #bcFluidCartLoader.is-done {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .bc-fluid-loader-core {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            display: grid;
-            place-items: center;
-        }
-
-        .bc-fluid-loader-glow {
-            position: absolute;
-            width: 105px;
-            height: 105px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(201,168,76,.25), transparent 68%);
-            filter: blur(8px);
-            animation: bcFluidGlow 2.2s ease-in-out infinite;
-        }
-
-        .bc-fluid-loader-ring {
-            position: absolute;
-            width: 112px;
-            height: 112px;
-            border: 1px solid rgba(154,116,32,.18);
-            border-radius: 50%;
-            animation: bcFluidRing 2.4s cubic-bezier(.22,1,.36,1) infinite;
-        }
-
-        .bc-fluid-loader-ring::after {
-            content: "";
-            position: absolute;
-            inset: -1px;
-            border-radius: inherit;
-            border: 2px solid transparent;
-            border-top-color: #c9a84c;
-            border-right-color: rgba(123,45,66,.55);
-            transform: rotate(-20deg);
-            animation: bcFluidSpin 1.05s linear infinite;
-        }
-
-        .bc-fluid-bag {
-            position: relative;
-            z-index: 3;
-            width: 55px;
-            height: 51px;
-            border-radius: 11px 11px 15px 15px;
-            background: linear-gradient(145deg, #fffdf9, #efe6d5);
-            border: 1px solid rgba(154,116,32,.32);
-            box-shadow: 0 16px 35px rgba(71,44,25,.16), inset 0 1px 0 #fff;
-            animation: bcBagBreath 1.5s cubic-bezier(.22,1,.36,1) infinite;
-        }
-
-        .bc-fluid-bag::before {
-            content: "";
-            position: absolute;
-            left: 15px;
-            top: -18px;
-            width: 23px;
-            height: 25px;
-            border: 2px solid #9a7420;
-            border-bottom: 0;
-            border-radius: 16px 16px 0 0;
-        }
-
-        .bc-fluid-bag::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 17px;
-            width: 5px;
-            height: 5px;
-            transform: translateX(-50%);
-            border-radius: 50%;
-            background: #c9a84c;
-            box-shadow: 0 0 0 5px rgba(201,168,76,.08);
-        }
-
-        .bc-fluid-drop {
-            position: absolute;
-            z-index: 4;
-            left: 50%;
-            top: -8px;
-            width: 13px;
-            height: 18px;
-            border-radius: 65% 35% 60% 40% / 55% 45% 55% 45%;
-            background: linear-gradient(145deg, #e2c56c, #a87820);
-            box-shadow: 0 8px 18px rgba(154,116,32,.25);
-            transform: translate(-50%, -34px) rotate(18deg) scale(.55);
-            opacity: 0;
-            animation: bcDropIntoBag 1.25s cubic-bezier(.22,1,.36,1) infinite;
-        }
-
-        .bc-fluid-drop.d2 { animation-delay: .32s; transform-origin: 50% 50%; }
-        .bc-fluid-drop.d3 { animation-delay: .64s; transform-origin: 50% 50%; }
-
-        .bc-fluid-ripple {
-            position: absolute;
-            z-index: 2;
-            left: 50%;
-            top: 54%;
-            width: 24px;
-            height: 10px;
-            border: 1px solid rgba(201,168,76,.45);
-            border-radius: 50%;
-            transform: translate(-50%,-50%) scale(.35);
-            opacity: 0;
-            animation: bcFluidRipple 1.25s ease-out infinite;
-        }
-
-        .bc-fluid-ripple.r2 { animation-delay: .32s; }
-        .bc-fluid-ripple.r3 { animation-delay: .64s; }
-
-        .bc-fluid-loader-text {
-            position: absolute;
-            top: calc(50% + 94px);
-            left: 50%;
-            transform: translateX(-50%);
-            width: max-content;
-            color: #806d62;
-            font: 600 10px/1 Poppins, sans-serif;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            animation: bcTextFade 1.5s ease-in-out infinite;
-        }
-
-        @keyframes bcDropIntoBag {
-            0% { opacity: 0; transform: translate(-50%,-48px) rotate(18deg) scale(.35); }
-            18% { opacity: 1; }
-            68% { opacity: 1; transform: translate(-50%,18px) rotate(180deg) scale(1); }
-            78% { opacity: .9; transform: translate(-50%,27px) rotate(220deg) scale(.8); }
-            100% { opacity: 0; transform: translate(-50%,38px) rotate(260deg) scale(.2); }
-        }
-
-        @keyframes bcFluidRipple {
-            0% { opacity: 0; transform: translate(-50%,-50%) scale(.35); }
-            45% { opacity: .8; }
-            100% { opacity: 0; transform: translate(-50%,-50%) scale(2.7); }
-        }
-
-        @keyframes bcFluidRing {
-            0%,100% { transform: scale(.94); opacity: .7; }
-            50% { transform: scale(1.04); opacity: 1; }
-        }
-
-        @keyframes bcFluidSpin { to { transform: rotate(340deg); } }
-        @keyframes bcFluidGlow { 0%,100% { transform: scale(.82); opacity: .55; } 50% { transform: scale(1.12); opacity: 1; } }
-        @keyframes bcBagBreath { 0%,100% { transform: translateY(2px) scale(.98); } 50% { transform: translateY(-2px) scale(1.02); } }
-        @keyframes bcTextFade { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
-
-        @media (prefers-reduced-motion: reduce) {
-            #bcFluidCartLoader *, #bcFluidCartLoader::before, #bcFluidCartLoader::after { animation: none !important; }
-        }
-    </style>
-
-    <script id="bc-fluid-cart-loader-script">
-        (function () {
-            'use strict';
-
-            var loader = document.createElement('div');
-            loader.id = 'bcFluidCartLoader';
-            loader.setAttribute('aria-label', 'Loading cart');
-            loader.innerHTML = `
-                <div class="bc-fluid-loader-core" aria-hidden="true">
-                    <div class="bc-fluid-loader-glow"></div>
-                    <div class="bc-fluid-loader-ring"></div>
-                    <span class="bc-fluid-drop"></span>
-                    <span class="bc-fluid-drop d2"></span>
-                    <span class="bc-fluid-drop d3"></span>
-                    <span class="bc-fluid-ripple"></span>
-                    <span class="bc-fluid-ripple r2"></span>
-                    <span class="bc-fluid-ripple r3"></span>
-                    <div class="bc-fluid-bag"></div>
-                </div>
-                <div class="bc-fluid-loader-text">Preparing your cart</div>
-            `;
-
-            if (document.body) {
-                document.body.prepend(loader);
-            } else {
-                document.addEventListener('DOMContentLoaded', function () {
-                    document.body.prepend(loader);
-                }, { once: true });
-            }
-
-            function finish() {
-                if (!loader || loader.classList.contains('is-done')) return;
-                loader.classList.add('is-done');
-                window.setTimeout(function () {
-                    if (loader.parentNode) loader.parentNode.removeChild(loader);
-                }, 650);
-            }
-
-            window.setTimeout(finish, 950);
-
-            // Keep the same fluid transition when navigating to the cart from another page.
-            document.addEventListener('click', function (event) {
-                var link = event.target.closest && event.target.closest('a');
-                if (!link) return;
-                var href = link.getAttribute('href') || '';
-                if (!href || link.target === '_blank' || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-                if (href === '/cart' || href === '/cart/' || /\/cart(?:\/|$)/i.test(href)) {
-                    loader.classList.remove('is-done');
-                    if (!loader.parentNode) document.body.prepend(loader);
-                }
-            }, { passive: true });
-        })();
-    </script>
 
     <!-- =====================================================
          CART GLASS SYSTEM
@@ -4044,4 +3922,3 @@ font-weight: 800;
 </body>
 
 </html>
-```
