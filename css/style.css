@@ -3562,7 +3562,7 @@ body {
    ========================================================= */
 
 .navbar {
-    background: rgba(255, 255, 255, .72) !important;
+   
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
 
@@ -3577,8 +3577,6 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(255,255,255,.82) !important;
-
     box-shadow:
         0 10px 40px rgba(44,24,16,.08),
         0 2px 8px rgba(44,24,16,.04);
