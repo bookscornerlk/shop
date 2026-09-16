@@ -624,7 +624,7 @@
             transform: translateY(0) scale(1);
         }
 
-     
+
 
         @keyframes bcPolaroidEntrance {
             from {
@@ -654,87 +654,88 @@
    Accessibility
 --------------------------------------------------------- */
 
-        
 
-       /* =========================================
+
+        /* =========================================
    SMOOTH PRODUCT CARD REVEAL
 ========================================= */
 
-.product-card {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-}
+        .product-card {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
 
-.product-card.bc-card-reveal {
-    opacity: 0;
-    transform: translate3d(0, 28px, 0) scale(0.985);
-    transition:
-        opacity 0.55s cubic-bezier(.22, 1, .36, 1),
-        transform 0.55s cubic-bezier(.22, 1, .36, 1);
-    will-change: opacity, transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
+        .product-card.bc-card-reveal {
+            opacity: 0;
+            transform: translate3d(0, 28px, 0) scale(0.985);
+            transition:
+                opacity 0.55s cubic-bezier(.22, 1, .36, 1),
+                transform 0.55s cubic-bezier(.22, 1, .36, 1);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
 
-.product-card.bc-card-reveal.is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-}
+        .product-card.bc-card-reveal.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
 
-/* Mobile - don't animate the generated product grid */
-@media (max-width: 767px) {
-    #productsGridContainer .product-card {
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-        transition: none !important;
-    }
-}
+        /* Mobile - don't animate the generated product grid */
+        @media (max-width: 767px) {
+            #productsGridContainer .product-card {
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+                transition: none !important;
+            }
+        }
 
         @media (max-width: 767px) {
 
-    #productsGridContainer .product-card {
-        opacity: 1;
-        transform: translateY(0);
-        visibility: visible;
-    }
+            #productsGridContainer .product-card {
+                opacity: 1;
+                transform: translateY(0);
+                visibility: visible;
+            }
 
-}
+        }
 
-/* =========================================
+        /* =========================================
    SCROLL REVEAL SAFETY FIX
    Prevents content from remaining invisible
 ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
-    .bc-reveal,
-    .bc-reveal-left,
-    .bc-reveal-right,
-    .bc-reveal-scale,
-    .bc-stagger,
-    .bc-stagger > *,
-    .bc-card-reveal,
-    .bc-cta-reveal,
-    .bc-image-reveal img,
-    .bc-section-reveal .section-title h2,
-    .bc-section-reveal .section-title p {
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-        animation: none !important;
-    }
-}
+        @media (prefers-reduced-motion: reduce) {
 
-/* Prevent rendering glitches */
-.bc-reveal.is-visible,
-.bc-reveal-left.is-visible,
-.bc-reveal-right.is-visible,
-.bc-reveal-scale.is-visible,
-.bc-card-reveal.is-visible,
-.bc-cta-reveal.is-visible {
-    visibility: visible;
-}
+            .bc-reveal,
+            .bc-reveal-left,
+            .bc-reveal-right,
+            .bc-reveal-scale,
+            .bc-stagger,
+            .bc-stagger>*,
+            .bc-card-reveal,
+            .bc-cta-reveal,
+            .bc-image-reveal img,
+            .bc-section-reveal .section-title h2,
+            .bc-section-reveal .section-title p {
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+                animation: none !important;
+            }
+        }
+
+        /* Prevent rendering glitches */
+        .bc-reveal.is-visible,
+        .bc-reveal-left.is-visible,
+        .bc-reveal-right.is-visible,
+        .bc-reveal-scale.is-visible,
+        .bc-card-reveal.is-visible,
+        .bc-cta-reveal.is-visible {
+            visibility: visible;
+        }
     </style>
 
     <script
@@ -1707,82 +1708,82 @@
 
 
 
-  
-        /* =========================================================
-           BOOKS CORNER — SCROLL REVEAL ENGINE
-        ========================================================= */
-<script>
-(function () {
-    const revealElements = document.querySelectorAll(
-        '.bc-reveal, ' +
-        '.bc-reveal-left, ' +
-        '.bc-reveal-right, ' +
-        '.bc-reveal-scale, ' +
-        '.bc-stagger, ' +
-        '.bc-card-reveal, ' +
-        '.bc-cta-reveal, ' +
-        '.bc-image-reveal, ' +
-        '.bc-section-reveal'
-    );
 
-    if (!revealElements.length) return;
+    /* =========================================================
+    BOOKS CORNER — SCROLL REVEAL ENGINE
+    ========================================================= */
+    <script>
+        (function () {
+            const revealElements = document.querySelectorAll(
+                '.bc-reveal, ' +
+                '.bc-reveal-left, ' +
+                '.bc-reveal-right, ' +
+                '.bc-reveal-scale, ' +
+                '.bc-stagger, ' +
+                '.bc-card-reveal, ' +
+                '.bc-cta-reveal, ' +
+                '.bc-image-reveal, ' +
+                '.bc-section-reveal'
+            );
 
-    // Reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        revealElements.forEach(el => el.classList.add('is-visible'));
-        return;
-    }
+            if (!revealElements.length) return;
 
-    // Check immediately - prevents content staying hidden
-    function revealVisibleElements() {
-        revealElements.forEach(function (element) {
-            if (element.classList.contains('is-visible')) return;
-
-            const rect = element.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-            // Reveal before element reaches the middle of the screen
-            if (
-                rect.top < windowHeight * 0.92 &&
-                rect.bottom > 0
-            ) {
-                element.classList.add('is-visible');
+            // Reduced motion
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                revealElements.forEach(el => el.classList.add('is-visible'));
+                return;
             }
-        });
-    }
 
-    // Run immediately
-    revealVisibleElements();
+            // Check immediately - prevents content staying hidden
+            function revealVisibleElements() {
+                revealElements.forEach(function (element) {
+                    if (element.classList.contains('is-visible')) return;
 
-    const observer = new IntersectionObserver(
-        function (entries, obs) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target);
+                    const rect = element.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                    // Reveal before element reaches the middle of the screen
+                    if (
+                        rect.top < windowHeight * 0.92 &&
+                        rect.bottom > 0
+                    ) {
+                        element.classList.add('is-visible');
+                    }
+                });
+            }
+
+            // Run immediately
+            revealVisibleElements();
+
+            const observer = new IntersectionObserver(
+                function (entries, obs) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.01,
+                    rootMargin: '0px 0px 15% 0px'
                 }
+            );
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
             });
-        },
-        {
-            threshold: 0.01,
-            rootMargin: '0px 0px 15% 0px'
-        }
-    );
 
-    revealElements.forEach(function (element) {
-        observer.observe(element);
-    });
+            // Extra safety for dynamically loaded content
+            window.addEventListener('load', revealVisibleElements);
+            window.addEventListener('resize', revealVisibleElements);
 
-    // Extra safety for dynamically loaded content
-    window.addEventListener('load', revealVisibleElements);
-    window.addEventListener('resize', revealVisibleElements);
+            // Check after images/layout finish loading
+            setTimeout(revealVisibleElements, 300);
+            setTimeout(revealVisibleElements, 1000);
 
-    // Check after images/layout finish loading
-    setTimeout(revealVisibleElements, 300);
-    setTimeout(revealVisibleElements, 1000);
-
-})();
-</script>
+        })();
+    </script>
 
 
 
